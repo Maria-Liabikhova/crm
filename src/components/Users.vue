@@ -40,6 +40,7 @@
                 </v-menu>
               </div>
               <!-- END menu button-->
+              <CreateUserButton />
             </v-navigation-drawer>
           </v-card>
         </v-col>
@@ -76,7 +77,9 @@
 
 
 <script>
+  import CreateUserButton from './CreateUserButton.vue'
   export default {
+    components: {CreateUserButton},
     data() { 
       return {
         items: [
@@ -87,7 +90,7 @@
           { title: 'Guest' },
         ],
         filter: 'All users',
-        dialog: false,
+        
       }
     },
     computed: {
