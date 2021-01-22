@@ -4,7 +4,7 @@
       <v-row>
         <v-col cols="4" xs='4' sm='4' md='3'>
           <v-card
-          class="mx-auto"
+            class="mx-auto"
             height="100%"
           >
             <v-navigation-drawer
@@ -14,7 +14,7 @@
               width="100%"
               permanent
             >
-            <!-- menu button-->
+<!-- choose button-->
               <div class="text-center pointer mt-3 mb-3" >
                 <v-menu >
                   <template v-slot:activator="{ on, attrs }">
@@ -39,8 +39,8 @@
                   </v-list>
                 </v-menu>
               </div>
-              <!-- END menu button-->
-              <CreateUserButton />
+<!-- END choose button-->
+              <CreateUser />
             </v-navigation-drawer>
           </v-card>
         </v-col>
@@ -77,9 +77,9 @@
 
 
 <script>
-  import CreateUserButton from './CreateUserButton.vue'
+  import CreateUser from './CreateUser.vue'
   export default {
-    components: {CreateUserButton},
+    components: {CreateUser},
     data() { 
       return {
         items: [

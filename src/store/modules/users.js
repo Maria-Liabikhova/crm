@@ -51,12 +51,12 @@ export default {
         gender: 'Female',
         role: 'Guest'
       },
-    ],
+    ]
   },
   mutations: {
     addUser (state, payload) {
       state.users.push(payload)
-    }
+    },
   },
   actions: {
     createUser ({commit}, payload) {
@@ -66,6 +66,9 @@ export default {
   getters: {
     users (state) {
       return state.users
+    },
+    user (state) {
+      return state.user
     }
   }
 }
