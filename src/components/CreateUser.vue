@@ -1,18 +1,8 @@
 <template>
   <v-row justify="center">
-    <v-dialog
-      v-model="dialog"
-      persistent
-      max-width="600px"
-    >
+    <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn 
-          color="primary"
-          dark
-          v-bind="attrs"
-          v-on="on"
-          class="mt-5"
-        >
+        <v-btn color="primary" dark v-bind="attrs" v-on="on" class="mt-5">
           Create user
         </v-btn>
       </template>
@@ -21,14 +11,11 @@
           <span class="headline">Please, enter user data</span>
         </v-card-title>
         <v-form ref="form" v-model="valid">
-          <v-card-text >
+          <v-card-text>
             <v-container>
               <v-row>
-  <!-- First dada -->
-                <v-col
-                  cols="12"
-                  md="6"
-                >
+                <!-- First dada -->
+                <v-col cols="12" md="6">
                   <v-text-field
                     v-model="name"
                     label="First name*"
@@ -36,12 +23,9 @@
                     :rules="rule"
                   ></v-text-field>
                 </v-col>
-  <!-- End First dada -->
-  <!-- Second dada -->
-                <v-col
-                  cols="12"
-                  md="6"
-                >
+                <!-- End First dada -->
+                <!-- Second dada -->
+                <v-col cols="12" md="6">
                   <v-text-field
                     v-model="secondName"
                     label="Last name*"
@@ -49,8 +33,8 @@
                     :rules="rule"
                   ></v-text-field>
                 </v-col>
-  <!-- End second dada -->
-  <!-- Third dada -->
+                <!-- End second dada -->
+                <!-- Third dada -->
                 <v-col cols="12">
                   <v-text-field
                     v-model="id"
@@ -60,12 +44,9 @@
                     :rules="rule"
                   ></v-text-field>
                 </v-col>
-  <!-- End third dada -->
-  <!-- Fourth dada -->
-                <v-col
-                  cols="12"
-                  sm="6"
-                >
+                <!-- End third dada -->
+                <!-- Fourth dada -->
+                <v-col cols="12" sm="6">
                   <v-select
                     v-model="gender"
                     :items="['Female', 'Male', 'Transgender']"
@@ -74,12 +55,9 @@
                     :rules="rule"
                   ></v-select>
                 </v-col>
-  <!-- End fourth dada -->
-  <!-- Fifth dada -->
-                <v-col
-                  cols="12"
-                  sm="6"
-                >
+                <!-- End fourth dada -->
+                <!-- Fifth dada -->
+                <v-col cols="12" sm="6">
                   <v-autocomplete
                     v-model="role"
                     :items="['Administrator', 'Client', 'Editor', 'Guest']"
@@ -88,19 +66,36 @@
                     :rules="rule"
                   ></v-autocomplete>
                 </v-col>
-  <!-- End fifth dada -->
+                <!-- End fifth dada -->
               </v-row>
             </v-container>
             <small>*indicates required field</small>
+            <v-spacer></v-spacer>
+            <!-- Add picture button -->
+            <v-btn
+              :loading="loading3"
+              :disabled="loading3"
+              color="blue-grey"
+              class="ma-2 white--text"
+              @click="addPhoto"
+            >
+              upload profile photo
+              <v-icon right dark>
+                mdi-cloud-upload
+              </v-icon>
+            </v-btn>
+            <input
+              ref="add"
+              type="file"
+              accept="image/*"
+              style="display: none"
+            />
+            <!-- End add picture button -->
           </v-card-text>
         </v-form>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn
-            color="blue darken-1"
-            text
-            @click="dialog = false"
-          >
+          <v-btn color="blue darken-1" text @click="dialog = false">
             Close
           </v-btn>
           <v-btn
@@ -123,17 +118,20 @@ export default {
     return {
       dialog: false,
       valid: false,
-      rule: [el => !!el || "Title is required"],
+      rule: [el => !!el || 'Title is required'],
       number: Number,
+      img: '',
       name: '',
       secondName: '',
       id: '',
       gender: '',
-      role: ''
+      role: '',
+      loader: null,
+      loading3: false
     }
   },
   methods: {
-    createUser () {
+    createUser() {
       this.dialog = false
       if (this.$refs.form.validate()) {
         const user = {
@@ -144,17 +142,23 @@ export default {
           role: this.role
         }
         this.$store.dispatch('createUser', user)
-        .then(()=> {
-          this.$router.push('/users')
-        })
+        this.$router.push('/users')
       }
+    },
+    addPhoto() {
+      this.loader = 'loading3'
+      this.$refs.add.click()
+    }
+  },
+  watch: {
+    loader() {
+      const l = this.loader
+      this[l] = !this[l]
+
+      setTimeout(() => (this[l] = false), 1000)
+
+      this.loader = null
     }
   }
 }
 </script>
-
-<style scoped>
-.mm {
-  background-color: blue;
-}
-</style>
