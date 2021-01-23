@@ -6,7 +6,7 @@
           Create user
         </v-btn>
       </template>
-      <v-card class="mm">
+      <v-card>
         <v-card-title>
           <span class="headline">Please, enter user data</span>
         </v-card-title>

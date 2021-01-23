@@ -34,6 +34,7 @@
               </div>
               <!-- END choose button-->
               <CreateUser />
+              <DeleteUser />
             </v-navigation-drawer>
           </v-card>
         </v-col>
@@ -80,8 +81,9 @@
 
 <script>
 import CreateUser from './CreateUser.vue'
+import DeleteUser from './DeleteUser.vue'
 export default {
-  components: { CreateUser },
+  components: { CreateUser, DeleteUser },
   data() {
     return {
       items: [
