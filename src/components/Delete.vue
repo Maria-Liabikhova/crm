@@ -12,6 +12,7 @@
           <span class="blue--text lighten-1">Delite user</span>
         </v-card-title>
         <v-divider></v-divider>
+        <!-- main part of dialod window -->
         <v-list subheader>
           <v-list-item v-for="user in users" :key="user.id">
             <v-list-item-avatar>
@@ -25,7 +26,7 @@
             </v-list-item-content>
 
             <v-list-item-icon>
-              <v-btn text @click="dialogClose = true">
+              <v-btn @click="dialogClose = true">
                 <v-icon class="icon-delite">
                   mdi-trash-can-outline
                 </v-icon>
@@ -33,6 +34,7 @@
             </v-list-item-icon>
           </v-list-item>
         </v-list>
+        <!--END main part of dialod window -->
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="dialogDelete = false">
@@ -42,7 +44,7 @@
       </v-card>
       <!-- END  dilog window -->
     </v-dialog>
-    <!-- Second gialog -->
+
     <v-dialog v-model="dialogClose" persistent max-width="290">
       <v-card>
         <v-card-title class="headline">
@@ -60,7 +62,6 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <!-- END second gialog -->
   </v-row>
 </template>
 
