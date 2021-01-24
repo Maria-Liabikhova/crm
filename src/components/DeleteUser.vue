@@ -25,7 +25,7 @@
             </v-list-item-content>
 
             <v-list-item-icon>
-              <v-btn text @click="dialogClose = true">
+              <v-btn text @click="deleteUser">
                 <v-icon class="icon-delite">
                   mdi-trash-can-outline
                 </v-icon>
@@ -75,6 +75,11 @@ export default {
   computed: {
     users() {
       return this.$store.getters.users
+    }
+  },
+  methods: {
+    deleteUser() {
+      this.dialogClose = true
     }
   }
 }

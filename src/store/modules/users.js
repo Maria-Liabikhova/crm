@@ -1,4 +1,4 @@
-import { Number } from 'core-js'
+// import { Number } from 'core-js'
 
 export default {
   state: {
@@ -10,7 +10,7 @@ export default {
         name: 'Leonardo',
         id: 1,
         gender: 'Male',
-        role: 'Admin'
+        role: 'admin'
       },
       {
         imgSrc:
@@ -19,7 +19,7 @@ export default {
         name: 'Marie',
         id: 2,
         gender: 'Female',
-        role: 'Editor'
+        role: 'editor'
       },
       {
         imgSrc:
@@ -28,7 +28,7 @@ export default {
         name: 'Albert',
         id: 3,
         gender: 'Male',
-        role: 'Client'
+        role: 'client'
       },
       {
         imgSrc: 'https://media.studomat.ba/2017/11/jung-tipovi-licnosti.jpg',
@@ -36,7 +36,7 @@ export default {
         name: 'Carl Gustav',
         id: 4,
         gender: 'Male',
-        role: 'Editor'
+        role: 'editor'
       },
       {
         imgSrc:
@@ -45,7 +45,7 @@ export default {
         name: 'Ivan Petrovich',
         id: 5,
         gender: 'Male',
-        role: 'Admin'
+        role: 'admin'
       },
       {
         imgSrc:
@@ -54,7 +54,7 @@ export default {
         name: 'Ekaterina',
         id: 6,
         gender: 'Female',
-        role: 'Guest'
+        role: 'guest'
       }
     ]
   },

@@ -87,13 +87,13 @@ export default {
   data() {
     return {
       items: [
-        { title: 'All users' },
-        { title: 'Admin' },
-        { title: 'Editor' },
-        { title: 'Client' },
-        { title: 'Guest' }
+        { title: 'allUsers' },
+        { title: 'admin' },
+        { title: 'editor' },
+        { title: 'client' },
+        { title: 'guest' }
       ],
-      filter: 'All users'
+      filter: 'allUsers'
     }
   },
   computed: {
@@ -101,19 +101,19 @@ export default {
       return this.$store.getters.users
     },
     filteredRole() {
-      if (this.filter === 'All users') {
+      if (this.filter === 'allUsers') {
         return this.users
       }
-      if (this.filter === 'Guest') {
-        return this.users.filter(el => el.role === 'Guest')
+      if (this.filter === 'guest') {
+        return this.users.filter(el => el.role === 'guest')
       }
-      if (this.filter === 'Admin') {
-        return this.users.filter(el => el.role === 'Admin')
+      if (this.filter === 'admin') {
+        return this.users.filter(el => el.role === 'admin')
       }
-      if (this.filter === 'Client') {
-        return this.users.filter(el => el.role === 'Client')
+      if (this.filter === 'client') {
+        return this.users.filter(el => el.role === 'client')
       }
-      return this.users.filter(el => el.role === 'Editor')
+      return this.users.filter(el => el.role === 'editor')
     }
   }
 }
