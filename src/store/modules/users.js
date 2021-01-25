@@ -55,17 +55,32 @@ export default {
         id: 6,
         gender: 'Female',
         role: 'guest'
+      },
+      {
+        imgSrc:
+          'https://cdn.maximonline.ru/7e/15/08/7e15081d13a2e1f30a10e43607f5663f/1500x951_0xac120002_15562901141535097621.jpg',
+        surname: 'Александр',
+        name: 'Богачев',
+        id: 7,
+        gender: 'Male',
+        role: 'guest'
       }
     ]
   },
   mutations: {
     addUser(state, payload) {
       state.users.push(payload)
+    },
+    deleteUser(state, user) {
+      state.users = state.users.filter(el => el.id !== user)
     }
   },
   actions: {
     createUser({ commit }, payload) {
       commit('addUser', payload)
+    },
+    userDelete({ commit }, user) {
+      commit('deleteUser', user)
     }
   },
   getters: {

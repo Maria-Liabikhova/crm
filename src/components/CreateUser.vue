@@ -135,14 +135,12 @@ export default {
       this.dialog = false
       if (this.$refs.form.validate()) {
         const user = {
-          name: this.name,
-          secondName: this.secondName,
+          name: `${this.name} ${this.secondName}`,
           id: this.id,
           gender: this.gender,
           role: this.role
         }
         this.$store.dispatch('createUser', user)
-        this.$router.push('/users')
       }
     },
     addPhoto() {

@@ -101,18 +101,13 @@ export default {
       return this.$store.getters.users
     },
     filteredRole() {
-      if (this.filter === 'allUsers') {
-        return this.users
-      }
-      if (this.filter === 'guest') {
+      if (this.filter === 'allUsers') return this.users
+      if (this.filter === 'guest')
         return this.users.filter(el => el.role === 'guest')
-      }
-      if (this.filter === 'admin') {
+      if (this.filter === 'admin')
         return this.users.filter(el => el.role === 'admin')
-      }
-      if (this.filter === 'client') {
+      if (this.filter === 'client')
         return this.users.filter(el => el.role === 'client')
-      }
       return this.users.filter(el => el.role === 'editor')
     }
   }

@@ -20,12 +20,12 @@
 
             <v-list-item-content>
               <v-list-item-title
-                v-text="`${user.name}' '${user.surname}`"
+                v-text="`${user.name} ${user.surname}`"
               ></v-list-item-title>
             </v-list-item-content>
 
             <v-list-item-icon>
-              <v-btn text @click="deleteUser">
+              <v-btn text @click="dialogClose = true">
                 <v-icon class="icon-delite">
                   mdi-trash-can-outline
                 </v-icon>
@@ -51,7 +51,7 @@
         <v-card-text>You can not recover this user</v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="error" text @click="dialogClose = false">
+          <v-btn color="error" text @click="userDelete(user)">
             Delete
           </v-btn>
           <v-btn color="green darken-1" text @click="dialogClose = false">
@@ -69,7 +69,8 @@ export default {
   data() {
     return {
       dialogDelete: false,
-      dialogClose: false
+      dialogClose: false,
+      user: this.user
     }
   },
   computed: {
@@ -78,8 +79,11 @@ export default {
     }
   },
   methods: {
-    deleteUser() {
-      this.dialogClose = true
+    userDelete(user) {
+      this.dialogDelete = false
+      this.dialogClose = false
+      // const user = {}
+      this.$store.dispatch('userDelete', user)
     }
   }
 }
