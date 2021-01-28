@@ -1,5 +1,3 @@
-// import { Number } from 'core-js'
-
 export default {
   state: {
     users: [
@@ -71,16 +69,16 @@ export default {
     addUser(state, payload) {
       state.users.push(payload)
     },
-    deleteUser(state, user) {
-      state.users = state.users.filter(el => el.id !== user)
+    deleteUser(state, payload) {
+      state.users = state.users.filter(user => user.id !== payload)
     }
   },
   actions: {
     createUser({ commit }, payload) {
       commit('addUser', payload)
     },
-    userDelete({ commit }, user) {
-      commit('deleteUser', user)
+    userDelete({ commit }, payload) {
+      commit('deleteUser', payload)
     }
   },
   getters: {

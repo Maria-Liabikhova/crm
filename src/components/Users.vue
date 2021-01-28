@@ -60,7 +60,8 @@
                 </v-card-title>
                 <v-card-subtitle>
                   <p class="card__subtitle">
-                    Id: <span class="card__describe">{{ user.id }}</span>
+                    Id:
+                    <span class="card__describe">{{ user.id }}</span>
                   </p>
                   <p class="card__subtitle">
                     Gender:

@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-dialog v-model="dialogDelete" persistent max-width="600px">
+    <v-dialog v-model="dialogFirst" persistent max-width="600px">
       <template v-slot:activator="{ on, attrs }">
         <v-btn color="blue darken-1" dark v-bind="attrs" v-on="on" class="mt-5">
           Delite user
@@ -25,7 +25,7 @@
             </v-list-item-content>
 
             <v-list-item-icon>
-              <v-btn text @click="dialogClose = true">
+              <v-btn text @click="preDelete(user.id)">
                 <v-icon class="icon-delite">
                   mdi-trash-can-outline
                 </v-icon>
@@ -35,7 +35,7 @@
         </v-list>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialogDelete = false">
+          <v-btn color="blue darken-1" text @click="dialogFirst = false">
             Close
           </v-btn>
         </v-card-actions>
@@ -43,7 +43,7 @@
       <!-- END  dilog window -->
     </v-dialog>
     <!-- Second gialog -->
-    <v-dialog v-model="dialogClose" persistent max-width="290">
+    <v-dialog v-model="dialogSecond" persistent max-width="290">
       <v-card>
         <v-card-title class="headline">
           Are you sure you want to delete this user?
@@ -51,10 +51,10 @@
         <v-card-text>You can not recover this user</v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="error" text @click="userDelete(user)">
+          <v-btn color="error" text @click="userDelete">
             Delete
           </v-btn>
-          <v-btn color="green darken-1" text @click="dialogClose = false">
+          <v-btn color="green darken-1" text @click="dialogSecond = false">
             Close
           </v-btn>
         </v-card-actions>
@@ -68,9 +68,9 @@
 export default {
   data() {
     return {
-      dialogDelete: false,
-      dialogClose: false,
-      user: this.user
+      dialogFirst: false,
+      dialogSecond: false,
+      userDeleteId: Number
     }
   },
   computed: {
@@ -79,11 +79,14 @@ export default {
     }
   },
   methods: {
-    userDelete(user) {
-      this.dialogDelete = false
-      this.dialogClose = false
-      // const user = {}
-      this.$store.dispatch('userDelete', user)
+    preDelete(id) {
+      this.dialogSecond = true
+      this.userDeleteId = id
+    },
+    userDelete() {
+      this.dialogSecond = false
+      this.dialogFirst = false
+      this.$store.dispatch('userDelete', this.userDeleteId)
     }
   }
 }
