@@ -70,6 +70,16 @@
                   <p class="card__subtitle">
                     Role: <span class="card__describe">{{ user.role }}</span>
                   </p>
+                  <p class="card__subtitle">
+                    eMail: <span class="card__describe">{{ user.eMail }}</span>
+                  </p>
+                  <p class="card__subtitle">
+                    Nickname:
+                    <span class="card__describe">{{ user.nickname }}</span>
+                  </p>
+                  <p class="card__subtitle">
+                    Age: <span class="card__describe">{{ user.age }}</span>
+                  </p>
                 </v-card-subtitle>
               </v-card>
             </v-col>

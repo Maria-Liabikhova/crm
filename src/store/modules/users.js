@@ -8,7 +8,10 @@ export default {
         name: 'Leonardo',
         id: 1,
         gender: 'Male',
-        role: 'admin'
+        role: 'admin',
+        eMail: 'leonardo@geniy.com',
+        nickname: 'Leo',
+        age: 565
       },
       {
         imgSrc:
@@ -17,7 +20,10 @@ export default {
         name: 'Marie',
         id: 2,
         gender: 'Female',
-        role: 'editor'
+        role: 'editor',
+        eMail: 'curie@geniy.com',
+        nickname: 'Marry-perfect',
+        age: 154
       },
       {
         imgSrc:
@@ -26,7 +32,10 @@ export default {
         name: 'Albert',
         id: 3,
         gender: 'Male',
-        role: 'client'
+        role: 'client',
+        eMail: 'einstein@geniy.com',
+        nickname: 'Brain',
+        age: 232
       },
       {
         imgSrc: 'https://media.studomat.ba/2017/11/jung-tipovi-licnosti.jpg',
@@ -34,16 +43,22 @@ export default {
         name: 'Carl Gustav',
         id: 4,
         gender: 'Male',
-        role: 'editor'
+        role: 'editor',
+        eMail: 'carl@geniy.com',
+        nickname: 'Psychiatric',
+        age: 146
       },
       {
         imgSrc:
           'https://cdn.ruposters.ru/newsbody/7/7f392408583379a8ecc9aff3ba4d7fd7.jpg',
         surname: 'Pavlov',
-        name: 'Ivan Petrovich',
+        name: 'Ivan',
         id: 5,
         gender: 'Male',
-        role: 'admin'
+        role: 'admin',
+        eMail: 'van@geniy.com',
+        nickname: 'Petrovich',
+        age: 172
       },
       {
         imgSrc:
@@ -52,16 +67,10 @@ export default {
         name: 'Ekaterina',
         id: 6,
         gender: 'Female',
-        role: 'guest'
-      },
-      {
-        imgSrc:
-          'https://cdn.maximonline.ru/7e/15/08/7e15081d13a2e1f30a10e43607f5663f/1500x951_0xac120002_15562901141535097621.jpg',
-        surname: 'Александр',
-        name: 'Богачев',
-        id: 7,
-        gender: 'Male',
-        role: 'guest'
+        role: 'guest',
+        eMail: 'kathrin@geniy.com',
+        nickname: 'Gorgeous',
+        age: 292
       }
     ]
   },
