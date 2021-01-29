@@ -3,7 +3,7 @@ export default {
     users: [
       {
         imgSrc:
-          'https://putoclub.ru/wp-content/uploads/Genialnost-Leonardo-da-Vinchi..jpg',
+          'https://www.soyuz.ru/public/uploads/files/3/7114387/20170814104005e8c782fe56.jpg',
         surname: 'DaVinchi',
         name: 'Leonardo',
         id: 1,
@@ -93,6 +93,11 @@ export default {
   getters: {
     users(state) {
       return state.users
+    },
+    userById(state) {
+      return userId => {
+        return state.users.find(user => user.id === userId)
+      }
     }
   }
 }
