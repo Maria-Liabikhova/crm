@@ -49,7 +49,7 @@
               :key="user.id"
             >
               <v-card class="mx-auto card" max-width="344">
-                <router-link :to="'/user/' + user.id">
+                <router-link class="no-decoration" :to="'/user/' + user.id">
                   <v-img :src="user.imgSrc" height="300px"></v-img>
                   <v-card-title>
                     <p class="card__subtitle">
@@ -150,5 +150,8 @@ export default {
 }
 .card {
   height: 100%;
+}
+.no-decoration {
+  text-decoration: none;
 }
 </style>
