@@ -2,6 +2,33 @@
   <div>
     <v-container fluid>
       <v-row>
+        <v-col cols="3" class="text-center">
+          <v-menu rounded offset-y>
+            <template v-slot:activator="{ attrs, on }">
+              <v-btn
+                color="blue lighten-1"
+                class="white--text ma-5 "
+                v-bind="attrs"
+                v-on="on"
+              >
+                Filtered by:
+              </v-btn>
+            </template>
+
+            <v-list class="bg-list">
+              <v-list-item
+                class="pointer-menu"
+                v-for="par in pars"
+                :key="par.id"
+                @click="selectorBy(par)"
+              >
+                <v-list-item-title>{{ par }}</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </v-col>
+      </v-row>
+      <v-row>
         <v-col cols="4" xs="4" sm="4" md="3">
           <v-card class="mx-auto" height="100%">
             <v-navigation-drawer
@@ -107,7 +134,9 @@ export default {
         { title: 'client' },
         { title: 'guest' }
       ],
-      filter: 'allUsers'
+      filter: 'allUsers',
+      pars: ['name', 'nickname', 'age', 'role'],
+      cretary: ''
     }
   },
   computed: {
@@ -123,6 +152,12 @@ export default {
       if (this.filter === 'client')
         return this.users.filter(el => el.role === 'client')
       return this.users.filter(el => el.role === 'editor')
+    }
+  },
+  methods: {
+    selectorBy(par) {
+      this.cretary = par
+      this.$store.dispatch('selectorBY', this.cretary)
     }
   }
 }
@@ -153,5 +188,15 @@ export default {
 }
 .no-decoration {
   text-decoration: none;
+}
+.bg-list {
+  background-color: rgb(95, 85, 190);
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.pointer-menu:hover {
+  cursor: pointer;
+  background-color: rgb(175, 225, 248);
+  transition: all 0.5s ease;
 }
 </style>
