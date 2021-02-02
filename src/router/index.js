@@ -6,16 +6,16 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '',
-    component: () => import('../components/Home.vue')
+    component: () => import('../pages/Home.vue')
   },
   {
     path: '/users',
-    component: () => import('../components/Users.vue')
+    component: () => import('../pages/Users.vue')
   },
   {
     path: '/user/:id',
     props: true,
-    component: () => import('../components/User.vue')
+    component: () => import('../pages/User.vue')
   }
 ]
 

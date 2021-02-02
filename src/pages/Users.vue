@@ -76,9 +76,9 @@
 </template>
 
 <script>
-import CreateUser from './CreateUser.vue'
-import DeleteUser from './DeleteUser.vue'
-import Cards from './Cards.vue'
+import CreateUser from '../components/CreateUser.vue'
+import DeleteUser from '../components/DeleteUser.vue'
+import Cards from '../components/Cards.vue'
 export default {
   components: { CreateUser, DeleteUser, Cards },
   data() {
