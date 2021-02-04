@@ -91,9 +91,7 @@ export default {
         { title: 'guest' }
       ],
       filter: 'allUsers',
-      pars: ['name', 'nickname', 'age', 'role'],
-      cretary: '',
-      abcd: ['guest', 'admin']
+      pars: ['name', 'nickname', 'age', 'role']
     }
   },
   computed: {
@@ -107,8 +105,7 @@ export default {
   },
   methods: {
     selectorBy(par) {
-      this.cretary = par
-      this.$store.dispatch('selectorBY', this.cretary)
+      this.$store.dispatch('selectorBY', par)
     }
   }
 }
