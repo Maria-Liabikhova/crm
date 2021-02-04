@@ -80,11 +80,6 @@ export default {
     },
     deleteUser(state, payload) {
       state.users = state.users.filter(user => user.id !== payload)
-    },
-    sort(state, payload) {
-      state.users = state.users.sort((a, b) =>
-        a[payload] > b[payload] ? 1 : -1
-      )
     }
   },
   actions: {
@@ -93,9 +88,6 @@ export default {
     },
     userDelete({ commit }, payload) {
       commit('deleteUser', payload)
-    },
-    selectorBY({ commit }, payload) {
-      commit('sort', payload)
     }
   },
   getters: {

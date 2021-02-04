@@ -91,7 +91,8 @@ export default {
         { title: 'guest' }
       ],
       filter: 'allUsers',
-      pars: ['name', 'nickname', 'age', 'role']
+      pars: ['name', 'nickname', 'age', 'role'],
+      sortedUsers: []
     }
   },
   computed: {
@@ -105,7 +106,8 @@ export default {
   },
   methods: {
     selectorBy(par) {
-      this.$store.dispatch('selectorBY', par)
+      this.sortedUsers = this.users
+      this.sortedUsers.sort((a, b) => (a[par] > b[par] ? 1 : -1))
     }
   }
 }
