@@ -91,8 +91,8 @@ export default {
         { title: 'guest' }
       ],
       filter: 'allUsers',
-      pars: ['name', 'nickname', 'age', 'role'],
-      sortedUsers: []
+      pars: ['name', 'nickname', 'age', 'role']
+      // sortedUsers: []
     }
   },
   computed: {
@@ -102,12 +102,10 @@ export default {
     filteredRole() {
       if (this.filter === 'allUsers') return this.users
       return this.users.filter(el => el.role === this.filter)
-    }
-  },
-  methods: {
-    selectorBy(par) {
-      this.sortedUsers = this.users
-      this.sortedUsers.sort((a, b) => (a[par] > b[par] ? 1 : -1))
+    },
+    selectorBy() {
+      const par = this.par
+      return this.users.sort((a, b) => a[par] > b[par] ? 1 : -1))
     }
   }
 }
