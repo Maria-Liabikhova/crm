@@ -82,20 +82,9 @@ export default {
       state.users = state.users.filter(user => user.id !== payload)
     },
     sort(state, payload) {
-      if (payload === 'nickname') {
-        state.users = state.users.sort((a, b) =>
-          a.nickname > b.nickname ? 1 : -1
-        )
-      }
-      if (payload === 'age') {
-        state.users = state.users.sort((a, b) => (a.age > b.age ? -1 : 1))
-      }
-      if (payload === 'role') {
-        state.users = state.users.sort((a, b) => (a.role > b.role ? 1 : -1))
-      }
-      if (payload === 'name') {
-        state.users = state.users.sort((a, b) => (a.name > b.name ? 1 : -1))
-      }
+      state.users = state.users.sort((a, b) =>
+        a[payload] > b[payload] ? 1 : -1
+      )
     }
   },
   actions: {
