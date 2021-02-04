@@ -92,7 +92,8 @@ export default {
       ],
       filter: 'allUsers',
       pars: ['name', 'nickname', 'age', 'role'],
-      cretary: ''
+      cretary: '',
+      abcd: ['guest', 'admin']
     }
   },
   computed: {
@@ -101,13 +102,7 @@ export default {
     },
     filteredRole() {
       if (this.filter === 'allUsers') return this.users
-      if (this.filter === 'guest')
-        return this.users.filter(el => el.role === 'guest')
-      if (this.filter === 'admin')
-        return this.users.filter(el => el.role === 'admin')
-      if (this.filter === 'client')
-        return this.users.filter(el => el.role === 'client')
-      return this.users.filter(el => el.role === 'editor')
+      return this.users.filter(el => el.role === this.filter)
     }
   },
   methods: {
