@@ -18,13 +18,11 @@
             <v-list class="bg-list">
               <v-list-item
                 class="pointer-menu"
-                v-for="par in pars"
-                :key="par.id"
-                @click="
-                  selectorByPar.sort((a, b) => (a[par] > b[par] ? 1 : -1))
-                "
+                v-for="sort in sorts"
+                :key="sort.id"
+                @click="selectedSort = sort"
               >
-                <v-list-item-title>{{ par }}</v-list-item-title>
+                <v-list-item-title>{{ sort }}</v-list-item-title>
               </v-list-item>
             </v-list>
           </v-menu>
@@ -52,11 +50,11 @@
                   <v-list>
                     <v-list-item
                       class="pointer"
-                      v-for="(item, i) in items"
+                      v-for="(filter, i) in filters"
                       :key="i"
-                      @click="filter = item.title"
+                      @click="selectedFilter = filter"
                     >
-                      <v-list-item-title>{{ item.title }}</v-list-item-title>
+                      <v-list-item-title>{{ filter }}</v-list-item-title>
                     </v-list-item>
                   </v-list>
                 </v-menu>
@@ -85,15 +83,10 @@ export default {
   components: { CreateUser, DeleteUser, Cards },
   data() {
     return {
-      items: [
-        { title: 'allUsers' },
-        { title: 'admin' },
-        { title: 'editor' },
-        { title: 'client' },
-        { title: 'guest' }
-      ],
-      filter: 'allUsers',
-      pars: ['name', 'nickname', 'age', 'role']
+      filters: ['allUsers', 'admin', 'editor', 'client', 'guest'],
+      selectedFilter: 'allUsers',
+      sorts: ['name', 'nickname', 'age', 'role'],
+      selectedSort: null
     }
   },
   computed: {
@@ -101,11 +94,15 @@ export default {
       return this.$store.getters.users
     },
     filteredRole() {
-      if (this.filter === 'allUsers') return this.users
-      return this.users.filter(el => el.role === this.filter)
+      if (this.selectedFilter === 'allUsers') return this.sorteredUsers
+      return this.sorteredUsers.filter(el => el.role === this.selectedFilter)
     },
-    selectorByPar() {
-      return this.users
+    sorteredUsers() {
+      const users = [...this.users]
+      if (this.selectedSort === null) return this.users
+      return users.sort((a, b) =>
+        a[this.selectedSort] > b[this.selectedSort] ? 1 : -1
+      )
     }
   }
 }
