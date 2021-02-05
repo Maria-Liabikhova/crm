@@ -67,7 +67,7 @@
         </v-col>
         <v-col cols="8" xs="8" sm="8" md="9">
           <v-row>
-            <Cards :filteredRole="filteredRole" />
+            <Cards :filteredRole="users" />
           </v-row>
         </v-col>
       </v-row>
@@ -91,18 +91,14 @@ export default {
   },
   computed: {
     users() {
-      return this.$store.getters.users
-    },
-    filteredRole() {
-      if (this.selectedFilter === 'allUsers') return this.sorteredUsers
-      return this.sorteredUsers.filter(el => el.role === this.selectedFilter)
-    },
-    sorteredUsers() {
-      const users = [...this.users]
-      if (this.selectedSort === null) return this.users
-      return users.sort((a, b) =>
-        a[this.selectedSort] > b[this.selectedSort] ? 1 : -1
-      )
+      let users = [...this.$store.getters.users]
+      if (this.selectedFilter !== 'allUsers')
+        users = users.filter(el => el.role === this.selectedFilter)
+      if (this.selectedSort !== null)
+        //prettier-ignore
+        users = users.sort((a, b) => a[this.selectedSort] > b[this.selectedSort] ? 1 : -1)
+
+      return users
     }
   }
 }
