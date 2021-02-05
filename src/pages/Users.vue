@@ -20,7 +20,9 @@
                 class="pointer-menu"
                 v-for="par in pars"
                 :key="par.id"
-                @click="selectorBy(par)"
+                @click="
+                  selectorByPar.sort((a, b) => (a[par] > b[par] ? 1 : -1))
+                "
               >
                 <v-list-item-title>{{ par }}</v-list-item-title>
               </v-list-item>
@@ -67,7 +69,7 @@
         </v-col>
         <v-col cols="8" xs="8" sm="8" md="9">
           <v-row>
-            <Cards :filteredRole="filteredRole" :selector="users" />
+            <Cards :filteredRole="filteredRole" />
           </v-row>
         </v-col>
       </v-row>
@@ -102,13 +104,8 @@ export default {
       if (this.filter === 'allUsers') return this.users
       return this.users.filter(el => el.role === this.filter)
     },
-    selector() {
-      return selectorBy
-    }
-  },
-  methods: {
-    selectorBy(par) {
-      return this.users.sort((a, b) => (a[par] > b[par] ? 1 : -1))
+    selectorByPar() {
+      return this.users
     }
   }
 }

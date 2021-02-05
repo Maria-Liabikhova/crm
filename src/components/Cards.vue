@@ -49,7 +49,7 @@
 
 <script>
 export default {
-  props: ['users', 'filteredRole']
+  props: ['filteredRole']
 }
 </script>
 
