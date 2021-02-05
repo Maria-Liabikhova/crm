@@ -67,7 +67,7 @@
         </v-col>
         <v-col cols="8" xs="8" sm="8" md="9">
           <v-row>
-            <Cards :filteredRole="users" />
+            <Cards :filteredRole="filteredRole" />
           </v-row>
         </v-col>
       </v-row>
@@ -91,18 +91,38 @@ export default {
   },
   computed: {
     users() {
-      let users = [...this.$store.getters.users]
-      if (this.selectedFilter !== 'allUsers')
-        users = users.filter(el => el.role === this.selectedFilter)
-      if (this.selectedSort !== null)
-        //prettier-ignore
-        users = users.sort((a, b) => a[this.selectedSort] > b[this.selectedSort] ? 1 : -1)
-
-      return users
+      return this.$store.getters.users
+    },
+    filteredRole() {
+      if (this.selectedFilter === 'allUsers') return this.sorteredUsers
+      return this.sorteredUsers.filter(el => el.role === this.selectedFilter)
+    },
+    sorteredUsers() {
+      const peoples = [...this.users]
+      if (this.selectedSort === null) return this.users
+      return peoples.sort((a, b) =>
+        a[this.selectedSort] > b[this.selectedSort] ? 1 : -1
+      )
     }
   }
 }
 </script>
+
+<style scoped>
+.pointer:hover {
+  cursor: pointer;
+}
+.bg-list {
+  background-color: rgb(95, 85, 190);
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.pointer-menu:hover {
+  cursor: pointer;
+  background-color: rgb(175, 225, 248);
+  transition: all 0.5s ease;
+}
+</style>
 
 <style scoped>
 .pointer:hover {
