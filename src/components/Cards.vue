@@ -1,16 +1,9 @@
 <template>
   <v-row>
-    <v-col
-      cols="6"
-      xs="6"
-      sm="6"
-      md="4"
-      v-for="user in filteredRole"
-      :key="user.id"
-    >
-      <v-card class="mx-auto card" max-width="344" min-width="300">
+    <v-col cols="4" v-for="user in filteredRole" :key="user.id">
+      <v-card class="mx-auto card">
         <router-link class="no-decoration" :to="'/user/' + user.id">
-          <v-img :src="user.imgSrc" height="300px"></v-img>
+          <v-img class="img-avatar" :src="user.imgSrc"></v-img>
           <v-card-title>
             <p class="card__subtitle">
               Name:
@@ -57,20 +50,23 @@ export default {
 .card__name {
   color: black;
   font-weight: bold;
-  font-size: 25px;
+  font-size: 16px;
   word-break: keep-all;
 }
 .card__subtitle {
   font-weight: bold;
   color: rgb(116, 116, 116);
-  font-size: 20px;
-  margin-bottom: 7px;
+  font-size: 12px;
+  margin-bottom: 3px;
 }
 .card__describe {
   color: black;
-  font-size: 16px;
+  font-size: 12px;
 }
 .no-decoration {
   text-decoration: none;
+}
+.img-avatar {
+  height: 150px;
 }
 </style>
