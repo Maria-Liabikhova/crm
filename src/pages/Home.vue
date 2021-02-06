@@ -50,10 +50,21 @@
                         <v-icon class="mr-2 text-black">mdi-phone</v-icon>
                         <h3 class="gray-text big-text">222-35-47</h3>
                       </div>
-                      <p class="gray-text bold-text">
+                      <p class="gray-text bold-text ml-12">
                         Fitness club with swimming pull. We are waiting for you
-                        in the fitness club for the wholel famaly.
+                        in the fitness <br />
+                        club for the wholel famaly.
                       </p>
+                    </div>
+                    <div class="wrapper-for-carusel">
+                      <v-carousel hide-delimiters class="carusel-wrap">
+                        <v-carousel-item
+                          class="carusel-slide"
+                          v-for="(itemCarusel, i) in itemsCarusel"
+                          :key="i"
+                          >{{ itemCarusel.item }}</v-carousel-item
+                        >
+                      </v-carousel>
                     </div>
                   </v-card>
                 </v-col>
@@ -76,6 +87,12 @@ export default {
       { text: 'Our team', icon: 'mdi-account-multiple' },
       { text: 'Buy pass', icon: 'mdi-currency-usd' },
       { text: 'Contacts', icon: 'mdi-card-account-mail-outline' }
+    ],
+    itemsCarusel: [
+      { item: 'Hello world' },
+      { item: 'Hello world 1' },
+      { item: 'Hello world 2' },
+      { item: 'Hello world 3' }
     ]
   })
 }
@@ -167,5 +184,14 @@ h1 {
 }
 .bold-text {
   font-weight: bolder;
+}
+.carusel-wrap {
+  height: 300px !important;
+}
+.wrapper-for-carusel {
+  overflow: hidden;
+}
+.carusel-slide {
+  background: linear-gradient(45deg, #da9797, rgb(190 249 213 / 1), #6aafcf);
 }
 </style>
