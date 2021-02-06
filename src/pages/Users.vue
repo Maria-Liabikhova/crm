@@ -123,19 +123,3 @@ export default {
   transition: all 0.5s ease;
 }
 </style>
-
-<style scoped>
-.pointer:hover {
-  cursor: pointer;
-}
-.bg-list {
-  background-color: rgb(95, 85, 190);
-  padding-top: 0;
-  padding-bottom: 0;
-}
-.pointer-menu:hover {
-  cursor: pointer;
-  background-color: rgb(175, 225, 248);
-  transition: all 0.5s ease;
-}
-</style>
