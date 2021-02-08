@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrapp">
     <div class="right-side-item">
       <h2 class="serif">Welcome!</h2>
       <p class="small-text gray-text">
@@ -44,10 +44,9 @@ export default {
 </script>
 
 <style scoped>
-.main_right-part {
-  background: linear-gradient(45deg, #eecfba, rgb(190 249 213 / 1), #c5dde8);
+.wrapp {
+  height: 500px;
 }
-
 .right-side-item {
   padding: 20px;
 }

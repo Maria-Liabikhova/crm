@@ -5,6 +5,7 @@
         <v-col offset="1" cols="10">
           <v-card class="main">
             <v-container fluid>
+              <!-- <v-container fluid class="main"> -->
               <v-row>
                 <v-col class="no-padding" cols="4" xs="4" sm="4" md="3">
                   <v-card class="main_left-part" height="100%">
@@ -39,7 +40,9 @@
                 <v-col class="no-padding" cols="8" xs="8" sm="8" md="9">
                   <v-card class="main_right-part" height="100%">
                     <!-- !!!!!!!!!!!!!!!!!!! -->
+                    <!-- <div> -->
                     <router-view></router-view>
+                    <!-- </div> -->
                     <!-- !!!!!!!!!!!!!!!!!!! -->
                   </v-card>
                 </v-col>
@@ -79,6 +82,18 @@ export default {
   background-size: cover;
   overflow: hidden;
 }
+.wrap::after {
+  content: '';
+  position: absolute;
+  height: 300px;
+  width: 400px;
+  background: url('../assets/img/palm.png');
+  background-size: 100%, 100%;
+  background-repeat: no-repeat;
+  transform: translate(30%, 50%);
+  right: 0;
+  bottom: 0;
+}
 .wrap::before {
   content: '';
   position: absolute;
@@ -93,27 +108,17 @@ export default {
   display: block;
 }
 .main {
-  position: relative;
-  max-height: 700px;
-  min-height: 500px;
+  height: 500px;
   width: 100%;
-}
-.main::after {
-  content: '';
-  position: absolute;
-  height: 300px;
-  width: 400px;
-  background: url('../assets/img/palm.png');
-  background-size: 100%, 100%;
-  background-repeat: no-repeat;
-  transform: translate(30%, 50%);
-  right: 0;
-  bottom: 0;
+  overflow: hidden;
 }
 .main_left-part {
   background: linear-gradient(#4d03f8, #5e1cf8, #27dddd);
-  max-height: 700px;
-  min-height: 500px;
+  height: 500px;
+}
+.main_right-part {
+  background: linear-gradient(45deg, #eecfba, rgb(190 249 213 / 1), #c5dde8);
+  height: 500px;
 }
 .no-padding {
   padding: 0;

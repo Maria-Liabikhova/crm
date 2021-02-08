@@ -1,8 +1,13 @@
 <template>
-  <v-row justify="center">
+  <span>
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn color="blue darken-1" dark v-bind="attrs" v-on="on" class="mt-5">
+        <v-btn
+          color="blue lighten-1"
+          class="white--text ma-5 "
+          v-bind="attrs"
+          v-on="on"
+        >
           Delite user
         </v-btn>
       </template>
@@ -61,7 +66,7 @@
       </v-card>
     </v-dialog>
     <!-- END second gialog -->
-  </v-row>
+  </span>
 </template>
 
 <script>

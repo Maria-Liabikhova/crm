@@ -11,7 +11,8 @@ export default {
         role: 'admin',
         eMail: 'leonardo@geniy.com',
         nickname: 'Leo',
-        age: 565
+        age: 565,
+        borderClass: ' '
       },
       {
         imgSrc:
@@ -23,7 +24,8 @@ export default {
         role: 'editor',
         eMail: 'curie@geniy.com',
         nickname: 'Marry-perfect',
-        age: 154
+        age: 154,
+        borderClass: ' '
       },
       {
         imgSrc:
@@ -35,7 +37,8 @@ export default {
         role: 'client',
         eMail: 'einstein@geniy.com',
         nickname: 'Brain',
-        age: 232
+        age: 232,
+        borderClass: ' '
       },
       {
         imgSrc: 'https://media.studomat.ba/2017/11/jung-tipovi-licnosti.jpg',
@@ -46,7 +49,8 @@ export default {
         role: 'editor',
         eMail: 'carl@geniy.com',
         nickname: 'Psychiatric',
-        age: 146
+        age: 146,
+        borderClass: 'border'
       },
       {
         imgSrc:
@@ -58,7 +62,8 @@ export default {
         role: 'admin',
         eMail: 'van@geniy.com',
         nickname: 'Petrovich',
-        age: 172
+        age: 172,
+        borderClass: ' '
       },
       {
         imgSrc:
@@ -70,7 +75,9 @@ export default {
         role: 'guest',
         eMail: 'kathrin@geniy.com',
         nickname: 'Gorgeous',
-        age: 292
+        age: 292,
+        class: 'border',
+        borderClass: 'border'
       }
     ]
   },

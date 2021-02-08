@@ -1,74 +1,63 @@
 <template>
-  <v-container fluid>
-    <v-row>
-      <v-col cols="12">
-        <v-menu rounded offset-y>
-          <template v-slot:activator="{ attrs, on }">
-            <v-btn
-              color="blue lighten-1"
-              class="white--text ma-5 "
-              v-bind="attrs"
-              v-on="on"
-            >
-              Filtered by:
-            </v-btn>
-          </template>
+  <div class="wraper">
+    <v-container fluid>
+      <v-row>
+        <v-col cols="12">
+          <!-- First button  Filtered by: -->
+          <v-menu rounded offset-y>
+            <template v-slot:activator="{ attrs, on }">
+              <v-btn
+                color="blue lighten-1"
+                class="white--text ma-5 "
+                v-bind="attrs"
+                v-on="on"
+              >
+                Filtered by:
+              </v-btn>
+            </template>
 
-          <v-list class="bg-list">
-            <v-list-item
-              class="pointer-menu"
-              v-for="sort in sorts"
-              :key="sort.id"
-              @click="selectedSort = sort"
-            >
-              <v-list-item-title>{{ sort }}</v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </v-menu>
-        <v-card class="mx-auto" height="100%">
-          <v-navigation-drawer
-            absolute
-            dark
-            src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
-            width="100%"
-            permanent
-          >
-            <!-- choose button-->
-            <div class="text-center pointer mt-3 mb-3">
-              <v-menu>
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn color="primary" dark v-bind="attrs" v-on="on">
-                    Select by role
-                  </v-btn>
-                </template>
+            <v-list class="bg-list">
+              <v-list-item
+                class="pointer-menu"
+                v-for="sort in sorts"
+                :key="sort.id"
+                @click="selectedSort = sort"
+              >
+                <v-list-item-title>{{ sort }}</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+          <!-- Second button Select by role-->
+          <v-menu>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                color="blue lighten-1"
+                class="white--text ma-5 "
+                v-bind="attrs"
+                v-on="on"
+              >
+                Select by role
+              </v-btn>
+            </template>
 
-                <v-list>
-                  <v-list-item
-                    class="pointer"
-                    v-for="(filter, i) in filters"
-                    :key="i"
-                    @click="selectedFilter = filter"
-                  >
-                    <v-list-item-title>{{ filter }}</v-list-item-title>
-                  </v-list-item>
-                </v-list>
-              </v-menu>
-            </div>
-            <!-- END choose button-->
-            <CreateUser />
-            <DeleteUser />
-          </v-navigation-drawer>
-        </v-card>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col cols="12">
-        <!-- <v-row> -->
-        <Cards :filteredRole="filteredRole" />
-        <!-- </v-row> -->
-      </v-col>
-    </v-row>
-  </v-container>
+            <v-list>
+              <v-list-item
+                class="pointer"
+                v-for="(filter, i) in filters"
+                :key="i"
+                @click="selectedFilter = filter"
+              >
+                <v-list-item-title>{{ filter }}</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+          <CreateUser />
+          <DeleteUser />
+        </v-col>
+      </v-row>
+      <Cards :filteredRole="filteredRole" />
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -105,22 +94,9 @@ export default {
 </script>
 
 <style scoped>
-.pointer:hover {
-  cursor: pointer;
+.wraper {
+  height: 500px;
 }
-.bg-list {
-  background-color: rgb(95, 85, 190);
-  padding-top: 0;
-  padding-bottom: 0;
-}
-.pointer-menu:hover {
-  cursor: pointer;
-  background-color: rgb(175, 225, 248);
-  transition: all 0.5s ease;
-}
-</style>
-
-<style scoped>
 .pointer:hover {
   cursor: pointer;
 }
