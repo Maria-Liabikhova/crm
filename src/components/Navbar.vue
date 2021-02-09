@@ -25,18 +25,21 @@
                     <v-list class=" left_menu left_menu_list" nav dense>
                       <v-list-item-group>
                         <v-list-item v-for="(item, i) in items" :key="i" dark>
-                          <v-list-item-icon>
-                            <v-icon v-text="item.icon"></v-icon>
-                          </v-list-item-icon>
+                          <router-link
+                            :to="'/' + item.link"
+                            class="no-decor items_link"
+                          >
+                            <v-list-item-icon>
+                              <v-icon v-text="item.icon"></v-icon>
+                            </v-list-item-icon>
 
-                          <v-list-item-content>
-                            <router-link :to="'/' + item.text" class="no-decor">
+                            <v-list-item-content>
                               <v-list-item-title
                                 class="left_menu_items"
                                 v-text="item.text"
                               ></v-list-item-title>
-                            </router-link>
-                          </v-list-item-content>
+                            </v-list-item-content>
+                          </router-link>
                         </v-list-item>
                       </v-list-item-group>
                     </v-list>
@@ -65,12 +68,16 @@ export default {
   data: () => ({
     selectedItem: 0,
     items: [
-      { text: 'Login', icon: 'mdi-login' },
-      { text: 'Sign up', icon: 'mdi-account-alert' },
-      { text: 'Our services', icon: 'mdi-dumbbell' },
-      { text: 'Our team', icon: 'mdi-account-multiple' },
-      { text: 'Buy pass', icon: 'mdi-currency-usd' },
-      { text: 'Contacts', icon: 'mdi-card-account-mail-outline' }
+      { text: 'Login', icon: 'mdi-login', link: 'login' },
+      { text: 'Sign up', icon: 'mdi-account-alert', link: 'registration' },
+      { text: 'Our services', icon: 'mdi-dumbbell', link: 'services' },
+      { text: 'Our team', icon: 'mdi-account-multiple', link: 'team' },
+      { text: 'Buy pass', icon: 'mdi-currency-usd', link: 'buy_pass' },
+      {
+        text: 'Contacts',
+        icon: 'mdi-card-account-mail-outline',
+        link: 'contacts'
+      }
     ]
   })
 }
@@ -134,6 +141,11 @@ export default {
 }
 .left_menu_items {
   color: white;
+}
+.items_link {
+  height: 100%;
+  width: 100%;
+  display: flex;
 }
 h1 {
   font-size: 18px;

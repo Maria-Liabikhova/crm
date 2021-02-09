@@ -20,6 +20,10 @@ const routes = [
   {
     path: '/login',
     component: () => import('../pages/Login.vue')
+  },
+  {
+    path: '/registration',
+    component: () => import('../pages/Registration.vue')
   }
 ]
 
