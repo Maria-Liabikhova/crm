@@ -15,7 +15,9 @@
                         <v-list-item-content>
                           <v-list-item-title class="string">
                             <v-icon class="mr-2">mdi-waves</v-icon>
-                            <h1>FitnessName</h1>
+                            <router-link to="/" class="no-decor">
+                              <h1>FitnessName</h1>
+                            </router-link>
                           </v-list-item-title>
                         </v-list-item-content>
                       </v-list-item>
@@ -28,9 +30,12 @@
                           </v-list-item-icon>
 
                           <v-list-item-content>
-                            <v-list-item-title
-                              v-text="item.text"
-                            ></v-list-item-title>
+                            <router-link :to="'/' + item.text" class="no-decor">
+                              <v-list-item-title
+                                class="left_menu_items"
+                                v-text="item.text"
+                              ></v-list-item-title>
+                            </router-link>
                           </v-list-item-content>
                         </v-list-item>
                       </v-list-item-group>
@@ -120,22 +125,35 @@ export default {
   background: linear-gradient(45deg, #eecfba, rgb(190 249 213 / 1), #c5dde8);
   height: 500px;
 }
-.no-padding {
-  padding: 0;
-}
+
 .left_menu {
   background-color: transparent !important;
 }
 .left_menu_list {
   margin-top: 30px;
 }
+.left_menu_items {
+  color: white;
+}
 h1 {
   font-size: 18px;
   font-family: initial;
+  color: white;
 }
 .string {
   display: flex;
   align-items: center;
   padding: 5px;
+}
+.no-padding {
+  padding: 0;
+}
+</style>
+<style>
+.wrapp {
+  height: 500px;
+}
+.no-decor {
+  text-decoration: none;
 }
 </style>

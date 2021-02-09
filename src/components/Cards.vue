@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols="4" v-for="user in filteredRole" :key="user.id">
         <v-card>
-          <router-link class="no-decoration" :to="'/user/' + user.id">
+          <router-link class="no-decor" :to="'/user/' + user.id">
             <div class="wrap-avatar">
               <v-img
                 :class="user.borderClass"
@@ -80,9 +80,6 @@ export default {
 .card__describe {
   color: black;
   font-size: 12px;
-}
-.no-decoration {
-  text-decoration: none;
 }
 .img-avatar {
   height: 150px;

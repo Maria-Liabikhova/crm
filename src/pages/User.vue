@@ -1,11 +1,5 @@
 <template>
   <div>
-    <!-- <v-container class="conteiner">
-      <router-link to="/users" class="no-decoration"
-        ><v-btn elevation="2">All users</v-btn></router-link
-      >
-      <v-row justify="space-around"> -->
-    <!-- <v-col cols="6"> -->
     <v-card class="user-card">
       <v-img
         height="200px"
@@ -46,9 +40,6 @@
         </v-card-subtitle>
       </v-card-text>
     </v-card>
-    <!-- </v-col> -->
-    <!-- </v-row> -->
-    <!-- </v-container> -->
   </div>
 </template>
 
@@ -98,8 +89,5 @@ h1 {
 .card_background {
   background-image: url('https://doseng.org/uploads/posts/2013-02/1359716103_doseng.org_04.jpg');
   background-color: black;
-}
-.no-decoration {
-  text-decoration: none;
 }
 </style>

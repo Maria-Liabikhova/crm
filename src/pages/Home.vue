@@ -44,9 +44,6 @@ export default {
 </script>
 
 <style scoped>
-.wrapp {
-  height: 500px;
-}
 .right-side-item {
   padding: 20px;
 }
