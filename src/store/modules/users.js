@@ -1,6 +1,7 @@
 import firebase from 'firebase'
 export default {
   state: {
+    user: null,
     users: [
       {
         imgSrc:
