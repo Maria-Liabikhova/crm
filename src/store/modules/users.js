@@ -1,3 +1,4 @@
+import firebase from 'firebase'
 export default {
   state: {
     users: [
@@ -87,6 +88,9 @@ export default {
     },
     deleteUser(state, payload) {
       state.users = state.users.filter(user => user.id !== payload)
+    },
+    createUser(state, payload) {
+      state.user = payload
     }
   },
   actions: {
@@ -95,6 +99,12 @@ export default {
     },
     userDelete({ commit }, payload) {
       commit('deleteUser', payload)
+    },
+    registrationUser({ commit }, { email, password }) {
+      const user = firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+      commit('createUser', user)
     }
   },
   getters: {
