@@ -1,5 +1,11 @@
 import firebase from 'firebase'
 
+class User {
+  constructor(id) {
+    this.id = id
+  }
+}
+
 export default {
   state: {
     user: null
@@ -10,17 +16,29 @@ export default {
     }
   },
   actions: {
-    registrationUser({ commit }, { email, password }) {
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then(user => {
-          commit('createUser', user)
-        })
-        .catch(error => {
-          commit('setError', error.message)
-          console.log('Ошибка регистрации:', error.message)
-        })
+    async registrationUser({ commit }, { email, password }) {
+      commit('setClearError')
+      try {
+        const user = await firebase
+          .auth()
+          .createUserWithEmailAndPassword(email, password)
+        commit('createUser', new User(user.uid))
+      } catch (error) {
+        commit('setError', error.message)
+        throw error
+      }
+    },
+    async loginUser({ commit }, { email, password }) {
+      commit('setClearError')
+      try {
+        const user = await firebase
+          .auth()
+          .signInWithEmailAndPassword(email, password)
+        commit('createUser', new User(user.uid))
+      } catch (error) {
+        commit('setError', error.message)
+        throw error
+      }
     }
   },
   getters: {
