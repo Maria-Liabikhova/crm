@@ -94,7 +94,7 @@ export default {
           .then(() => {
             this.$router.push('/')
           })
-          .catch(err => console.log('Ошибка регистрации:', err.message))
+          .catch(() => {})
       }
     }
   }

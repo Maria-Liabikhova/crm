@@ -78,7 +78,7 @@ export default {
           .then(() => {
             this.$router.push('/')
           })
-          .catch(err => console.log('Ошибка входа:', err.message))
+          .catch(() => {})
       }
     }
   }
