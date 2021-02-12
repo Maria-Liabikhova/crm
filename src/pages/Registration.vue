@@ -44,7 +44,11 @@
               </v-form>
             </v-card-text>
             <v-card-actions>
-              <v-btn dark color="blue lighten-1" @click="isSubmit"
+              <v-btn
+                dark
+                color="blue lighten-1"
+                @click="isSubmit"
+                :disabled="!valid"
                 >Create account</v-btn
               >
             </v-card-actions>

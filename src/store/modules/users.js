@@ -89,11 +89,6 @@ export default {
     },
     deleteUser(state, payload) {
       state.users = state.users.filter(user => user.id !== payload)
-    },
-    createUser(state, { email, password }) {
-      state.user = firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, password)
     }
   },
   actions: {
@@ -102,9 +97,6 @@ export default {
     },
     userDelete({ commit }, payload) {
       commit('deleteUser', payload)
-    },
-    registrationUser({ commit }, { email, password }) {
-      commit('createUser', { email, password })
     }
   },
   getters: {
