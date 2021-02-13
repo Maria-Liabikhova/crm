@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import { eventEmitter } from '../main'
 export default {
   data() {
     return {
@@ -77,8 +78,11 @@ export default {
           .dispatch('loginUser', user)
           .then(() => {
             this.$router.push('/')
+            eventEmitter.$emit('showModal')
           })
-          .catch(() => {})
+          .catch(() => {
+            eventEmitter.$emit('showModal')
+          })
       }
     }
   }

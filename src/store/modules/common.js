@@ -2,7 +2,8 @@ import firebase from 'firebase'
 
 export default {
   state: {
-    error: null
+    error: null,
+    successMessage: ''
   },
   mutations: {
     setError(state, payload) {
@@ -10,6 +11,9 @@ export default {
     },
     setClearError(state) {
       state.error = null
+    },
+    setSuccessMessage(state) {
+      state.successMessage = 'Success!'
     }
   },
   actions: {
@@ -18,11 +22,17 @@ export default {
     },
     clearError({ commit }) {
       commit('setClearError')
+    },
+    isSuccessMessage({ commit }) {
+      commit('setSuccessMessage')
     }
   },
   getters: {
     error(state) {
       return state.error
+    },
+    successMessage(state) {
+      return state.successMessage
     }
   }
 }

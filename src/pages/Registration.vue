@@ -60,6 +60,7 @@
 </template>
 
 <script>
+import { eventEmitter } from '../main'
 export default {
   data() {
     return {
@@ -93,8 +94,11 @@ export default {
           .dispatch('registrationUser', user)
           .then(() => {
             this.$router.push('/')
+            eventEmitter.$emit('showModal')
           })
-          .catch(() => {})
+          .catch(() => {
+            eventEmitter.$emit('showModal')
+          })
       }
     }
   }

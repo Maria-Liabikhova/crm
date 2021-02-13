@@ -7,6 +7,7 @@ import firebase from 'firebase/app'
 
 Vue.config.productionTip = false
 Vue.use(firebase)
+export const eventEmitter = new Vue()
 
 new Vue({
   router,
