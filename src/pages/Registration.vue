@@ -93,7 +93,7 @@ export default {
         this.$store
           .dispatch('registrationUser', user)
           .then(() => {
-            this.$router.push('/')
+            this.$router.push('/login')
             eventEmitter.$emit('showModal')
           })
           .catch(() => {
