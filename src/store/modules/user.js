@@ -24,8 +24,10 @@ export default {
           .createUserWithEmailAndPassword(email, password)
         commit('createUser', new User(user.uid))
         commit('setSuccessMessage')
+        commit('successColor')
       } catch (error) {
         commit('setError', error.message)
+        commit('errorColor')
         throw error
       }
     },
@@ -37,8 +39,10 @@ export default {
           .signInWithEmailAndPassword(email, password)
         commit('createUser', user.uid)
         commit('setSuccessMessage')
+        commit('successColor')
       } catch (error) {
         commit('setError', error.message)
+        commit('errorColor')
         throw error
       }
     }

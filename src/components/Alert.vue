@@ -1,14 +1,9 @@
 <template>
-  <v-snackbar color="blue darken-4" v-model="snackbar" :timeout="5000">
+  <v-snackbar :color="dependColor" v-model="snackbar" :timeout="5000">
     {{ error }} {{ successMessage }}
 
     <template v-slot:action="{ attrs }">
-      <v-btn
-        color="pink accent-2"
-        text
-        @click.native="closeError"
-        v-bind="attrs"
-      >
+      <v-btn color="white" text @click.native="closeError" v-bind="attrs">
         Close
       </v-btn>
     </template>
@@ -34,6 +29,9 @@ export default {
     },
     successMessage() {
       return this.$store.getters.successMessage
+    },
+    dependColor() {
+      return this.$store.getters.alertColor
     }
   },
   methods: {

@@ -3,7 +3,8 @@ import firebase from 'firebase'
 export default {
   state: {
     error: null,
-    successMessage: ''
+    successMessage: '',
+    alertColor: ' '
   },
   mutations: {
     setError(state, payload) {
@@ -14,6 +15,12 @@ export default {
     },
     setSuccessMessage(state) {
       state.successMessage = 'Success!'
+    },
+    successColor(state) {
+      state.alertColor = 'green lighten-1'
+    },
+    errorColor(state) {
+      state.alertColor = 'red darken-1'
     }
   },
   actions: {
@@ -25,6 +32,12 @@ export default {
     },
     isSuccessMessage({ commit }) {
       commit('setSuccessMessage')
+    },
+    isSuccessColor({ commit }) {
+      commit('successColor')
+    },
+    isErrorColor({ commit }) {
+      commit('errorColor')
     }
   },
   getters: {
@@ -33,6 +46,9 @@ export default {
     },
     successMessage(state) {
       return state.successMessage
+    },
+    alertColor(state) {
+      return state.alertColor
     }
   }
 }
