@@ -1,6 +1,6 @@
 <template>
   <v-snackbar :color="dependColor" v-model="snackbar" :timeout="5000">
-    {{ error }} {{ successMessage }}
+    {{ alertMessage }}
 
     <template v-slot:action="{ attrs }">
       <v-btn color="white" text @click.native="closeError" v-bind="attrs">
@@ -32,6 +32,10 @@ export default {
     },
     dependColor() {
       return this.$store.getters.alertColor
+    },
+    alertMessage() {
+      if (this.error) return this.error
+      return this.successMessage
     }
   },
   methods: {
