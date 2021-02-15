@@ -5,7 +5,6 @@
         <v-col offset="1" cols="10">
           <v-card class="main">
             <v-container fluid>
-              <!-- <v-container fluid class="main"> -->
               <v-row>
                 <v-col class="no-padding" cols="4" xs="4" sm="4" md="3">
                   <v-card class="main_left-part" height="100%">
@@ -41,6 +40,15 @@
                             </v-list-item-content>
                           </router-link>
                         </v-list-item>
+
+                        <v-list-item dark @click="logOut" v-if="loggedIn">
+                          <v-list-item-icon>
+                            <v-icon>mdi-logout-variant</v-icon>
+                          </v-list-item-icon>
+                          <v-list-item-title class="left_menu_items "
+                            >Log out</v-list-item-title
+                          >
+                        </v-list-item>
                       </v-list-item-group>
                     </v-list>
                   </v-card>
@@ -67,9 +75,6 @@
 export default {
   data: () => ({
     selectedItem: 0
-    // items: [
-
-    // ]
   }),
   computed: {
     loggedIn() {
@@ -80,7 +85,6 @@ export default {
         return [
           { text: 'All users', icon: 'mdi-account-multiple', link: 'users' },
           { text: 'Our services', icon: 'mdi-dumbbell', link: 'services' },
-          // { text: 'Our team', icon: 'mdi-account-multiple', link: 'team' },
           { text: 'Buy pass', icon: 'mdi-currency-usd', link: 'buy_pass' },
           {
             text: 'Contacts',
@@ -92,6 +96,12 @@ export default {
         { text: 'Login', icon: 'mdi-login', link: 'login' },
         { text: 'Sign up', icon: 'mdi-account-alert', link: 'registration' }
       ]
+    }
+  },
+  methods: {
+    logOut() {
+      this.$store.dispatch('logoutUser')
+      this.$router.push('/')
     }
   }
 }

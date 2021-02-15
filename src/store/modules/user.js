@@ -11,7 +11,7 @@ export default {
     user: null
   },
   mutations: {
-    createUser(state, payload) {
+    identifyUser(state, payload) {
       state.user = payload
     }
   },
@@ -22,7 +22,7 @@ export default {
         const user = await firebase
           .auth()
           .createUserWithEmailAndPassword(email, password)
-        commit('createUser', new User(user.uid))
+        commit('identifyUser', new User(user.uid))
         commit('setSuccessMessage')
         commit('successColor')
       } catch (error) {
@@ -37,7 +37,7 @@ export default {
         const user = await firebase
           .auth()
           .signInWithEmailAndPassword(email, password)
-        commit('createUser', user.uid)
+        commit('identifyUser', user.uid)
         commit('setSuccessMessage')
         commit('successColor')
       } catch (error) {
@@ -47,7 +47,11 @@ export default {
       }
     },
     letStayLoggedIn({ commit }, payload) {
-      commit('createUser', new User(payload.id))
+      commit('identifyUser', new User(payload.uid))
+    },
+    logoutUser({ commit }) {
+      firebase.auth().signOut()
+      commit('identifyUser', null)
     }
   },
   getters: {
