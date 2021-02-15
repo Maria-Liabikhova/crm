@@ -66,20 +66,34 @@
 <script>
 export default {
   data: () => ({
-    selectedItem: 0,
-    items: [
-      { text: 'Login', icon: 'mdi-login', link: 'login' },
-      { text: 'Sign up', icon: 'mdi-account-alert', link: 'registration' },
-      { text: 'Our services', icon: 'mdi-dumbbell', link: 'services' },
-      { text: 'Our team', icon: 'mdi-account-multiple', link: 'team' },
-      { text: 'Buy pass', icon: 'mdi-currency-usd', link: 'buy_pass' },
-      {
-        text: 'Contacts',
-        icon: 'mdi-card-account-mail-outline',
-        link: 'contacts'
-      }
-    ]
-  })
+    selectedItem: 0
+    // items: [
+
+    // ]
+  }),
+  computed: {
+    loggedIn() {
+      return this.$store.getters.userLoggedIn
+    },
+    items() {
+      if (this.loggedIn)
+        return [
+          { text: 'All users', icon: 'mdi-account-multiple', link: 'users' },
+          { text: 'Our services', icon: 'mdi-dumbbell', link: 'services' },
+          // { text: 'Our team', icon: 'mdi-account-multiple', link: 'team' },
+          { text: 'Buy pass', icon: 'mdi-currency-usd', link: 'buy_pass' },
+          {
+            text: 'Contacts',
+            icon: 'mdi-card-account-mail-outline',
+            link: 'contacts'
+          }
+        ]
+      return [
+        { text: 'Login', icon: 'mdi-login', link: 'login' },
+        { text: 'Sign up', icon: 'mdi-account-alert', link: 'registration' }
+      ]
+    }
+  }
 }
 </script>
 
@@ -120,7 +134,6 @@ export default {
   display: block;
 }
 .main {
-  height: 500px;
   width: 100%;
   overflow: hidden;
 }

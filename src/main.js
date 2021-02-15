@@ -26,6 +26,11 @@ new Vue({
     }
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig)
-    firebase.analytics()
+    // firebase.analytics()
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.$store.dispatch('letStayLoggedIn', user)
+      }
+    })
   }
 }).$mount('#app')

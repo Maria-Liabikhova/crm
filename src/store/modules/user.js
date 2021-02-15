@@ -45,11 +45,17 @@ export default {
         commit('errorColor')
         throw error
       }
+    },
+    letStayLoggedIn({ commit }, payload) {
+      commit('createUser', new User(payload.id))
     }
   },
   getters: {
     user(state) {
       return state.user
+    },
+    userLoggedIn(state) {
+      return state.user !== null
     }
   }
 }
