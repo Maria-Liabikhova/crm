@@ -35,6 +35,7 @@ export default {
     },
     alertMessage() {
       if (this.error) return this.error
+      if (this.$route.query['loginError']) return this.error
       return this.successMessage
     }
   },

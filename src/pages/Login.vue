@@ -85,6 +85,13 @@ export default {
           })
       }
     }
+  },
+  created() {
+    if (this.$route.query['loginError']) {
+      this.$store.dispatch('activeError', 'My friend, try login')
+      this.$store.dispatch('isErrorColor')
+      eventEmitter.$emit('showModal')
+    }
   }
 }
 </script>
