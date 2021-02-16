@@ -1,5 +1,5 @@
 <template>
-  <div class="wraper">
+  <div class="wrapp">
     <v-container fluid>
       <v-row>
         <v-col cols="12">
@@ -80,8 +80,9 @@ export default {
       if (this.selectedFilter !== 'allUsers')
         users = users.filter(el => el.role === this.selectedFilter)
       if (this.selectedSort !== null)
-        //prettier-ignore
-        users = users.sort((a, b) => a[this.selectedSort] > b[this.selectedSort] ? 1 : -1)
+        users = users.sort((a, b) =>
+          a[this.selectedSort] > b[this.selectedSort] ? 1 : -1
+        )
 
       return users
     }
@@ -90,9 +91,6 @@ export default {
 </script>
 
 <style scoped>
-.wraper {
-  height: 500px;
-}
 .pointer:hover {
   cursor: pointer;
 }

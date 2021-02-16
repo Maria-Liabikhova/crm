@@ -83,5 +83,6 @@ export default {
 }
 .img-avatar {
   height: 150px;
+  object-fit: cover;
 }
 </style>
