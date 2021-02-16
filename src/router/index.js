@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import routSequrity from './route-sequrity'
+import routeSequrity from './route-sequrity'
 
 Vue.use(VueRouter)
 
@@ -12,13 +12,13 @@ const routes = [
   {
     path: '/users',
     component: () => import('../pages/Users.vue'),
-    beforeEnter: routSequrity
+    beforeEnter: routeSequrity
   },
   {
     path: '/user/:id',
     props: true,
     component: () => import('../pages/User.vue'),
-    beforeEnter: routSequrity
+    beforeEnter: routeSequrity
   },
   {
     path: '/login',
