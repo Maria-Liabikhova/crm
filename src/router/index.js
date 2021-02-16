@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import routSequrity from './rout-sequrity'
+import routSequrity from './route-sequrity'
 
 Vue.use(VueRouter)
 

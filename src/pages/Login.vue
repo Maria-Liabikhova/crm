@@ -67,6 +67,13 @@ export default {
       ]
     }
   },
+  created() {
+    if (this.$route.query['loginError']) {
+      this.$store.dispatch('activeError', 'My friend, try login')
+      this.$store.dispatch('isErrorColor')
+      eventEmitter.$emit('showModal')
+    }
+  },
   methods: {
     isSubmit() {
       if (this.$refs.form.validate()) {
@@ -84,13 +91,6 @@ export default {
             eventEmitter.$emit('showModal')
           })
       }
-    }
-  },
-  created() {
-    if (this.$route.query['loginError']) {
-      this.$store.dispatch('activeError', 'My friend, try login')
-      this.$store.dispatch('isErrorColor')
-      eventEmitter.$emit('showModal')
     }
   }
 }
