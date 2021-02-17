@@ -1,9 +1,11 @@
 import store from '../store/index'
 
 export default function(to, from, next) {
+  console.log('route security')
   if (store.getters.user) {
     next()
   } else {
-    next('/login?loginError=true')
+    const userTryAccessTo = to.path
+    next(`/login?RedirectFrom=${userTryAccessTo}`)
   }
 }

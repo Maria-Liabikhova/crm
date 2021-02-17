@@ -19,11 +19,13 @@ new Vue({
   created() {
     firebase.initializeApp(firebaseConfig)
     firebase.auth().onAuthStateChanged(async user => {
+      const userTryAccessTo = this.$route.query.RedirectFrom
       if (user) {
         try {
           await this.$store.dispatch('letStayLoggedIn', user)
+          this.$router.push(userTryAccessTo)
         } catch (error) {
-          this.$store.dispatch('activeError', error.mesage)
+          this.$store.dispatch('activeError', error.message)
         }
       } else {
         this.$router.push('/login?loginError=true')
