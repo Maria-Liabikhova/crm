@@ -4,6 +4,9 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 import firebase from 'firebase/app'
+;('firebase/database')
+;('firebase/auth')
+;('firebase/storage')
 import firebaseConfig from './fbConfig'
 
 Vue.config.productionTip = false

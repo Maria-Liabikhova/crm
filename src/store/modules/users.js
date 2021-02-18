@@ -1,4 +1,12 @@
 import firebase from 'firebase'
+class User {
+  constructor(name, id, gender, role) {
+    this.name = name
+    this.id = id
+    this.gender = gender
+    this.role = role
+  }
+}
 export default {
   state: {
     user: null,
@@ -87,13 +95,36 @@ export default {
     addUser(state, payload) {
       state.users.push(payload)
     },
+    setNewUser(state, payload) {
+      state.users.push(payload)
+    },
     deleteUser(state, payload) {
       state.users = state.users.filter(user => user.id !== payload)
     }
   },
   actions: {
-    createUser({ commit }, payload) {
-      commit('addUser', payload)
+    async createUser({ commit, getters }, payload) {
+      commit('setClearError')
+      try {
+        const newUser = new User(
+          payload.name,
+          getters.user.id,
+          payload.gender,
+          payload.role
+        )
+        const user = await firebase
+          .database()
+          .ref('users')
+          .push(newUser)
+        commit('setNewUser', {
+          ...newUser,
+          is: user.key
+        })
+      } catch (error) {
+        commit('setError', error.message)
+        commit('errorColor')
+        throw error
+      }
     },
     userDelete({ commit }, payload) {
       commit('deleteUser', payload)

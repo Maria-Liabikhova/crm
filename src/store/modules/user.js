@@ -22,7 +22,7 @@ export default {
         const user = await firebase
           .auth()
           .createUserWithEmailAndPassword(email, password)
-        commit('identifyUser', new User(user.uid))
+        commit('identifyUser', new User(user.user.uid))
         commit('setSuccessMessage')
         commit('successColor')
       } catch (error) {
@@ -37,7 +37,7 @@ export default {
         const user = await firebase
           .auth()
           .signInWithEmailAndPassword(email, password)
-        commit('identifyUser', user.uid)
+        commit('identifyUser', new User(user.user.uid))
         commit('setSuccessMessage')
         commit('successColor')
       } catch (error) {
