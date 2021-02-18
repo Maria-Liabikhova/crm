@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { eventEmitter } from '../main'
+import { bus } from '../main'
 export default {
   data() {
     return {
@@ -94,10 +94,10 @@ export default {
           .dispatch('registrationUser', user)
           .then(() => {
             this.$router.push('/')
-            eventEmitter.$emit('showModal')
+            bus.$emit('showModal')
           })
           .catch(() => {
-            eventEmitter.$emit('showModal')
+            bus.$emit('showModal')
           })
       }
     }

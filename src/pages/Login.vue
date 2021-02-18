@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { eventEmitter } from '../main'
+import { bus } from '../main'
 export default {
   data() {
     return {
@@ -71,7 +71,7 @@ export default {
     if (this.$route.query['loginError']) {
       this.$store.dispatch('activeError', 'My friend, try login')
       this.$store.dispatch('isErrorColor')
-      eventEmitter.$emit('showModal')
+      bus.$emit('showModal')
     }
   },
   methods: {
@@ -85,10 +85,10 @@ export default {
           .dispatch('loginUser', user)
           .then(() => {
             this.$router.push('/')
-            eventEmitter.$emit('showModal')
+            bus.$emit('showModal')
           })
           .catch(() => {
-            eventEmitter.$emit('showModal')
+            bus.$emit('showModal')
           })
       }
     }

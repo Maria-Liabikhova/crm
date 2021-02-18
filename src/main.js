@@ -9,7 +9,7 @@ import firebaseConfig from './fbConfig'
 Vue.config.productionTip = false
 Vue.use(firebase)
 Vue.use(firebaseConfig)
-export const eventEmitter = new Vue()
+export const bus = new Vue()
 
 new Vue({
   router,

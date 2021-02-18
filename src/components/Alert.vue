@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { eventEmitter } from '../main'
+import { bus } from '../main'
 export default {
   data() {
     return {
@@ -19,7 +19,7 @@ export default {
     }
   },
   created() {
-    eventEmitter.$on('showModal', () => {
+    bus.$on('showModal', () => {
       this.snackbar = true
     })
   },
