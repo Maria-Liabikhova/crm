@@ -49,7 +49,6 @@
 </template>
 
 <script>
-import { bus } from '../main'
 export default {
   data() {
     return {
@@ -71,7 +70,7 @@ export default {
     if (this.$route.query['loginError']) {
       this.$store.dispatch('activeError', 'My friend, try login')
       this.$store.dispatch('isErrorColor')
-      bus.$emit('showModal')
+      this.$bus.$emit('showModal')
     }
   },
   methods: {
@@ -85,10 +84,10 @@ export default {
           .dispatch('loginUser', user)
           .then(() => {
             this.$router.push('/')
-            bus.$emit('showModal')
+            this.$bus.$emit('showModal')
           })
           .catch(() => {
-            bus.$emit('showModal')
+            this.$bus.$emit('showModal')
           })
       }
     }

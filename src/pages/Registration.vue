@@ -60,7 +60,6 @@
 </template>
 
 <script>
-import { bus } from '../main'
 export default {
   data() {
     return {
@@ -94,10 +93,10 @@ export default {
           .dispatch('registrationUser', user)
           .then(() => {
             this.$router.push('/')
-            bus.$emit('showModal')
+            this.$bus.$emit('showModal')
           })
           .catch(() => {
-            bus.$emit('showModal')
+            this.$bus.$emit('showModal')
           })
       }
     }

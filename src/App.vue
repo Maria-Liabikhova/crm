@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <Navbar />
-    <Alert @showModal="showModal = $event" />
+    <Alert />
   </v-app>
 </template>
 

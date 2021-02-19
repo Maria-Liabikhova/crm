@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import { bus } from '../main'
 export default {
   data() {
     return {
@@ -19,7 +18,7 @@ export default {
     }
   },
   created() {
-    bus.$on('showModal', () => {
+    this.$bus.$on('showModal', () => {
       this.snackbar = true
     })
   },
