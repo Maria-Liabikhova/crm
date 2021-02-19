@@ -47,7 +47,7 @@ export default {
   computed: {
     user() {
       const id = Number.parseInt(this.id)
-      return this.$store.getters.userById(id)
+      return this.$store.getters.personById(id)
     }
   }
 }

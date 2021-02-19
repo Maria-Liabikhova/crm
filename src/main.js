@@ -33,6 +33,7 @@ new Vue({
       } else {
         this.$router.push('/login?loginError=true')
       }
-    })
+    }),
+      this.$store.dispatch('usersFromDatabase')
   }
 }).$mount('#app')
