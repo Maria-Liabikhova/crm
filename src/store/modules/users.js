@@ -1,5 +1,5 @@
 import firebase from 'firebase'
-class User {
+class Person {
   constructor(name, id, gender, role) {
     this.name = name
     this.id = id
@@ -9,7 +9,7 @@ class User {
 }
 export default {
   state: {
-    user: null,
+    person: null,
     users: [
       {
         imgSrc:
@@ -92,33 +92,33 @@ export default {
     ]
   },
   mutations: {
-    addUser(state, payload) {
+    addPerson(state, payload) {
       state.users.push(payload)
     },
-    setNewUser(state, payload) {
+    setNewPerson(state, payload) {
       state.users.push(payload)
     },
-    deleteUser(state, payload) {
-      state.users = state.users.filter(user => user.id !== payload)
+    deletePerson(state, payload) {
+      state.users = state.users.filter(person => person.id !== payload)
     }
   },
   actions: {
-    async createUser({ commit, getters }, payload) {
+    async createPerson({ commit, getters }, payload) {
       commit('setClearError')
       try {
-        const newUser = new User(
+        const newPerson = new Person(
           payload.name,
           getters.user.id,
           payload.gender,
           payload.role
         )
-        const user = await firebase
+        const person = await firebase
           .database()
           .ref('users')
-          .push(newUser)
-        commit('setNewUser', {
-          ...newUser,
-          is: user.key
+          .push(newPerson)
+        commit('setNewPerson', {
+          ...newPerson,
+          is: person.key
         })
       } catch (error) {
         commit('setError', error.message)
@@ -126,17 +126,17 @@ export default {
         throw error
       }
     },
-    userDelete({ commit }, payload) {
-      commit('deleteUser', payload)
+    personDelete({ commit }, payload) {
+      commit('deletePerson', payload)
     }
   },
   getters: {
     users(state) {
       return state.users
     },
-    userById(state) {
-      return userId => {
-        return state.users.find(user => user.id === userId)
+    personById(state) {
+      return personId => {
+        return state.users.find(person => person.id === personId)
       }
     }
   }

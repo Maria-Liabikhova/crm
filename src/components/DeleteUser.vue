@@ -56,7 +56,7 @@
         <v-card-text>You can not recover this user</v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="error" text @click="userDelete">
+          <v-btn color="error" text @click="personDelete">
             Delete
           </v-btn>
           <v-btn color="green darken-1" text @click="dialogConfirm = false">
@@ -75,7 +75,7 @@ export default {
     return {
       dialog: false,
       dialogConfirm: false,
-      userDeleteId: Number
+      personDeleteId: Number
     }
   },
   computed: {
@@ -86,12 +86,12 @@ export default {
   methods: {
     preDelete(id) {
       this.dialogConfirm = true
-      this.userDeleteId = id
+      this.personDeleteId = id
     },
-    userDelete() {
+    personDelete() {
       this.dialogConfirm = false
       this.dialog = false
-      this.$store.dispatch('userDelete', this.userDeleteId)
+      this.$store.dispatch('personDelete', this.personDeleteId)
     }
   }
 }

@@ -100,7 +100,7 @@
         <v-btn
           color="blue darken-1"
           text
-          @click="createUser"
+          @click="createPerson"
           :disabled="!valid"
         >
           Save
@@ -129,16 +129,16 @@ export default {
     }
   },
   methods: {
-    createUser() {
+    createPerson() {
       this.dialog = false
       if (this.$refs.form.validate()) {
-        const user = {
+        const person = {
           name: `${this.name} ${this.secondName}`,
           id: this.id,
           gender: this.gender,
           role: this.role
         }
-        this.$store.dispatch('createUser', user)
+        this.$store.dispatch('createPerson', person)
       }
     },
     addPhoto() {
