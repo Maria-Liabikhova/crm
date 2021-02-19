@@ -84,7 +84,7 @@ export default {
       if (this.loggedIn)
         return [
           { text: 'All users', icon: 'mdi-account-multiple', link: 'users' },
-          { text: 'Our services', icon: 'mdi-dumbbell', link: 'services' },
+          { text: 'My page', icon: 'mdi-dumbbell', link: 'user_data' },
           { text: 'Buy pass', icon: 'mdi-currency-usd', link: 'buy_pass' },
           {
             text: 'Contacts',

@@ -27,6 +27,11 @@ const routes = [
   {
     path: '/registration',
     component: () => import('../pages/Registration.vue')
+  },
+  {
+    path: '/user_data',
+    component: () => import('../pages/UserData.vue'),
+    beforeEnter: routeSequrity
   }
 ]
 
