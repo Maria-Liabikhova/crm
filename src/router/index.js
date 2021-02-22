@@ -32,6 +32,11 @@ const routes = [
     path: '/user_data',
     component: () => import('../pages/UserData.vue'),
     beforeEnter: routeSequrity
+  },
+  {
+    path: '/crud',
+    component: () => import('../pages/Crud.vue'),
+    beforeEnter: routeSequrity
   }
 ]
 

@@ -85,6 +85,11 @@ export default {
         return [
           { text: 'All users', icon: 'mdi-account-multiple', link: 'users' },
           { text: 'My page', icon: 'mdi-dumbbell', link: 'user_data' },
+          {
+            text: 'CRUD',
+            icon: 'mdi-account-supervisor-circle',
+            link: 'crud'
+          },
           { text: 'Buy pass', icon: 'mdi-currency-usd', link: 'buy_pass' },
           {
             text: 'Contacts',

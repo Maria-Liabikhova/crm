@@ -22,6 +22,14 @@
                   :rules="rule"
                 ></v-text-field>
               </v-col>
+              <v-col cols="12" md="6">
+                <v-text-field
+                  v-model="email"
+                  label="Email"
+                  required
+                  :rules="rule"
+                ></v-text-field>
+              </v-col>
 
               <v-col cols="12" sm="6">
                 <v-select
@@ -85,6 +93,7 @@ export default {
       img: '',
       name: '',
       secondName: '',
+      email: '',
       gender: '',
       role: '',
       loader: null,
@@ -96,6 +105,7 @@ export default {
       if (this.$refs.forma.validate()) {
         const person = {
           name: `${this.name} ${this.secondName}`,
+          email: this.email,
           gender: this.gender,
           role: this.role
         }

@@ -1,8 +1,9 @@
 import firebase from 'firebase'
 class Person {
-  constructor(name, id, gender, role) {
+  constructor(name, id, email, gender, role) {
     this.name = name
     this.id = id
+    this.email = email
     this.gender = gender
     this.role = role
   }
@@ -103,8 +104,12 @@ export default {
     },
     loadUsers(state, payload) {
       state.users = payload
+    },
+    findFromDb(state, payload) {
+      state.users = payload
     }
   },
+
   actions: {
     async createPerson({ commit, getters }, payload) {
       commit('setClearError')
@@ -112,6 +117,7 @@ export default {
         const newPerson = new Person(
           payload.name,
           getters.user.id,
+          payload.email,
           payload.gender,
           payload.role
         )
@@ -141,7 +147,14 @@ export default {
         Object.keys(usersVal).forEach(key => {
           const person = usersVal[key]
           resultUsers.push(
-            new Person(person.name, person.id, person.gender, person.role, key)
+            new Person(
+              person.name,
+              person.id,
+              person.email,
+              person.gender,
+              person.role,
+              key
+            )
           )
           commit('loadUsers', resultUsers)
         })
@@ -153,6 +166,17 @@ export default {
     },
     personDelete({ commit }, payload) {
       commit('deletePerson', payload)
+    },
+    async getUserById({ commit }, payload) {
+      try {
+        const idFromDatabase = await firebase
+          .database()
+          .ref('users')
+          .once('value')
+        console.log(idFromDatabase.val())
+      } catch (error) {
+        throw error
+      }
     }
   },
   getters: {
