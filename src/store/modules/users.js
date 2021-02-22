@@ -169,11 +169,11 @@ export default {
     },
     async getUserById({ commit }, payload) {
       try {
-        const idFromDatabase = await firebase
+        const userFromDatabase = await firebase
           .database()
-          .ref('users')
+          .ref('users/' + payload)
           .once('value')
-        console.log(idFromDatabase.val())
+        console.log(userFromDatabase.val())
       } catch (error) {
         throw error
       }

@@ -7,7 +7,6 @@
           <v-form ref="form" v-model="valid">
             <v-text-field
               prepend-icon="mdi-alphabetical"
-              name="id"
               label="Enter id"
               v-model="id"
               :rules="idRules"
@@ -30,23 +29,16 @@ export default {
   data() {
     return {
       valid: false,
-      id: ' ',
+      id: '',
       idRules: [v => v.length >= 19 || 'Password must be equal 19 characters']
     }
   },
   methods: {
     onFind() {
-      // console.log(this.id)
       const id = this.id
       this.$store.dispatch('getUserById', id)
     }
   }
-  // computed: {
-  //   user() {
-  //     const id = Number.parseInt(this.id)
-  //     return this.$store.getters.personById(id)
-  //   }
-  // }
 }
 </script>
 
