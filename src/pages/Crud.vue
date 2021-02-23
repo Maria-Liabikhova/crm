@@ -18,6 +18,13 @@
           <v-btn dark color="blue lighten-1" @click="onFind" :disabled="!valid"
             >Find user</v-btn
           >
+          <v-btn
+            dark
+            color="blue lighten-1"
+            @click="onDelete"
+            :disabled="!valid"
+            >Delete user</v-btn
+          >
         </v-card-actions>
       </v-card>
     </div>
@@ -37,6 +44,10 @@ export default {
     onFind() {
       const id = this.id
       this.$store.dispatch('getUserById', id)
+    },
+    onDelete() {
+      const id = this.id
+      this.$store.dispatch('deleteUserById', id)
     }
   }
 }

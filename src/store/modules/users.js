@@ -104,9 +104,6 @@ export default {
     },
     loadUsers(state, payload) {
       state.users = payload
-    },
-    findFromDb(state, payload) {
-      state.users = payload
     }
   },
 
@@ -174,6 +171,16 @@ export default {
           .ref('users/' + payload)
           .once('value')
         console.log(userFromDatabase.val())
+      } catch (error) {
+        throw error
+      }
+    },
+    async deleteUserById({ commit }, payload) {
+      try {
+        const userFromDatabase = await firebase
+          .database()
+          .ref('users/' + payload)
+          .remove()
       } catch (error) {
         throw error
       }
