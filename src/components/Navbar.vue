@@ -84,7 +84,11 @@ export default {
       if (this.loggedIn)
         return [
           { text: 'All users', icon: 'mdi-account-multiple', link: 'users' },
-          { text: 'My page', icon: 'mdi-dumbbell', link: 'user_data' },
+          {
+            text: 'Create user',
+            icon: 'mdi-plus-outline',
+            link: 'create_user'
+          },
           {
             text: 'CRUD',
             icon: 'mdi-account-supervisor-circle',

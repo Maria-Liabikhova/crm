@@ -24,6 +24,22 @@
               </v-col>
               <v-col cols="12" md="6">
                 <v-text-field
+                  v-model="nickname"
+                  label="nickname*"
+                  required
+                  :rules="rule"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" md="6">
+                <v-text-field
+                  v-model="age"
+                  label="age*"
+                  required
+                  :rules="rule"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" md="6">
+                <v-text-field
                   v-model="email"
                   label="Email"
                   required
@@ -93,6 +109,8 @@ export default {
       img: '',
       name: '',
       secondName: '',
+      nickname: '',
+      age: '',
       email: '',
       gender: '',
       role: '',
@@ -104,7 +122,10 @@ export default {
     createPerson() {
       if (this.$refs.forma.validate()) {
         const person = {
-          name: `${this.name} ${this.secondName}`,
+          name: this.name,
+          secondName: this.secondName,
+          nickname: this.nickname,
+          age: this.age,
           email: this.email,
           gender: this.gender,
           role: this.role
