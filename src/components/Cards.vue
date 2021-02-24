@@ -15,14 +15,26 @@
               <p class="card__subtitle">
                 Name:
                 <span class="card__name"
-                  >{{ user.name }} {{ user.surname }}</span
+                  >{{ user.name }} {{ user.secondName }}</span
                 >
               </p>
             </v-card-title>
             <v-card-subtitle>
               <p class="card__subtitle">
+                Nckname:
+                <span class="card__describe">{{ user.nickname }}</span>
+              </p>
+              <p class="card__subtitle">
+                Age:
+                <span class="card__describe">{{ user.age }}</span>
+              </p>
+              <p class="card__subtitle">
                 Id:
                 <span class="card__describe">{{ user.id }}</span>
+              </p>
+              <p class="card__subtitle">
+                eMail:
+                <span class="card__describe">{{ user.email }}</span>
               </p>
               <p class="card__subtitle">
                 Gender:
@@ -30,17 +42,6 @@
               </p>
               <p class="card__subtitle">
                 Role: <span class="card__describe">{{ user.role }}</span>
-              </p>
-              <p class="card__subtitle">
-                eMail:
-                <span class="card__describe">{{ user.eMail }}</span>
-              </p>
-              <p class="card__subtitle">
-                Nickname:
-                <span class="card__describe">{{ user.nickname }}</span>
-              </p>
-              <p class="card__subtitle">
-                Age: <span class="card__describe">{{ user.age }}</span>
               </p>
             </v-card-subtitle>
           </router-link>
@@ -57,9 +58,6 @@ export default {
 </script>
 
 <style scoped>
-/* .border {
-  border: 3px dashed red
-} */
 .scroll {
   overflow-y: scroll;
   overflow-x: hidden;
