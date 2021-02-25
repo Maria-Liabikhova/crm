@@ -76,11 +76,10 @@ export default {
               person.secondName,
               person.nickname,
               person.age,
-              person.id,
+              key,
               person.email,
               person.gender,
-              person.role,
-              key
+              person.role
             )
           )
           commit('loadUsers', resultUsers)
@@ -100,7 +99,7 @@ export default {
           .database()
           .ref('users/' + payload)
           .once('value')
-        console.log(userFromDatabase.val())
+        // console.log(userFromDatabase.val())
       } catch (error) {
         throw error
       }

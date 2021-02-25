@@ -5,10 +5,10 @@
       src="https://i.sunhome.ru/journal/225/chudesa-chudesa-hristianstva-v2.orig.jpg"
     >
       <v-card-title class="white--text mt-8 nowrapp">
-        <h1 class="ml-3 word_nowrapp">{{ user.name }} {{ user.surname }}</h1>
+        <h1 class="ml-3 word_nowrapp">{{ user.name }} {{ user.secondName }}</h1>
         <v-spacer></v-spacer>
         <v-avatar size="150">
-          <img class="img_avatar" alt="user" :src="user.imgSrc" />
+          <!-- <img class="img_avatar" alt="user" :src="user.imgSrc" /> -->
         </v-avatar>
       </v-card-title>
     </v-img>
@@ -27,7 +27,7 @@
           Role: <span class="card__describe">{{ user.role }}</span>
         </p>
         <p class="card__subtitle">
-          eMail: <span class="card__describe">{{ user.eMail }}</span>
+          eMail: <span class="card__describe">{{ user.email }}</span>
         </p>
         <p class="card__subtitle">
           Nickname:
@@ -46,8 +46,7 @@ export default {
   props: ['id'],
   computed: {
     user() {
-      const id = Number.parseInt(this.id)
-      return this.$store.getters.personById(id)
+      return this.$store.getters.personById(this.id)
     }
   }
 }
