@@ -121,10 +121,11 @@ export default {
       img: '',
       name: '',
       secondName: '',
+      email: '',
       id: '',
       gender: '',
       role: '',
-      // loader: null,
+      age: '',
       loading3: false
     }
   },
@@ -150,9 +151,7 @@ export default {
     loader() {
       const l = this.loader
       this[l] = !this[l]
-
       setTimeout(() => (this[l] = false), 1000)
-
       this.loader = null
     }
   }
