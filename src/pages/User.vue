@@ -1,7 +1,7 @@
 <template>
-  <div class="user_wrap">
+  <div>
     <section v-if="!loading">
-      <div>
+      <div class="user_wrap">
         <v-card class="user-card">
           <v-img
             height="200px"
@@ -47,13 +47,19 @@
         <EditUser :editUser="user" />
       </div>
     </section>
-    <section v-else class="text-xs-center pt-5">
-      <v-progress-circular
-        :size="100"
-        :width="4"
-        indeterminate
-        color="purple"
-      ></v-progress-circular>
+    <section v-else>
+      <v-container>
+        <v-row>
+          <v-col xs="12" class="text-center ">
+            <v-progress-circular
+              :size="100"
+              :width="4"
+              indeterminate
+              color="black"
+            ></v-progress-circular>
+          </v-col>
+        </v-row>
+      </v-container>
     </section>
   </div>
 </template>
