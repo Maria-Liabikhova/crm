@@ -61,6 +61,7 @@ export default {
     },
     async usersFromDatabase({ commit }) {
       commit('setClearError')
+      commit('setLoading', true)
       const resultUsers = []
       try {
         const personFromDatabase = await firebase
@@ -83,10 +84,12 @@ export default {
             )
           )
           commit('loadUsers', resultUsers)
+          commit('setLoading', false)
         })
       } catch (error) {
         commit('setError', error.message)
         commit('errorColor')
+        commit('setLoading', false)
         throw error
       }
     },
@@ -94,13 +97,16 @@ export default {
       commit('deletePerson', payload)
     },
     async getUserById({ commit }, payload) {
+      commit('setLoading', true)
       try {
         const userFromDatabase = await firebase
           .database()
           .ref('users/' + payload)
           .once('value')
+        commit('setLoading', false)
         // console.log(userFromDatabase.val())
       } catch (error) {
+        commit('setLoading', false)
         throw error
       }
     },

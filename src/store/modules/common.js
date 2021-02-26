@@ -3,12 +3,16 @@ import firebase from 'firebase'
 export default {
   state: {
     error: null,
+    loading: false,
     successMessage: '',
     alertColor: ' '
   },
   mutations: {
     setError(state, payload) {
       state.error = payload
+    },
+    setLoading(state, payload) {
+      state.loading = payload
     },
     setClearError(state) {
       state.error = null
@@ -27,6 +31,9 @@ export default {
     activeError({ commit }, payload) {
       commit('setError', payload)
     },
+    setLoading({ commit }, payload) {
+      commit('setLoading', payload)
+    },
     clearError({ commit }) {
       commit('setClearError')
     },
@@ -43,6 +50,9 @@ export default {
   getters: {
     error(state) {
       return state.error
+    },
+    loading(state) {
+      return state.loading
     },
     successMessage(state) {
       return state.successMessage

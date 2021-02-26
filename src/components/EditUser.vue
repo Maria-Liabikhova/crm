@@ -61,7 +61,7 @@
           <v-btn color="blue darken-1" text @click="dialog = false">
             Close
           </v-btn>
-          <v-btn color="blue darken-1" text @click="dialog = false">
+          <v-btn color="blue darken-1" text @click="onSave">
             Save
           </v-btn>
         </v-card-actions>
@@ -72,25 +72,28 @@
 
 <script>
 export default {
+  props: ['editUser'],
   data() {
     return {
       dialog: false,
       valid: false,
       number: Number,
       img: '',
-      name: '',
-      secondName: '',
-      nickname: '',
-      email: '',
-      age: '',
+      name: this.editUser.name,
+      secondName: this.editUser.secondName,
+      nickname: this.editUser.nickname,
+      email: this.editUser.email,
+      age: this.editUser.age,
       emailRules: [
         v => !!v || 'E-mail is required',
         v => /.+@.+/.test(v) || 'E-mail must be valid'
       ],
-      id: '',
-      gender: '',
-      role: ''
+      gender: this.editUser.gender,
+      role: this.editUser.role
     }
+  },
+  methods: {
+    onSave() {}
   }
 }
 </script>
