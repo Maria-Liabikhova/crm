@@ -89,11 +89,34 @@ export default {
         v => /.+@.+/.test(v) || 'E-mail must be valid'
       ],
       gender: this.editUser.gender,
-      role: this.editUser.role
+      role: this.editUser.role,
+      id: this.editUser.id
     }
   },
   methods: {
-    onSave() {}
+    onSave() {
+      if (
+        this.name !== '' &&
+        this.secondName !== '' &&
+        this.nickname !== '' &&
+        this.email !== '' &&
+        this.age !== '' &&
+        this.gender !== '' &&
+        this.role !== ''
+      ) {
+        this.$store.dispatch('updateUser', {
+          name: this.name,
+          secondName: this.secondName,
+          nickname: this.nickname,
+          email: this.email,
+          age: this.age,
+          gender: this.gender,
+          role: this.role,
+          id: this.editUser.id
+        })
+      }
+      this.dialog = false
+    }
   }
 }
 </script>
