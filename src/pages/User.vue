@@ -45,6 +45,7 @@
           </v-card-text>
         </v-card>
         <EditUser :editUser="user" />
+        <DeletUser :DeletUser="user" />
       </div>
     </section>
     <section v-else>
@@ -66,8 +67,9 @@
 
 <script>
 import EditUser from '../components/EditUser.vue'
+import DeletUser from '../components/DeletUser.vue'
 export default {
-  components: { EditUser },
+  components: { EditUser, DeletUser },
   props: ['id'],
   computed: {
     user() {

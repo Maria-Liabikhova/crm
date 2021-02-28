@@ -23,9 +23,6 @@ export default {
     setNewPerson(state, payload) {
       state.users.push(payload)
     },
-    deletePerson(state, payload) {
-      state.users = state.users.filter(person => person.id !== payload)
-    },
     loadUsers(state, payload) {
       state.users = payload
     },
@@ -36,13 +33,13 @@ export default {
       const updateUser = state.users.find(el => {
         return el.id == id
       })
-      ;(updateUser.name = name),
-        (updateUser.secondName = secondName),
-        (updateUser.nickname = nickname),
-        (updateUser.email = email),
-        (updateUser.age = age),
-        (updateUser.gender = gender),
-        (updateUser.role = role)
+      updateUser.name = name
+      updateUser.secondName = secondName
+      updateUser.nickname = nickname
+      updateUser.email = email
+      updateUser.age = age
+      updateUser.gender = gender
+      updateUser.role = role
     }
   },
 
@@ -60,6 +57,7 @@ export default {
           payload.gender,
           payload.role
         )
+        console.log(getters.user.id)
         const person = await firebase
           .database()
           .ref('users')
@@ -77,39 +75,35 @@ export default {
     async usersFromDatabase({ commit }) {
       commit('setClearError')
       commit('setLoading', true)
-      const resultUsers = []
+      const databaseUsers = []
       try {
-        const personFromDatabase = await firebase
+        const usersFromDB = await firebase
           .database()
           .ref('users')
           .once('value')
-        const usersVal = personFromDatabase.val()
-        Object.keys(usersVal).forEach(key => {
-          const person = usersVal[key]
-          resultUsers.push(
+        Object.keys(usersFromDB.val()).forEach(key => {
+          const user = usersFromDB.val()[key]
+          databaseUsers.push(
             new Person(
-              person.name,
-              person.secondName,
-              person.nickname,
-              person.age,
+              user.name,
+              user.secondName,
+              user.nickname,
+              user.age,
               key,
-              person.email,
-              person.gender,
-              person.role
+              user.email,
+              user.gender,
+              user.role
             )
           )
-          commit('loadUsers', resultUsers)
-          commit('setLoading', false)
         })
+        commit('loadUsers', databaseUsers)
+        commit('setLoading', false)
       } catch (error) {
         commit('setError', error.message)
         commit('errorColor')
         commit('setLoading', false)
         throw error
       }
-    },
-    personDelete({ commit }, payload) {
-      commit('deletePerson', payload)
     },
     async getUserById({ commit }, payload) {
       commit('setLoading', true)
