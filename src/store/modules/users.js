@@ -1,7 +1,6 @@
 import firebase from 'firebase'
 class Person {
-  constructor(dbId, name, secondName, nickname, age, id, email, gender, role) {
-    this.dbId = dbId
+  constructor(name, secondName, nickname, age, id, email, gender, role) {
     this.name = name
     this.secondName = secondName
     this.nickname = nickname
@@ -58,6 +57,7 @@ export default {
           payload.gender,
           payload.role
         )
+        console.log(getters.user.id)
         const person = await firebase
           .database()
           .ref('users')
@@ -81,22 +81,20 @@ export default {
           .database()
           .ref('users')
           .once('value')
-        const usersList = usersFromDB.val()
-        Object.keys(usersList).forEach(key => {
-          const theUser = new Person(
-            usersList[key].dbId,
-            usersList[key].name,
-            usersList[key].secondName,
-            usersList[key].nickname,
-            usersList[key].age,
-            usersList[key].id,
-            usersList[key].email,
-            usersList[key].gender,
-            usersList[key].role
+        Object.keys(usersFromDB.val()).forEach(key => {
+          const user = usersFromDB.val()[key]
+          databaseUsers.push(
+            new Person(
+              user.name,
+              user.secondName,
+              user.nickname,
+              user.age,
+              key,
+              user.email,
+              user.gender,
+              user.role
+            )
           )
-          theUser.dbId = key
-          databaseUsers.push(theUser)
-          // console.log('theUser:', theUser) - вывод в консоль каждого пользователя
         })
         commit('loadUsers', databaseUsers)
         commit('setLoading', false)
