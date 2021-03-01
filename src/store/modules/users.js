@@ -25,22 +25,22 @@ export default {
     },
     loadUsers(state, payload) {
       state.users = payload
-    },
-    updatesForUser(
-      state,
-      { name, secondName, nickname, email, age, gender, role, id }
-    ) {
-      const updateUser = state.users.find(el => {
-        return el.id == id
-      })
-      updateUser.name = name
-      updateUser.secondName = secondName
-      updateUser.nickname = nickname
-      updateUser.email = email
-      updateUser.age = age
-      updateUser.gender = gender
-      updateUser.role = role
     }
+    // updatesForUser(
+    //   state,
+    //   { name, secondName, nickname, email, age, gender, role, id }
+    // ) {
+    //   const updateUser = state.users.find(el => {
+    //     return el.id == id
+    //   })
+    //   updateUser.name = name
+    //   updateUser.secondName = secondName
+    //   updateUser.nickname = nickname
+    //   updateUser.email = email
+    //   updateUser.age = age
+    //   updateUser.gender = gender
+    //   updateUser.role = role
+    // }
   },
 
   actions: {
@@ -57,7 +57,6 @@ export default {
           payload.gender,
           payload.role
         )
-        console.log(getters.user.id)
         const person = await firebase
           .database()
           .ref('users')
@@ -74,97 +73,92 @@ export default {
     },
     async usersFromDatabase({ commit }) {
       commit('setClearError')
-      commit('setLoading', true)
       const databaseUsers = []
       try {
         const usersFromDB = await firebase
           .database()
           .ref('users')
           .once('value')
-        Object.keys(usersFromDB.val()).forEach(key => {
-          const user = usersFromDB.val()[key]
-          databaseUsers.push(
-            new Person(
-              user.name,
-              user.secondName,
-              user.nickname,
-              user.age,
-              key,
-              user.email,
-              user.gender,
-              user.role
-            )
+        const usersList = usersFromDB.val()
+        Object.keys(usersList).forEach(key => {
+          const theUser = new Person(
+            usersList[key].name,
+            usersList[key].secondName,
+            usersList[key].nickname,
+            usersList[key].age,
+            usersList[key].id,
+            usersList[key].email,
+            usersList[key].gender,
+            usersList[key].role,
+            usersList[key].dbId
           )
+          theUser.dbId = key
+          databaseUsers.push(theUser)
+          console.log('theUser:', theUser)
         })
         commit('loadUsers', databaseUsers)
-        commit('setLoading', false)
       } catch (error) {
         commit('setError', error.message)
         commit('errorColor')
-        commit('setLoading', false)
-        throw error
-      }
-    },
-    async getUserById({ commit }, payload) {
-      commit('setLoading', true)
-      try {
-        const userFromDatabase = await firebase
-          .database()
-          .ref('users/' + payload)
-          .once('value')
-        commit('setLoading', false)
-        // console.log(userFromDatabase.val())
-      } catch (error) {
-        commit('setLoading', false)
-        throw error
-      }
-    },
-    async deleteUserById({ commit }, payload) {
-      try {
-        const userFromDatabase = await firebase
-          .database()
-          .ref('users/' + payload)
-          .remove()
-      } catch (error) {
-        throw error
-      }
-    },
-    async updateUser(
-      { commit },
-      { name, secondName, nickname, email, age, gender, role, id }
-    ) {
-      commit('setClearError')
-      commit('setLoading', true)
-      try {
-        await firebase
-          .database()
-          .ref('users')
-          .child(id)
-          .update({
-            name,
-            secondName,
-            nickname,
-            email,
-            age,
-            gender,
-            role
-          })
-        commit('updatesForUser', {
-          name,
-          secondName,
-          nickname,
-          email,
-          age,
-          gender,
-          role,
-          id
-        })
-        commit('setLoading', false)
-      } catch (error) {
-        commit('setLoading', false)
         throw error
       }
     }
+    // async getUserById({ commit }, payload) {
+    //   commit('setLoading', true)
+    //   try {
+    //     const userFromDatabase = await firebase
+    //       .database()
+    //       .ref('users/' + payload)
+    //       .once('value')
+    //     // console.log(userFromDatabase.val())
+    //   } catch (error) {
+    //     throw error
+    //   }
+    // },
+    // async deleteUserById({ commit }, payload) {
+    //   try {
+    //     const userFromDatabase = await firebase
+    //       .database()
+    //       .ref('users/' + payload)
+    //       .remove()
+    //   } catch (error) {
+    //     throw error
+    //   }
+    // },
+    // async updateUser(
+    //   { commit },
+    //   { name, secondName, nickname, email, age, gender, role, id }
+    // ) {
+    //   commit('setClearError')
+    //   commit('setLoading', true)
+    //   try {
+    //     await firebase
+    //       .database()
+    //       .ref('users')
+    //       .child(id)
+    //       .update({
+    //         name,
+    //         secondName,
+    //         nickname,
+    //         email,
+    //         age,
+    //         gender,
+    //         role
+    //       })
+    //     commit('updatesForUser', {
+    //       name,
+    //       secondName,
+    //       nickname,
+    //       email,
+    //       age,
+    //       gender,
+    //       role,
+    //       id
+    //     })
+    //   } catch (error) {
+    //     throw error
+    //   }
+    // }
   },
   getters: {
     users(state) {

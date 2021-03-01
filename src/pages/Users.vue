@@ -51,8 +51,6 @@
               </v-list-item>
             </v-list>
           </v-menu>
-          <CreateUser />
-          <DeleteUser />
         </v-col>
       </v-row>
       <Cards :filteredRole="users" />
@@ -61,11 +59,9 @@
 </template>
 
 <script>
-import CreateUser from '../components/CreateUser.vue'
-import DeleteUser from '../components/DeleteUser.vue'
 import Cards from '../components/Cards.vue'
 export default {
-  components: { CreateUser, DeleteUser, Cards },
+  components: { Cards },
   data() {
     return {
       filters: ['allUsers', 'admin', 'editor', 'client', 'guest'],

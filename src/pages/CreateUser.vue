@@ -70,13 +70,7 @@
           <small>*indicates required field</small>
           <v-spacer></v-spacer>
           <!-- Add picture button -->
-          <v-btn
-            :loading="loading3"
-            :disabled="loading3"
-            color="blue-grey"
-            class="ma-2 white--text"
-            @click="addPhoto"
-          >
+          <v-btn color="blue-grey" class="ma-2 white--text" @click="addPhoto">
             upload profile photo
             <v-icon right dark>
               mdi-cloud-upload
@@ -113,9 +107,7 @@ export default {
       age: '',
       email: '',
       gender: '',
-      role: '',
-      loader: null,
-      loading3: false
+      role: ''
     }
   },
   methods: {
@@ -136,19 +128,7 @@ export default {
       }
     },
     addPhoto() {
-      this.loader = 'loading3'
       this.$refs.add.click()
-    }
-  },
-
-  watch: {
-    loader() {
-      const l = this.loader
-      this[l] = !this[l]
-
-      setTimeout(() => (this[l] = false), 1000)
-
-      this.loader = null
     }
   }
 }
