@@ -21,6 +21,10 @@
           <v-card-text class="card_background">
             <v-card-subtitle>
               <p class="card__subtitle">
+                dbId:
+                <span class="card__describe">{{ user.dbId }}</span>
+              </p>
+              <p class="card__subtitle">
                 Id:
                 <span class="card__describe">{{ user.id }}</span>
               </p>

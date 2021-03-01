@@ -21,6 +21,10 @@
             </v-card-title>
             <v-card-subtitle>
               <p class="card__subtitle">
+                dbId:
+                <span class="card__describe">{{ user.dbId }}</span>
+              </p>
+              <p class="card__subtitle">
                 Nckname:
                 <span class="card__describe">{{ user.nickname }}</span>
               </p>
