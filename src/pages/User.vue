@@ -21,8 +21,8 @@
           <v-card-text class="card_background">
             <v-card-subtitle>
               <p class="card__subtitle">
-                Id:
-                <span class="card__describe">{{ user.id }}</span>
+                authId:
+                <span class="card__describe">{{ user.authId }}</span>
               </p>
               <p class="card__subtitle">
                 Gender:
@@ -70,10 +70,10 @@ import EditUser from '../components/EditUser.vue'
 import DeletUser from '../components/DeletUser.vue'
 export default {
   components: { EditUser, DeletUser },
-  props: ['id'],
+  props: ['authId'],
   computed: {
     user() {
-      return this.$store.getters.personById(this.id)
+      return this.$store.getters.personById(this.authId)
     },
     loading() {
       return this.$store.getters.loading

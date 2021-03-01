@@ -1,8 +1,8 @@
 import firebase from 'firebase'
 
 class User {
-  constructor(id) {
-    this.id = id
+  constructor(authId) {
+    this.authId = authId
   }
 }
 
