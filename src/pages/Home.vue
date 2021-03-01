@@ -17,30 +17,11 @@
         club for the wholel famaly.
       </p>
     </div>
-    <div class="wrapper-for-carusel">
-      <v-carousel hide-delimiters class="carusel-wrap">
-        <v-carousel-item
-          class="carusel-slide"
-          v-for="(itemCarusel, i) in itemsCarusel"
-          :key="i"
-          >{{ itemCarusel.item }}</v-carousel-item
-        >
-      </v-carousel>
-    </div>
   </div>
 </template>
 
 <script>
-export default {
-  data: () => ({
-    itemsCarusel: [
-      { item: 'Hello world' },
-      { item: 'Hello world 1' },
-      { item: 'Hello world 2' },
-      { item: 'Hello world 3' }
-    ]
-  })
-}
+export default {}
 </script>
 
 <style scoped>
