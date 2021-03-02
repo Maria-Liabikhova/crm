@@ -1,11 +1,11 @@
 import firebase from 'firebase'
 class Person {
-  constructor(name, secondName, nickname, age, authId, email, gender, role) {
+  constructor(name, secondName, nickname, age, id, email, gender, role) {
     this.name = name
     this.secondName = secondName
     this.nickname = nickname
     this.age = age
-    this.authId = authId
+    this.id = id
     this.email = email
     this.gender = gender
     this.role = role
@@ -52,7 +52,7 @@ export default {
           payload.secondName,
           payload.nickname,
           payload.age,
-          getters.user.authId,
+          getters.user.id,
           payload.email,
           payload.gender,
           payload.role
@@ -63,7 +63,7 @@ export default {
           .push(newPerson)
         commit('setNewPerson', {
           ...newPerson,
-          authId: person.key
+          id: person.key
         })
       } catch (error) {
         commit('setError', error.message)
@@ -86,7 +86,7 @@ export default {
             usersList[key].secondName,
             usersList[key].nickname,
             usersList[key].age,
-            usersList[key].authId,
+            usersList[key].id,
             usersList[key].email,
             usersList[key].gender,
             usersList[key].role,

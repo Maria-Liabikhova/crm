@@ -15,7 +15,7 @@ const routes = [
     beforeEnter: routeSequrity
   },
   {
-    path: '/user/:dbId',
+    path: '/user/:id',
     props: true,
     component: () => import('../pages/User.vue'),
     beforeEnter: routeSequrity

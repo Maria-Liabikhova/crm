@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols="4" v-for="user in filteredRole" :key="user.id">
         <v-card>
-          <router-link class="no-decor" :to="'/user/' + user.dbId">
+          <router-link class="no-decor" :to="'/user/' + user.id">
             <div class="wrap-avatar">
               <v-img
                 :class="user.borderClass"
@@ -29,8 +29,8 @@
                 <span class="card__describe">{{ user.age }}</span>
               </p>
               <p class="card__subtitle">
-                authId:
-                <span class="card__describe">{{ user.authId }}</span>
+                Id:
+                <span class="card__describe">{{ user.id }}</span>
               </p>
               <p class="card__subtitle">
                 eMail:
@@ -42,9 +42,6 @@
               </p>
               <p class="card__subtitle">
                 Role: <span class="card__describe">{{ user.role }}</span>
-              </p>
-              <p class="card__subtitle">
-                dbId: <span class="card__describe">{{ user.dbId }}</span>
               </p>
             </v-card-subtitle>
           </router-link>
