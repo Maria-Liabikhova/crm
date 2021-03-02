@@ -13,9 +13,8 @@
                       <v-list-item>
                         <v-list-item-content>
                           <v-list-item-title class="string">
-                            <v-icon class="mr-2">mdi-waves</v-icon>
                             <router-link to="/" class="no-decor">
-                              <h1>FitnessName</h1>
+                              <h1>DA-VINCHI</h1>
                             </router-link>
                           </v-list-item-title>
                         </v-list-item-content>
@@ -90,7 +89,7 @@ export default {
             link: 'create_user'
           },
           {
-            text: 'ActionsByDbId',
+            text: 'Actions by dbid',
             icon: 'mdi-account-supervisor-circle',
             link: 'actions_by_dbid'
           }

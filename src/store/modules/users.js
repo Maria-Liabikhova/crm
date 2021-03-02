@@ -1,11 +1,11 @@
 import firebase from 'firebase'
 class Person {
-  constructor(name, secondName, nickname, age, id, email, gender, role) {
+  constructor(name, secondName, nickname, age, aid, email, gender, role) {
     this.name = name
     this.secondName = secondName
     this.nickname = nickname
     this.age = age
-    this.id = id
+    this.aid = aid
     this.email = email
     this.gender = gender
     this.role = role
@@ -86,7 +86,7 @@ export default {
             usersList[key].secondName,
             usersList[key].nickname,
             usersList[key].age,
-            usersList[key].id,
+            usersList[key].aid,
             usersList[key].email,
             usersList[key].gender,
             usersList[key].role,
@@ -164,9 +164,9 @@ export default {
     users(state) {
       return state.users
     },
-    personById(state) {
-      return personId => {
-        return state.users.find(person => person.id === personId)
+    userOfUsersById(state) {
+      return userOfUsers => {
+        return state.users.find(aUser => aUser.dbId === userOfUsers)
       }
     }
   }

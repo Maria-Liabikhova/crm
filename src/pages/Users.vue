@@ -64,7 +64,7 @@ export default {
   components: { Cards },
   data() {
     return {
-      filters: ['allUsers', 'admin', 'editor', 'client', 'guest'],
+      filters: ['allUsers', 'Administrator', 'Editor', 'Client', 'Guest'],
       selectedFilter: 'allUsers',
       sorts: ['name', 'nickname', 'age', 'role'],
       selectedSort: null
