@@ -90,15 +90,9 @@ export default {
             link: 'create_user'
           },
           {
-            text: 'CRUD',
+            text: 'ActionsByDbId',
             icon: 'mdi-account-supervisor-circle',
-            link: 'crud'
-          },
-          { text: 'Buy pass', icon: 'mdi-currency-usd', link: 'buy_pass' },
-          {
-            text: 'Contacts',
-            icon: 'mdi-card-account-mail-outline',
-            link: 'contacts'
+            link: 'actions_by_dbid'
           }
         ]
       return [

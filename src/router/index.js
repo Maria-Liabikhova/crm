@@ -34,8 +34,8 @@ const routes = [
     beforeEnter: routeSequrity
   },
   {
-    path: '/crud',
-    component: () => import('../pages/Crud.vue'),
+    path: '/actions_by_dbid',
+    component: () => import('../pages/ActionsByDbId.vue'),
     beforeEnter: routeSequrity
   }
 ]
