@@ -48,7 +48,7 @@
           </v-card-text>
         </v-card>
         <EditUser :editUser="user" />
-        <DeletUser :DeletUser="user" />
+        <DeletUser :deletUser="user" />
       </div>
     </section>
     <section v-else>

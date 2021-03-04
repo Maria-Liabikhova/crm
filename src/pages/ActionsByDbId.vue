@@ -45,12 +45,13 @@ export default {
       const id = this.enteredDbId
       this.$store.dispatch('getUserById', id).then(() => {
         this.$router.push(`/user/${id}`)
-        this.$bus.$emit('showModal')
       })
     },
     onDelete() {
       const enteredDbId = this.enteredDbId
-      this.$store.dispatch('deleteUserById', enteredDbId)
+      this.$store.dispatch('deleteUserById', enteredDbId).then(() => {
+        this.$router.push(`/user/${id}`)
+      })
     }
   }
 }

@@ -114,17 +114,20 @@ export default {
         commit('errorColor')
         throw error
       }
+    },
+    async deleteUserById({ commit }, { dbId }) {
+      try {
+        const userFromDatabase = await firebase
+          .database()
+          .ref('users/' + dbId)
+          .remove()
+
+        const user = await firebase.auth().currentUser
+        user.delete()
+      } catch (error) {
+        throw error
+      }
     }
-    // async deleteUserById({ commit }, payload) {
-    //   try {
-    //     const userFromDatabase = await firebase
-    //       .database()
-    //       .ref('users/' + payload)
-    //       .remove()
-    //   } catch (error) {
-    //     throw error
-    //   }
-    // }
     // async updateUser(
     //   { commit },
     //   { name, secondName, nickname, email, age, gender, role, id }
