@@ -71,7 +71,7 @@ export default {
         throw error
       }
     },
-    async usersFromDatabase({ commit }) {
+    async fetchUsersDB({ commit }) {
       commit('setClearError')
       const databaseUsers = []
       try {
@@ -94,7 +94,7 @@ export default {
           )
           theUser.dbId = key
           databaseUsers.push(theUser)
-          console.log('theUser:', theUser)
+          // console.log('theUser:', theUser)
         })
         commit('loadUsers', databaseUsers)
       } catch (error) {
@@ -102,19 +102,19 @@ export default {
         commit('errorColor')
         throw error
       }
+    },
+    async getUserById({ commit }, payload) {
+      try {
+        const userFromDatabase = await firebase
+          .database()
+          .ref('users/' + payload)
+          .once('value')
+      } catch (error) {
+        commit('setError', error.message)
+        commit('errorColor')
+        throw error
+      }
     }
-    // async getUserById({ commit }, payload) {
-    //   commit('setLoading', true)
-    //   try {
-    //     const userFromDatabase = await firebase
-    //       .database()
-    //       .ref('users/' + payload)
-    //       .once('value')
-    //     // console.log(userFromDatabase.val())
-    //   } catch (error) {
-    //     throw error
-    //   }
-    // },
     // async deleteUserById({ commit }, payload) {
     //   try {
     //     const userFromDatabase = await firebase
@@ -124,7 +124,7 @@ export default {
     //   } catch (error) {
     //     throw error
     //   }
-    // },
+    // }
     // async updateUser(
     //   { commit },
     //   { name, secondName, nickname, email, age, gender, role, id }

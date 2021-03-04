@@ -26,14 +26,14 @@ new Vue({
       if (user) {
         try {
           await this.$store.dispatch('letStayLoggedIn', user)
-          this.$router.push(userTryAccessTo)
+          this.$router.push(`${userTryAccessTo}`)
         } catch (error) {
           this.$store.dispatch('activeError', error.message)
         }
       } else {
-        this.$router.push('/login?loginError=true')
+        this.$router.push('/login?loginError=true') //здесь в ссылке может быть любой текст? Что обозначает знак вопроса в ссылке?
       }
     }),
-      this.$store.dispatch('usersFromDatabase')
+      this.$store.dispatch('fetchUsersDB')
   }
 }).$mount('#app')

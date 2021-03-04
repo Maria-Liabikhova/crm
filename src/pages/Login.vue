@@ -72,6 +72,7 @@ export default {
       this.$store.dispatch('isErrorColor')
       this.$bus.$emit('showModal')
     }
+    // console.log('route:', this.$route)
   },
   methods: {
     isSubmit() {

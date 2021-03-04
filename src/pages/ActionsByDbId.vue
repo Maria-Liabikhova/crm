@@ -8,7 +8,7 @@
             <v-text-field
               prepend-icon="mdi-alphabetical"
               label="Enter id"
-              v-model="id"
+              v-model="enteredDbId"
               :rules="idRules"
             >
             </v-text-field>
@@ -36,18 +36,21 @@ export default {
   data() {
     return {
       valid: false,
-      id: '',
+      enteredDbId: '',
       idRules: [v => v.length >= 19 || 'Password must be equal 19 characters']
     }
   },
   methods: {
     onFind() {
-      const id = this.id
-      this.$store.dispatch('getUserById', id)
+      const id = this.enteredDbId
+      this.$store.dispatch('getUserById', id).then(() => {
+        this.$router.push(`/user/${id}`)
+        this.$bus.$emit('showModal')
+      })
     },
     onDelete() {
-      const id = this.id
-      this.$store.dispatch('deleteUserById', id)
+      const enteredDbId = this.enteredDbId
+      this.$store.dispatch('deleteUserById', enteredDbId)
     }
   }
 }

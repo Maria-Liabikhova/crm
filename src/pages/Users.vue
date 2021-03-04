@@ -70,6 +70,7 @@ export default {
       selectedSort: null
     }
   },
+
   computed: {
     users() {
       let users = [...this.$store.getters.users]
