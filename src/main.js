@@ -31,7 +31,7 @@ new Vue({
           this.$store.dispatch('activeError', error.message)
         }
       } else {
-        this.$router.push('/login?loginError=true') //здесь в ссылке может быть любой текст? Что обозначает знак вопроса в ссылке?
+        this.$router.push('/login?loginError=true')
       }
     }),
       this.$store.dispatch('fetchUsersDB')

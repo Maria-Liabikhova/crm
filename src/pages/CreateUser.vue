@@ -84,7 +84,7 @@
           color="blue darken-1"
           text
           :disabled="!valid"
-          @click="createPerson"
+          @click="createUser"
         >
           Save
         </v-btn>
@@ -111,9 +111,9 @@ export default {
     }
   },
   methods: {
-    createPerson() {
+    createUser() {
       if (this.$refs.forma.validate()) {
-        const person = {
+        const user = {
           name: this.name,
           secondName: this.secondName,
           nickname: this.nickname,
@@ -122,7 +122,7 @@ export default {
           gender: this.gender,
           role: this.role
         }
-        this.$store.dispatch('createPerson', person).then(() => {
+        this.$store.dispatch('createUser', user).then(() => {
           this.$router.push('/')
         })
       }

@@ -1,5 +1,5 @@
 import firebase from 'firebase'
-class Person {
+class User {
   constructor(name, secondName, nickname, age, aid, email, gender, role) {
     this.name = name
     this.secondName = secondName
@@ -13,14 +13,14 @@ class Person {
 }
 export default {
   state: {
-    person: null,
+    user: null,
     users: []
   },
   mutations: {
-    addPerson(state, payload) {
+    addUser(state, payload) {
       state.users.push(payload)
     },
-    setNewPerson(state, payload) {
+    setNewUser(state, payload) {
       state.users.push(payload)
     },
     loadUsers(state, payload) {
@@ -44,26 +44,26 @@ export default {
   },
 
   actions: {
-    async createPerson({ commit, getters }, payload) {
+    async createUser({ commit, getters }, payload) {
       commit('setClearError')
       try {
-        const newPerson = new Person(
+        const newUser = new User(
           payload.name,
           payload.secondName,
           payload.nickname,
           payload.age,
-          getters.user.id,
+          getters.userAuth.id,
           payload.email,
           payload.gender,
           payload.role
         )
-        const person = await firebase
+        const userDb = await firebase
           .database()
           .ref('users')
-          .push(newPerson)
-        commit('setNewPerson', {
-          ...newPerson,
-          id: person.key
+          .push(newUser)
+        commit('setNewUser', {
+          ...newUser,
+          id: userDb.key
         })
       } catch (error) {
         commit('setError', error.message)
@@ -81,7 +81,7 @@ export default {
           .once('value')
         const usersList = usersFromDB.val()
         Object.keys(usersList).forEach(key => {
-          const theUser = new Person(
+          const theUser = new User(
             usersList[key].name,
             usersList[key].secondName,
             usersList[key].nickname,

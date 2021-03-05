@@ -1,6 +1,6 @@
 import firebase from 'firebase'
 
-class User {
+class UserAuth {
   constructor(id) {
     this.id = id
   }
@@ -8,11 +8,11 @@ class User {
 
 export default {
   state: {
-    user: null
+    userAuth: null
   },
   mutations: {
     identifyUser(state, payload) {
-      state.user = payload
+      state.userAuth = payload
     }
   },
   actions: {
@@ -22,7 +22,7 @@ export default {
         const user = await firebase
           .auth()
           .createUserWithEmailAndPassword(email, password)
-        commit('identifyUser', new User(user.user.uid))
+        commit('identifyUser', new UserAuth(user.user.uid))
         commit('setSuccessMessage')
         commit('successColor')
       } catch (error) {
@@ -37,7 +37,7 @@ export default {
         const user = await firebase
           .auth()
           .signInWithEmailAndPassword(email, password)
-        commit('identifyUser', new User(user.user.uid))
+        commit('identifyUser', new UserAuth(user.user.uid))
         commit('setSuccessMessage')
         commit('successColor')
       } catch (error) {
@@ -47,7 +47,7 @@ export default {
       }
     },
     letStayLoggedIn({ commit }, payload) {
-      commit('identifyUser', new User(payload.uid))
+      commit('identifyUser', new UserAuth(payload.uid))
     },
     logoutUser({ commit }) {
       firebase.auth().signOut()
@@ -55,11 +55,11 @@ export default {
     }
   },
   getters: {
-    user(state) {
-      return state.user
+    userAuth(state) {
+      return state.userAuth
     },
     userLoggedIn(state) {
-      return state.user !== null
+      return state.userAuth !== null
     }
   }
 }
