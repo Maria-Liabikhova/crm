@@ -89,6 +89,11 @@ export default {
             link: 'create_user'
           },
           {
+            text: 'Chat',
+            icon: 'mdi-chat',
+            link: 'chat'
+          },
+          {
             text: 'Actions by dbid',
             icon: 'mdi-account-supervisor-circle',
             link: 'actions_by_dbid'

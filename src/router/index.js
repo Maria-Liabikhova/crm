@@ -37,6 +37,11 @@ const routes = [
     path: '/actions_by_dbid',
     component: () => import('../pages/ActionsByDbId.vue'),
     beforeEnter: routeSequrity
+  },
+  {
+    path: '/chat',
+    component: () => import('../pages/Chat.vue'),
+    beforeEnter: routeSequrity
   }
 ]
 
