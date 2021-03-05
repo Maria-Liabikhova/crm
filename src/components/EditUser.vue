@@ -90,7 +90,7 @@ export default {
       ],
       gender: this.editUser.gender,
       role: this.editUser.role,
-      id: this.editUser.id
+      dbId: this.editUser.dbId
     }
   },
   methods: {
@@ -112,7 +112,7 @@ export default {
           age: this.age,
           gender: this.gender,
           role: this.role,
-          id: this.editUser.id
+          dbId: this.editUser.dbId
         })
       }
       this.dialog = false

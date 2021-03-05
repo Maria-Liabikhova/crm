@@ -25,22 +25,22 @@ export default {
     },
     loadUsers(state, payload) {
       state.users = payload
+    },
+    updatesForUser(
+      state,
+      { name, secondName, nickname, email, age, gender, role, dbId }
+    ) {
+      const updateUser = state.users.find(el => {
+        return el.dbId == dbId
+      })
+      updateUser.name = name
+      updateUser.secondName = secondName
+      updateUser.nickname = nickname
+      updateUser.email = email
+      updateUser.age = age
+      updateUser.gender = gender
+      updateUser.role = role
     }
-    // updatesForUser(
-    //   state,
-    //   { name, secondName, nickname, email, age, gender, role, id }
-    // ) {
-    //   const updateUser = state.users.find(el => {
-    //     return el.id == id
-    //   })
-    //   updateUser.name = name
-    //   updateUser.secondName = secondName
-    //   updateUser.nickname = nickname
-    //   updateUser.email = email
-    //   updateUser.age = age
-    //   updateUser.gender = gender
-    //   updateUser.role = role
-    // }
   },
 
   actions: {
@@ -127,41 +127,44 @@ export default {
       } catch (error) {
         throw error
       }
+    },
+    async updateUser(
+      { commit },
+      { name, secondName, nickname, email, age, gender, role, dbId }
+    ) {
+      commit('setClearError')
+      commit('setLoading', true)
+      try {
+        await firebase
+          .database()
+          .ref('users')
+          .child(dbId)
+          .update({
+            name,
+            secondName,
+            nickname,
+            email,
+            age,
+            gender,
+            role
+          })
+
+        commit('updatesForUser', {
+          name,
+          secondName,
+          nickname,
+          email,
+          age,
+          gender,
+          role,
+          dbId
+        })
+        commit('setLoading', false)
+      } catch (error) {
+        commit('setLoading', false)
+        throw error
+      }
     }
-    // async updateUser(
-    //   { commit },
-    //   { name, secondName, nickname, email, age, gender, role, id }
-    // ) {
-    //   commit('setClearError')
-    //   commit('setLoading', true)
-    //   try {
-    //     await firebase
-    //       .database()
-    //       .ref('users')
-    //       .child(id)
-    //       .update({
-    //         name,
-    //         secondName,
-    //         nickname,
-    //         email,
-    //         age,
-    //         gender,
-    //         role
-    //       })
-    //     commit('updatesForUser', {
-    //       name,
-    //       secondName,
-    //       nickname,
-    //       email,
-    //       age,
-    //       gender,
-    //       role,
-    //       id
-    //     })
-    //   } catch (error) {
-    //     throw error
-    //   }
-    // }
   },
   getters: {
     users(state) {
