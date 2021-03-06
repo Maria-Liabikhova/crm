@@ -1,72 +1,68 @@
 <template>
-  <div class="wrap ">
-    <v-container fluid>
-      <v-row>
-        <v-col offset="1" cols="10">
-          <v-card class="main">
-            <v-container fluid>
-              <v-row>
-                <v-col class="no-padding" cols="4" xs="4" sm="4" md="3">
-                  <v-card class="main_left-part" height="100%">
-                    <!-- !!!!!!!!!!!!!!!!!! -->
-                    <v-list class=" left_menu" dark>
-                      <v-list-item>
+  <div class="wrap">
+    <div class="card-wrapper">
+      <v-card class="main">
+        <v-container class="correct-fluid" fluid>
+          <v-row class="correct-fluid">
+            <v-col class="no-padding" cols="4" xs="4" sm="4" md="3">
+              <v-card class="main_left-part">
+                <!-- !!!!!!!!!!!!!!!!!! -->
+                <v-list class=" left_menu" dark>
+                  <v-list-item>
+                    <v-list-item-content>
+                      <v-list-item-title class="string">
+                        <router-link to="/" class="no-decor">
+                          <h1>DA-VINCHI</h1>
+                        </router-link>
+                      </v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-list>
+                <v-list class=" left_menu left_menu_list" nav dense>
+                  <v-list-item-group>
+                    <v-list-item v-for="(item, i) in items" :key="i" dark>
+                      <router-link
+                        :to="'/' + item.link"
+                        class="no-decor items_link"
+                      >
+                        <v-list-item-icon>
+                          <v-icon v-text="item.icon"></v-icon>
+                        </v-list-item-icon>
+
                         <v-list-item-content>
-                          <v-list-item-title class="string">
-                            <router-link to="/" class="no-decor">
-                              <h1>DA-VINCHI</h1>
-                            </router-link>
-                          </v-list-item-title>
+                          <v-list-item-title
+                            class="left_menu_items"
+                            v-text="item.text"
+                          ></v-list-item-title>
                         </v-list-item-content>
-                      </v-list-item>
-                    </v-list>
-                    <v-list class=" left_menu left_menu_list" nav dense>
-                      <v-list-item-group>
-                        <v-list-item v-for="(item, i) in items" :key="i" dark>
-                          <router-link
-                            :to="'/' + item.link"
-                            class="no-decor items_link"
-                          >
-                            <v-list-item-icon>
-                              <v-icon v-text="item.icon"></v-icon>
-                            </v-list-item-icon>
+                      </router-link>
+                    </v-list-item>
 
-                            <v-list-item-content>
-                              <v-list-item-title
-                                class="left_menu_items"
-                                v-text="item.text"
-                              ></v-list-item-title>
-                            </v-list-item-content>
-                          </router-link>
-                        </v-list-item>
-
-                        <v-list-item dark @click="logOut" v-if="loggedIn">
-                          <v-list-item-icon>
-                            <v-icon>mdi-logout-variant</v-icon>
-                          </v-list-item-icon>
-                          <v-list-item-title class="left_menu_items "
-                            >Log out</v-list-item-title
-                          >
-                        </v-list-item>
-                      </v-list-item-group>
-                    </v-list>
-                  </v-card>
-                </v-col>
-                <v-col class="no-padding" cols="8" xs="8" sm="8" md="9">
-                  <v-card class="main_right-part" height="100%">
-                    <!-- !!!!!!!!!!!!!!!!!!! -->
-                    <!-- <div> -->
-                    <router-view></router-view>
-                    <!-- </div> -->
-                    <!-- !!!!!!!!!!!!!!!!!!! -->
-                  </v-card>
-                </v-col>
-              </v-row>
-            </v-container>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
+                    <v-list-item dark @click="logOut" v-if="loggedIn">
+                      <v-list-item-icon>
+                        <v-icon>mdi-logout-variant</v-icon>
+                      </v-list-item-icon>
+                      <v-list-item-title class="left_menu_items "
+                        >Log out</v-list-item-title
+                      >
+                    </v-list-item>
+                  </v-list-item-group>
+                </v-list>
+              </v-card>
+            </v-col>
+            <v-col class="no-padding" cols="8" xs="8" sm="8" md="9">
+              <v-card class="main_right-part" height="100%">
+                <!-- !!!!!!!!!!!!!!!!!!! -->
+                <!-- <div> -->
+                <router-view></router-view>
+                <!-- </div> -->
+                <!-- !!!!!!!!!!!!!!!!!!! -->
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-card>
+    </div>
   </div>
 </template>
 
@@ -115,10 +111,16 @@ export default {
 </script>
 
 <style scoped>
+.correct-fluid {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
 .wrap {
   display: flex;
   position: relative;
   align-items: center;
+  justify-content: center;
   height: 100%;
   width: 100%;
   background-image: url('../assets/img/bg.jpg');
@@ -133,7 +135,7 @@ export default {
   background: url('../assets/img/palm.png');
   background-size: 100%, 100%;
   background-repeat: no-repeat;
-  transform: translate(30%, 50%);
+  transform: translate(15%, 50%);
   right: 0;
   bottom: 0;
 }
@@ -145,22 +147,32 @@ export default {
   background: url('../assets/img/palm.png');
   background-size: 100%, 100%;
   background-repeat: no-repeat;
-  transform: rotateY(180deg) translate(20%, 0%);
+  transform: rotateY(180deg) translate(40%, 0%);
   left: 0;
   top: 0;
   display: block;
 }
+.card-wrapper {
+  justify-self: center;
+  align-self: center;
+  height: 100%;
+  max-height: 700px;
+  width: 1100px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
 .main {
   width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 .main_left-part {
   background: linear-gradient(#4d03f8, #5e1cf8, #27dddd);
-  height: 500px;
+  height: 100%;
 }
 .main_right-part {
   background: linear-gradient(45deg, #eecfba, rgb(190 249 213 / 1), #c5dde8);
-  height: 500px;
+  height: 100%;
 }
 
 .left_menu {
@@ -193,7 +205,7 @@ h1 {
 </style>
 <style>
 .wrapp {
-  height: 500px;
+  height: 100%;
 }
 .no-decor {
   text-decoration: none;

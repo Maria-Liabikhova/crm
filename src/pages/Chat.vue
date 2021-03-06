@@ -68,6 +68,35 @@ export default {
           date: '05.03.2021',
           text:
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores repellendus itaque nobis iste vel esse minima ea adipiscisapiente? Voluptas architecto quidem itaque voluptatum aliquid?Cum, hic repellat! Consequuntur'
+        },
+
+        {
+          avatar: 'https://randomuser.me/api/portraits/men/85.jpg',
+          nickNname: 'Oleg88',
+          date: '05.03.2021',
+          text:
+            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores repellendus itaque nobis iste vel esse minima ea adipiscisapiente? Voluptas architecto quidem itaque voluptatum aliquid?Cum, hic repellat! Consequuntur'
+        },
+        {
+          avatar: 'https://randomuser.me/api/portraits/men/86.jpg',
+          nickNname: 'LM',
+          date: '05.03.2021',
+          text:
+            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores repellendus itaque nobis iste vel esse minima ea adipiscisapiente? Voluptas architecto quidem itaque voluptatum aliquid?Cum, hic repellat! Consequuntur'
+        },
+        {
+          avatar: 'https://randomuser.me/api/portraits/men/95.jpg',
+          nickNname: 'RedDevel',
+          date: '05.03.2021',
+          text:
+            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores repellendus itaque nobis iste vel esse minima ea adipiscisapiente? Voluptas architecto quidem itaque voluptatum aliquid?Cum, hic repellat! Consequuntur'
+        },
+        {
+          avatar: 'https://randomuser.me/api/portraits/men/17.jpg',
+          nickNname: 'VictorLutii',
+          date: '05.03.2021',
+          text:
+            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores repellendus itaque nobis iste vel esse minima ea adipiscisapiente? Voluptas architecto quidem itaque voluptatum aliquid?Cum, hic repellat! Consequuntur'
         }
       ]
     }
@@ -77,7 +106,7 @@ export default {
 
 <style scoped>
 .message_area {
-  height: 320px;
+  height: 420px;
   width: 100%;
   overflow: hidden;
   overflow-y: scroll;

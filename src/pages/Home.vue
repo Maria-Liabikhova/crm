@@ -3,18 +3,16 @@
     <div class="right-side-item">
       <h2 class="serif">Welcome!</h2>
       <p class="small-text gray-text">
-        The best time for fitness is now
+        It's our job to implement your ideas
       </p>
     </div>
     <div class="right-side-item">
-      <div class="string">
-        <v-icon class="mr-2 text-black">mdi-phone</v-icon>
-        <h3 class="gray-text big-text serif">222-35-47</h3>
-      </div>
+      <div class="string"></div>
       <p class="gray-text bold-text ml-12 serif">
-        Fitness club with swimming pull. We are waiting for you in the fitness
+        We are a team of developers and students, who know their business and
+        who do the best job!
         <br />
-        club for the wholel famaly.
+        Welcome to our friendly team
       </p>
     </div>
   </div>
@@ -27,6 +25,8 @@ export default {}
 <style scoped>
 .right-side-item {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
 .small-text {
   font-size: 10px;
@@ -44,20 +44,15 @@ export default {}
 .bold-text {
   font-weight: bolder;
 }
-.carusel-wrap {
-  height: 200px !important;
-  width: 590px;
-  padding: 20px;
-}
-.wrapper-for-carusel {
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-}
-.carusel-slide {
-  background: linear-gradient(45deg, #da9797, rgb(190 249 213 / 1), #6aafcf);
-}
+
 .serif {
-  font-family: sans-serif;
+  font-family: cursive;
+}
+.main-img {
+  height: 350px;
+  width: 350px;
+  border: black;
+  border-radius: 20%;
+  align-self: center;
 }
 </style>
