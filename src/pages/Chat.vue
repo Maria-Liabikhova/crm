@@ -1,6 +1,6 @@
 <template>
   <div class="wrapp">
-    <div class="message_area">
+    <div ref="chatArea" class="chat">
       <v-list-item v-for="item in items" :key="item.id"
         ><v-row>
           <v-col cols="1">
@@ -9,12 +9,12 @@
             </v-list-item-avatar>
             <v-list-item class="user-info">{{ item.nickNname }}</v-list-item>
             <v-list-item class="user-info">{{ item.date }}</v-list-item>
+            <v-divider></v-divider>
           </v-col>
           <v-col cols="11">
             <v-content class="message-content">
               {{ item.text }}
             </v-content>
-            <v-divider></v-divider>
           </v-col>
         </v-row>
       </v-list-item>
@@ -25,10 +25,11 @@
         dark
         class="input"
         background-color="black"
+        v-model="enterMessage"
       ></v-textarea>
       <div class="button_wrap">
         <v-spacer></v-spacer>
-        <v-btn small color="black" dark>
+        <v-btn small color="black" class="front" dark @click="onChat">
           Send message
         </v-btn>
       </div>
@@ -40,77 +41,52 @@
 export default {
   data() {
     return {
-      items: [
-        {
-          avatar: 'https://randomuser.me/api/portraits/men/85.jpg',
-          nickNname: 'Oleg88',
-          date: '05.03.2021',
-          text:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores repellendus itaque nobis iste vel esse minima ea adipiscisapiente? Voluptas architecto quidem itaque voluptatum aliquid?Cum, hic repellat! Consequuntur'
-        },
-        {
-          avatar: 'https://randomuser.me/api/portraits/men/86.jpg',
-          nickNname: 'LM',
-          date: '05.03.2021',
-          text:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores repellendus itaque nobis iste vel esse minima ea adipiscisapiente? Voluptas architecto quidem itaque voluptatum aliquid?Cum, hic repellat! Consequuntur'
-        },
-        {
-          avatar: 'https://randomuser.me/api/portraits/men/95.jpg',
-          nickNname: 'RedDevel',
-          date: '05.03.2021',
-          text:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores repellendus itaque nobis iste vel esse minima ea adipiscisapiente? Voluptas architecto quidem itaque voluptatum aliquid?Cum, hic repellat! Consequuntur'
-        },
-        {
-          avatar: 'https://randomuser.me/api/portraits/men/17.jpg',
-          nickNname: 'VictorLutii',
-          date: '05.03.2021',
-          text:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores repellendus itaque nobis iste vel esse minima ea adipiscisapiente? Voluptas architecto quidem itaque voluptatum aliquid?Cum, hic repellat! Consequuntur'
-        },
+      enterMessage: '',
+      nickname: '',
+      date: '',
+      text: ''
+    }
+  },
+  mounted() {
+    let element = this.$refs.chatArea
+    element.scrollTop = element.scrollHeight
+  },
+  computed: {
+    items() {
+      return this.$store.getters.items
+    },
+    currentDate() {
+      var today = new Date()
+      var dd = today.getDate()
 
-        {
-          avatar: 'https://randomuser.me/api/portraits/men/85.jpg',
-          nickNname: 'Oleg88',
-          date: '05.03.2021',
-          text:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores repellendus itaque nobis iste vel esse minima ea adipiscisapiente? Voluptas architecto quidem itaque voluptatum aliquid?Cum, hic repellat! Consequuntur'
-        },
-        {
-          avatar: 'https://randomuser.me/api/portraits/men/86.jpg',
-          nickNname: 'LM',
-          date: '05.03.2021',
-          text:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores repellendus itaque nobis iste vel esse minima ea adipiscisapiente? Voluptas architecto quidem itaque voluptatum aliquid?Cum, hic repellat! Consequuntur'
-        },
-        {
-          avatar: 'https://randomuser.me/api/portraits/men/95.jpg',
-          nickNname: 'RedDevel',
-          date: '05.03.2021',
-          text:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores repellendus itaque nobis iste vel esse minima ea adipiscisapiente? Voluptas architecto quidem itaque voluptatum aliquid?Cum, hic repellat! Consequuntur'
-        },
-        {
-          avatar: 'https://randomuser.me/api/portraits/men/17.jpg',
-          nickNname: 'VictorLutii',
-          date: '05.03.2021',
-          text:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores repellendus itaque nobis iste vel esse minima ea adipiscisapiente? Voluptas architecto quidem itaque voluptatum aliquid?Cum, hic repellat! Consequuntur'
-        }
-      ]
+      var mm = today.getMonth()
+      var yyyy = today.getFullYear()
+      let nowDate = { dd, mm, yyyy }
+      let dataVal = Object.values(nowDate)
+      return dataVal
+    }
+  },
+  methods: {
+    onChat() {
+      const itemParam = {
+        avatar: 'https://randomuser.me/api/portraits/men/85.jpg',
+        nickName: '',
+        date: this.currentDate,
+        text: this.enterMessage
+      }
+      this.$store.dispatch('setChatItem', itemParam)
     }
   }
 }
 </script>
 
 <style scoped>
-.message_area {
+.chat {
   height: 420px;
   width: 100%;
-  overflow: hidden;
   overflow-y: scroll;
 }
+
 .message-content {
   margin-top: 10px;
   font-size: 12px;
@@ -132,6 +108,9 @@ export default {
   margin-top: -10px;
 }
 .input {
-  font-size: 12px;
+  font-size: 16px;
+}
+.front {
+  z-index: 2000;
 }
 </style>
