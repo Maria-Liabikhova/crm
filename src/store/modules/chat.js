@@ -1,5 +1,14 @@
 import firebase from 'firebase'
 
+class Item {
+  constructor(avatar, nickname, date, text) {
+    this.avatar = avatar
+    this.nickname = nickname
+    this.date = date
+    this.text = text
+  }
+}
+
 export default {
   state: {
     chatItems: [
@@ -62,13 +71,33 @@ export default {
     ]
   },
   mutations: {
-    setItemForChat(state, payload) {
+    setNewItem(state, payload) {
       state.chatItems.push(payload)
     }
   },
   actions: {
-    setChatItem({ commit }, payload) {
-      commit('setItemForChat', payload)
+    async setChatItem({ commit }, payload) {
+      commit('setClearError')
+      try {
+        const newItem = new Item(
+          payload.avatar,
+          payload.nickname,
+          payload.date,
+          payload.text
+        )
+        const user = await firebase
+          .database()
+          .ref('mainChat')
+          .push(newItem)
+        commit('setNewItem', {
+          ...newItem,
+          payload
+        })
+      } catch (error) {
+        commit('setError', error.message)
+        commit('errorColor')
+        throw error
+      }
     }
   },
   getters: {

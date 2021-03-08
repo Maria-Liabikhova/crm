@@ -7,7 +7,7 @@
             <v-list-item-avatar>
               <v-img :src="item.avatar"></v-img>
             </v-list-item-avatar>
-            <v-list-item class="user-info">{{ item.nickNname }}</v-list-item>
+            <v-list-item class="user-info">{{ item.nickname }}</v-list-item>
             <v-list-item class="user-info">{{ item.date }}</v-list-item>
             <v-divider></v-divider>
           </v-col>
@@ -70,10 +70,11 @@ export default {
     onChat() {
       const itemParam = {
         avatar: 'https://randomuser.me/api/portraits/men/85.jpg',
-        nickName: '',
+        nickname: this.nickname,
         date: this.currentDate,
         text: this.enterMessage
       }
+      console.log(itemParam)
       this.$store.dispatch('setChatItem', itemParam)
     }
   }
@@ -86,7 +87,6 @@ export default {
   width: 100%;
   overflow-y: scroll;
 }
-
 .message-content {
   margin-top: 10px;
   font-size: 12px;
