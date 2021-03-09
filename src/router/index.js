@@ -29,13 +29,13 @@ const routes = [
     component: () => import('../pages/Registration.vue')
   },
   {
-    path: '/create_user',
-    component: () => import('../pages/CreateUser.vue'),
+    path: '/actions_by_dbid',
+    component: () => import('../pages/ActionsByDbId.vue'),
     beforeEnter: routeSequrity
   },
   {
-    path: '/actions_by_dbid',
-    component: () => import('../pages/ActionsByDbId.vue'),
+    path: '/current_user',
+    component: () => import('../pages/CurrentUserPage.vue'),
     beforeEnter: routeSequrity
   },
   {

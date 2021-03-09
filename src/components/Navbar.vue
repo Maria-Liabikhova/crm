@@ -78,12 +78,8 @@ export default {
     items() {
       if (this.loggedIn)
         return [
+          { text: 'My page', icon: 'mdi-account', link: 'current_user' },
           { text: 'All users', icon: 'mdi-account-multiple', link: 'users' },
-          {
-            text: 'Create user',
-            icon: 'mdi-plus-outline',
-            link: 'create_user'
-          },
           {
             text: 'Chat',
             icon: 'mdi-chat',
@@ -209,5 +205,11 @@ h1 {
 }
 .no-decor {
   text-decoration: none;
+}
+.standart_btn {
+  width: 95px;
+}
+.wrapper_line_style {
+  display: flex;
 }
 </style>

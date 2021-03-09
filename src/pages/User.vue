@@ -47,8 +47,6 @@
             </v-card-subtitle>
           </v-card-text>
         </v-card>
-        <EditUser :editUser="user" />
-        <DeletUser :deletUser="user" />
       </div>
     </section>
     <section v-else>
@@ -69,10 +67,7 @@
 </template>
 
 <script>
-import EditUser from '../components/EditUser.vue'
-import DeletUser from '../components/DeletUser.vue'
 export default {
-  components: { EditUser, DeletUser },
   props: ['dbId'],
   computed: {
     user() {

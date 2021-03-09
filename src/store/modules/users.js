@@ -106,6 +106,7 @@ export default {
       }
     },
     async getUserById({ commit }, payload) {
+      commit('setClearError')
       try {
         const userFromDatabase = await firebase
           .database()
@@ -118,6 +119,7 @@ export default {
       }
     },
     async deleteUserById({ commit }, { dbId }) {
+      commit('setClearError')
       try {
         const userFromDatabase = await firebase
           .database()

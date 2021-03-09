@@ -1,7 +1,7 @@
 <template>
   <span>
-    <v-btn color="blue lighten-1" class="white--text ma-5 " @click="userDelete">
-      Delite user
+    <v-btn color="wite" x-small class="ma-5 standart_btn" @click="userDelete">
+      delete profile
     </v-btn>
     <!-- dialod window -->
     <v-dialog v-model="dialogConfirm" persistent max-width="290">

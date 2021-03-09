@@ -1,9 +1,16 @@
 <template>
-  <v-row justify="center">
+  <!-- <v-row justify="center"> -->
+  <div>
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn text v-bind="attrs" v-on="on">
-          Edit user
+        <v-btn
+          color="wite"
+          x-small
+          class="ma-5 standart_btn"
+          v-bind="attrs"
+          v-on="on"
+        >
+          Edit profile
         </v-btn>
       </template>
       <v-card class="dialog">
@@ -67,7 +74,8 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-row>
+  </div>
+  <!-- </v-row> -->
 </template>
 
 <script>
