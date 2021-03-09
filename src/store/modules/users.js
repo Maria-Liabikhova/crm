@@ -99,6 +99,7 @@ export default {
           // console.log('theUser:', theUser)
         })
         commit('loadUsers', databaseUsers)
+        console.log('hello', store.getters.userAuth)
       } catch (error) {
         commit('setError', error.message)
         commit('errorColor')
@@ -174,7 +175,7 @@ export default {
     users(state) {
       return state.users
     },
-    userOfUsersById(state) {
+    usersById(state) {
       return userOfUsers => {
         return state.users.find(aUser => aUser.dbId === userOfUsers)
       }

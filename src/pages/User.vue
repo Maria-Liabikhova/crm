@@ -71,7 +71,7 @@ export default {
   props: ['dbId'],
   computed: {
     user() {
-      return this.$store.getters.userOfUsersById(this.dbId)
+      return this.$store.getters.usersById(this.dbId)
     },
     loading() {
       return this.$store.getters.loading

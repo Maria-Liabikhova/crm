@@ -26,7 +26,7 @@ new Vue({
       if (user) {
         try {
           await this.$store.dispatch('letStayLoggedIn', user)
-          this.$router.push(`${userTryAccessTo}`)
+          this.$router.push(userTryAccessTo)
         } catch (error) {
           this.$store.dispatch('activeError', error.message)
         }
