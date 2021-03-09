@@ -1,4 +1,5 @@
 import firebase from 'firebase'
+import store from '@/store'
 class User {
   constructor(name, secondName, nickname, age, aid, email, gender, role) {
     this.name = name
@@ -14,7 +15,8 @@ class User {
 export default {
   state: {
     user: null,
-    users: []
+    users: [],
+    currentUser: {}
   },
   mutations: {
     addUser(state, payload) {
@@ -174,6 +176,12 @@ export default {
       return userOfUsers => {
         return state.users.find(aUser => aUser.dbId === userOfUsers)
       }
+    },
+    currentUser(state) {
+      const findId = store.getters.userAuth.id
+      return state.users.find(el => {
+        return el.aid == findId
+      })
     }
   }
 }

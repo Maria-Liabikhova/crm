@@ -54,11 +54,8 @@ export default {
     items() {
       return this.$store.getters.items
     },
-    user() {
-      return this.$store.getters.userAuth
-    },
-    users() {
-      return this.$store.getters.users
+    currentUser() {
+      return this.$store.getters.currentUser
     },
     currentDate() {
       var today = new Date()
@@ -73,17 +70,13 @@ export default {
   },
   methods: {
     onChat() {
-      const findId = this.user.id
-      const thisNickname = this.users.find(el => {
-        return el.aid == findId
-      })
-
       const itemParam = {
         avatar: 'https://randomuser.me/api/portraits/men/85.jpg',
-        nickname: thisNickname.nickname,
+        nickname: this.currentUser.nickname,
         date: this.currentDate,
         text: this.enterMessage
       }
+      console.log(itemParam)
       this.$store.dispatch('setChatItem', itemParam)
     }
   }
