@@ -100,7 +100,6 @@ export default {
   methods: {
     logOut() {
       this.$store.dispatch('logoutUser')
-      this.$router.push('/')
     }
   }
 }
