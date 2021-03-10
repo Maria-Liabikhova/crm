@@ -99,7 +99,6 @@ export default {
           // console.log('theUser:', theUser)
         })
         commit('loadUsers', databaseUsers)
-        console.log('hello', store.getters.userAuth)
       } catch (error) {
         commit('setError', error.message)
         commit('errorColor')
