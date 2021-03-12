@@ -11,14 +11,14 @@ const routes = [
   },
   {
     path: '/users',
-    component: () => import('../pages/Users.vue'),
-    beforeEnter: routeSequrity
+    component: () => import('../pages/Users.vue')
+    // beforeEnter: routeSequrity
   },
   {
     path: '/user/:dbId',
     props: true,
-    component: () => import('../pages/User.vue'),
-    beforeEnter: routeSequrity
+    component: () => import('../pages/User.vue')
+    // beforeEnter: routeSequrity
   },
   {
     path: '/login',
@@ -30,18 +30,18 @@ const routes = [
   },
   {
     path: '/actions_by_dbid',
-    component: () => import('../pages/ActionsByDbId.vue'),
-    beforeEnter: routeSequrity
+    component: () => import('../pages/ActionsByDbId.vue')
+    // beforeEnter: routeSequrity
   },
   {
     path: '/current_user',
-    component: () => import('../pages/CurrentUserPage.vue'),
-    beforeEnter: routeSequrity
+    component: () => import('../pages/CurrentUserPage.vue')
+    // beforeEnter: routeSequrity
   },
   {
     path: '/chat',
-    component: () => import('../pages/Chat.vue'),
-    beforeEnter: routeSequrity
+    component: () => import('../pages/Chat.vue')
+    // beforeEnter: routeSequrity
   }
 ]
 

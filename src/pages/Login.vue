@@ -83,7 +83,8 @@ export default {
         this.$store
           .dispatch('loginUser', user)
           .then(() => {
-            this.$router.push('/current_user')
+            // this.$router.push('/current_user')
+            this.$router.push('/')
             this.$bus.$emit('showModal')
           })
           .catch(() => {

@@ -1,7 +1,6 @@
 <template>
-  <!-- <v-row justify="center"> -->
   <div>
-    <v-dialog v-model="dialog" persistent max-width="600px">
+    <!-- <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
           color="wite"
@@ -73,59 +72,58 @@
           </v-btn>
         </v-card-actions>
       </v-card>
-    </v-dialog>
+    </v-dialog> -->
   </div>
-  <!-- </v-row> -->
 </template>
 
 <script>
 export default {
-  props: ['editUser'],
-  data() {
-    return {
-      dialog: false,
-      valid: false,
-      number: Number,
-      img: '',
-      name: this.editUser.name,
-      secondName: this.editUser.secondName,
-      nickname: this.editUser.nickname,
-      email: this.editUser.email,
-      age: this.editUser.age,
-      emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+/.test(v) || 'E-mail must be valid'
-      ],
-      gender: this.editUser.gender,
-      role: this.editUser.role,
-      dbId: this.editUser.dbId
-    }
-  },
-  methods: {
-    onSave() {
-      if (
-        this.name !== '' &&
-        this.secondName !== '' &&
-        this.nickname !== '' &&
-        this.email !== '' &&
-        this.age !== '' &&
-        this.gender !== '' &&
-        this.role !== ''
-      ) {
-        this.$store.dispatch('updateUser', {
-          name: this.name,
-          secondName: this.secondName,
-          nickname: this.nickname,
-          email: this.email,
-          age: this.age,
-          gender: this.gender,
-          role: this.role,
-          dbId: this.editUser.dbId
-        })
-      }
-      this.dialog = false
-    }
-  }
+  // props: ['editUser'],
+  // data() {
+  //   return {
+  //     dialog: false,
+  //     valid: false,
+  //     number: Number,
+  //     img: '',
+  //     name: this.editUser.name,
+  //     secondName: this.editUser.secondName,
+  //     nickname: this.editUser.nickname,
+  //     email: this.editUser.email,
+  //     age: this.editUser.age,
+  //     emailRules: [
+  //       v => !!v || 'E-mail is required',
+  //       v => /.+@.+/.test(v) || 'E-mail must be valid'
+  //     ],
+  //     gender: this.editUser.gender,
+  //     role: this.editUser.role,
+  //     dbId: this.editUser.dbId
+  //   }
+  // },
+  // methods: {
+  //   onSave() {
+  //     if (
+  //       this.name !== '' &&
+  //       this.secondName !== '' &&
+  //       this.nickname !== '' &&
+  //       this.email !== '' &&
+  //       this.age !== '' &&
+  //       this.gender !== '' &&
+  //       this.role !== ''
+  //     ) {
+  //       this.$store.dispatch('updateUser', {
+  //         name: this.name,
+  //         secondName: this.secondName,
+  //         nickname: this.nickname,
+  //         email: this.email,
+  //         age: this.age,
+  //         gender: this.gender,
+  //         role: this.role,
+  //         dbId: this.editUser.dbId
+  //       })
+  //     }
+  //     this.dialog = false
+  //   }
+  // }
 }
 </script>
 

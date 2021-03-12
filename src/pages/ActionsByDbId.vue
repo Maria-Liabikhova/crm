@@ -1,6 +1,6 @@
 <template>
   <div class="wrap">
-    <div class="card-wrapper">
+    <!-- <div class="card-wrapper">
       <v-card class="main">
         <v-container class="correct-fluid" fluid>
           <v-row class="correct-fluid">
@@ -46,36 +46,36 @@
           </v-row>
         </v-container>
       </v-card>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-import Navbar from '../components/Navbar.vue'
-export default {
-  components: { Navbar },
-  data() {
-    return {
-      valid: false,
-      enteredDbId: '',
-      idRules: [v => v.length >= 19 || 'Password must be equal 19 characters']
-    }
-  },
-  methods: {
-    onFind() {
-      const id = this.enteredDbId
-      this.$store.dispatch('getUserById', id).then(() => {
-        this.$router.push(`/user/${id}`)
-      })
-    },
-    onDelete() {
-      const enteredDbId = this.enteredDbId
-      this.$store.dispatch('deleteUserById', enteredDbId).then(() => {
-        this.$router.push(`/user/${id}`)
-      })
-    }
-  }
-}
+// import Navbar from '../components/Navbar.vue'
+// export default {
+//   components: { Navbar },
+//   data() {
+//     return {
+//       valid: false,
+//       enteredDbId: '',
+//       idRules: [v => v.length >= 19 || 'Password must be equal 19 characters']
+//     }
+//   },
+//   methods: {
+//     onFind() {
+//       const id = this.enteredDbId
+//       this.$store.dispatch('getUserById', id).then(() => {
+//         this.$router.push(`/user/${id}`)
+//       })
+//     },
+//     onDelete() {
+//       const enteredDbId = this.enteredDbId
+//       this.$store.dispatch('deleteUserById', enteredDbId).then(() => {
+//         this.$router.push(`/user/${id}`)
+//       })
+//     }
+//   }
+// }
 </script>
 
 <style scoped>

@@ -1,6 +1,6 @@
 <template>
   <div class="wrap">
-    <div class="card-wrapper">
+    <!-- <div class="card-wrapper">
       <v-card class="main">
         <v-container class="correct-fluid" fluid>
           <v-row class="correct-fluid">
@@ -21,9 +21,7 @@
                               {{ currentUser.secondName }}
                             </h1>
                             <v-spacer></v-spacer>
-                            <v-avatar size="150">
-                              <!-- <img class="img_avatar" alt="user" :src="user.imgSrc" /> -->
-                            </v-avatar>
+                            <v-avatar size="150"> </v-avatar>
                           </v-card-title>
                         </v-img>
 
@@ -103,27 +101,27 @@
           </v-row>
         </v-container>
       </v-card>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-import EditUser from '../components/EditUser.vue'
-import DeletUser from '../components/DeletUser.vue'
-import CreateUser from '../components/CreateUser.vue'
-import Navbar from '../components/Navbar.vue'
-export default {
-  components: { EditUser, DeletUser, CreateUser, Navbar },
-  props: ['dbId'],
-  computed: {
-    currentUser() {
-      return this.$store.getters.currentUser
-    },
-    loading() {
-      return this.$store.getters.loading
-    }
-  }
-}
+// import EditUser from '../components/EditUser.vue'
+// import DeletUser from '../components/DeletUser.vue'
+// import CreateUser from '../components/CreateUser.vue'
+// import Navbar from '../components/Navbar.vue'
+// export default {
+//   components: { EditUser, DeletUser, CreateUser, Navbar },
+//   props: ['dbId'],
+//   computed: {
+//     currentUser() {
+//       return this.$store.getters.currentUser
+//     },
+//     loading() {
+//       return this.$store.getters.loading
+//     }
+//   }
+// }
 </script>
 
 <style scoped>

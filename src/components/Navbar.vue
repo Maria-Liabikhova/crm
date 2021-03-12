@@ -53,24 +53,24 @@ export default {
       return this.$store.getters.userLoggedIn
     },
     items() {
-      if (this.loggedIn)
-        return [
-          { text: 'My page', icon: 'mdi-account', link: 'current_user' },
-          { text: 'All users', icon: 'mdi-account-multiple', link: 'users' },
-          {
-            text: 'Chat',
-            icon: 'mdi-chat',
-            link: 'chat'
-          },
-          {
-            text: 'Actions by dbid',
-            icon: 'mdi-account-supervisor-circle',
-            link: 'actions_by_dbid'
-          }
-        ]
+      // if (this.loggedIn)
       return [
-        { text: 'Login', icon: 'mdi-login', link: 'login' },
-        { text: 'Sign up', icon: 'mdi-account-alert', link: 'registration' }
+        { text: 'My page', icon: 'mdi-account', link: 'current_user' },
+        { text: 'All users', icon: 'mdi-account-multiple', link: 'users' },
+        {
+          text: 'Chat',
+          icon: 'mdi-chat',
+          link: 'chat'
+        },
+        {
+          text: 'Actions by dbid',
+          icon: 'mdi-account-supervisor-circle',
+          link: 'actions_by_dbid'
+        }
+      ]
+      return [
+        // { text: 'Login', icon: 'mdi-login', link: 'login' },
+        // { text: 'Sign up', icon: 'mdi-account-alert', link: 'registration' }
       ]
     }
   },

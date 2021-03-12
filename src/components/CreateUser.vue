@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title>
+    <!-- <v-card-title>
       <span class="headline">Please, enter your data</span>
       <v-form ref="forma" v-model="valid">
         <v-card-text>
@@ -68,17 +68,17 @@
             </v-row>
           </v-container>
           <small>*indicates required field</small>
-          <v-spacer></v-spacer>
-          <!-- Add picture button -->
-          <v-btn color="blue-grey" class="ma-2 white--text" @click="addPhoto">
+          <v-spacer></v-spacer> -->
+    <!-- Add picture button!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+    <!-- <v-btn color="blue-grey" class="ma-2 white--text" @click="addPhoto">
             upload profile photo
             <v-icon right dark>
               mdi-cloud-upload
             </v-icon>
           </v-btn>
-          <input ref="add" type="file" accept="image/*" style="display: none" />
-          <!-- End add picture button -->
-        </v-card-text>
+          <input ref="add" type="file" accept="image/*" style="display: none" /> -->
+    <!-- End add picture button!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+    <!-- </v-card-text>
 
         <v-btn
           color="blue darken-1"
@@ -89,47 +89,47 @@
           Save
         </v-btn>
       </v-form>
-    </v-card-title>
+    </v-card-title> -->
   </v-card>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      valid: false,
-      rule: [el => !!el || 'Title is required'],
-      number: Number,
-      img: '',
-      name: '',
-      secondName: '',
-      nickname: '',
-      age: '',
-      email: '',
-      gender: '',
-      role: ''
-    }
-  },
-  methods: {
-    createUser() {
-      if (this.$refs.forma.validate()) {
-        const user = {
-          name: this.name,
-          secondName: this.secondName,
-          nickname: this.nickname,
-          age: this.age,
-          email: this.email,
-          gender: this.gender,
-          role: this.role
-        }
-        this.$store.dispatch('createUser', user).then(() => {
-          this.$router.push('/')
-        })
-      }
-    },
-    addPhoto() {
-      this.$refs.add.click()
-    }
-  }
+  // data() {
+  //   return {
+  //     valid: false,
+  //     rule: [el => !!el || 'Title is required'],
+  //     number: Number,
+  //     img: '',
+  //     name: '',
+  //     secondName: '',
+  //     nickname: '',
+  //     age: '',
+  //     email: '',
+  //     gender: '',
+  //     role: ''
+  //   }
+  // },
+  // methods: {
+  //   createUser() {
+  //     if (this.$refs.forma.validate()) {
+  //       const user = {
+  //         name: this.name,
+  //         secondName: this.secondName,
+  //         nickname: this.nickname,
+  //         age: this.age,
+  //         email: this.email,
+  //         gender: this.gender,
+  //         role: this.role
+  //       }
+  //       this.$store.dispatch('createUser', user).then(() => {
+  //         this.$router.push('/')
+  //       })
+  //     }
+  //   },
+  //   addPhoto() {
+  //     this.$refs.add.click()
+  //   }
+  // }
 }
 </script>

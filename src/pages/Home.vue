@@ -21,8 +21,11 @@
                       </v-btn>
                     </div>
                     <div v-else>
-                      <v-btn color="green darken-1" text @click="onUserPage">
+                      <!-- <v-btn color="green darken-1" text @click="onUserPage">
                         My Page
+                      </v-btn> -->
+                      <v-btn color="green darken-1" text @click="onLogout">
+                        logout
                       </v-btn>
                     </div>
                   </div></v-col
@@ -58,8 +61,11 @@ export default {
     onReg() {
       this.$router.push(`/registration`)
     },
-    onUserPage() {
-      this.$router.push(`/current_user`)
+    // onUserPage() {
+    //   this.$router.push(`/current_user`)
+    // }
+    onLogout() {
+      this.$store.dispatch('logoutUser')
     }
   },
   computed: {

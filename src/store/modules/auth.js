@@ -1,8 +1,9 @@
 import firebase from 'firebase'
 
 class UserAuth {
-  constructor(id) {
+  constructor(id, email) {
     this.id = id
+    this.email = email
   }
 }
 
@@ -47,7 +48,8 @@ export default {
       }
     },
     letStayLoggedIn({ commit }, payload) {
-      commit('identifyUser', new UserAuth(payload.uid))
+      commit('identifyUser', new UserAuth(payload.uid, payload.email))
+      console.log(new UserAuth(payload.uid, payload.email))
     },
     logoutUser({ commit }) {
       firebase.auth().signOut()
