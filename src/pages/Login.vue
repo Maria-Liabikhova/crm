@@ -72,7 +72,6 @@ export default {
       this.$store.dispatch('isErrorColor')
       this.$bus.$emit('showModal')
     }
-    // console.log('route:', this.$route)
   },
   methods: {
     isSubmit() {
@@ -84,7 +83,7 @@ export default {
         this.$store
           .dispatch('loginUser', user)
           .then(() => {
-            this.$router.push('/')
+            this.$router.push('/current_user')
             this.$bus.$emit('showModal')
           })
           .catch(() => {

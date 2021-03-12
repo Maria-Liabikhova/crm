@@ -1,69 +1,46 @@
 <template>
-  <div class="wrap">
-    <div class="card-wrapper">
-      <v-card class="main">
-        <v-container class="correct-fluid" fluid>
-          <v-row class="correct-fluid">
-            <v-col class="no-padding" cols="4" xs="4" sm="4" md="3">
-              <v-card class="main_left-part">
-                <!-- !!!!!!!!!!!!!!!!!! -->
-                <v-list class=" left_menu" dark>
-                  <v-list-item>
-                    <v-list-item-content>
-                      <v-list-item-title class="string">
-                        <router-link to="/" class="no-decor">
-                          <h1>DA-VINCHI</h1>
-                        </router-link>
-                      </v-list-item-title>
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-list>
-                <v-list class=" left_menu left_menu_list" nav dense>
-                  <v-list-item-group>
-                    <v-list-item v-for="(item, i) in items" :key="i" dark>
-                      <router-link
-                        :to="'/' + item.link"
-                        class="no-decor items_link"
-                      >
-                        <v-list-item-icon>
-                          <v-icon v-text="item.icon"></v-icon>
-                        </v-list-item-icon>
+  <v-col class="no-padding" cols="4" xs="4" sm="4" md="3">
+    <v-card class="main_left-part">
+      <v-list class=" left_menu" dark>
+        <v-list-item>
+          <v-list-item-content>
+            <v-list-item-title class="string">
+              <router-link to="/" class="no-decor">
+                <h1>DA-VINCHI</h1>
+              </router-link>
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+      <v-list class=" left_menu left_menu_list" nav dense>
+        <v-list-item-group>
+          <v-list-item v-for="(item, i) in items" :key="i" dark>
+            <router-link :to="'/' + item.link" class="no-decor items_link">
+              <v-list-item-icon>
+                <v-icon v-text="item.icon"></v-icon>
+              </v-list-item-icon>
 
-                        <v-list-item-content>
-                          <v-list-item-title
-                            class="left_menu_items"
-                            v-text="item.text"
-                          ></v-list-item-title>
-                        </v-list-item-content>
-                      </router-link>
-                    </v-list-item>
+              <v-list-item-content>
+                <v-list-item-title
+                  class="left_menu_items"
+                  v-text="item.text"
+                ></v-list-item-title>
+              </v-list-item-content>
+            </router-link>
+          </v-list-item>
 
-                    <v-list-item dark @click="logOut" v-if="loggedIn">
-                      <v-list-item-icon>
-                        <v-icon>mdi-logout-variant</v-icon>
-                      </v-list-item-icon>
-                      <v-list-item-title class="left_menu_items "
-                        >Log out</v-list-item-title
-                      >
-                    </v-list-item>
-                  </v-list-item-group>
-                </v-list>
-              </v-card>
-            </v-col>
-            <v-col class="no-padding" cols="8" xs="8" sm="8" md="9">
-              <v-card class="main_right-part" height="100%">
-                <!-- !!!!!!!!!!!!!!!!!!! -->
-                <!-- <div> -->
-                <router-view></router-view>
-                <!-- </div> -->
-                <!-- !!!!!!!!!!!!!!!!!!! -->
-              </v-card>
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-card>
-    </div>
-  </div>
+          <v-list-item dark @click="logOut" v-if="loggedIn">
+            <v-list-item-icon>
+              <v-icon>mdi-logout-variant</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title class="left_menu_items "
+              >Log out</v-list-item-title
+            >
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-card>
+  </v-col>
 </template>
 
 <script>
@@ -100,12 +77,13 @@ export default {
   methods: {
     logOut() {
       this.$store.dispatch('logoutUser')
+      this.$router.push(`/`)
     }
   }
 }
 </script>
 
-<style scoped>
+<style>
 .correct-fluid {
   height: 100%;
   padding: 0;
@@ -197,8 +175,6 @@ h1 {
 .no-padding {
   padding: 0;
 }
-</style>
-<style>
 .wrapp {
   height: 100%;
 }
