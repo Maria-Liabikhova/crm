@@ -9,11 +9,15 @@ class UserAuth {
 
 export default {
   state: {
-    userAuth: null
+    userAuth: null,
+    userEmail: ''
   },
   mutations: {
     identifyUser(state, payload) {
       state.userAuth = payload
+    },
+    setUserEmail(state, payload) {
+      state.userEmail = payload
     }
   },
   actions: {
@@ -49,7 +53,7 @@ export default {
     },
     letStayLoggedIn({ commit }, payload) {
       commit('identifyUser', new UserAuth(payload.uid, payload.email))
-      console.log(new UserAuth(payload.uid, payload.email))
+      commit('setUserEmail', payload.email)
     },
     logoutUser({ commit }) {
       firebase.auth().signOut()
@@ -62,6 +66,9 @@ export default {
     },
     userLoggedIn(state) {
       return state.userAuth !== null
+    },
+    userEmail(state) {
+      return state.userEmail
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="wrap">
-    <!-- <div class="card-wrapper">
+    <div class="card-wrapper">
       <v-card class="main">
         <v-container class="correct-fluid" fluid>
           <v-row class="correct-fluid">
@@ -19,9 +19,9 @@
                             {{ user.name }} {{ user.secondName }}
                           </h1>
                           <v-spacer></v-spacer>
-                          <v-avatar size="150"> -->
-    <!-- <img class="img_avatar" alt="user" :src="user.imgSrc" />!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-    <!-- </v-avatar>
+                          <v-avatar size="150">
+                            <!-- <img class="img_avatar" alt="user" :src="user.imgSrc" /> -->
+                          </v-avatar>
                         </v-card-title>
                       </v-img>
 
@@ -83,26 +83,26 @@
           </v-row>
         </v-container>
       </v-card>
-    </div> -->
+    </div>
   </div>
 </template>
 
 >
 
 <script>
-// import Navbar from '../components/Navbar.vue'
-// export default {
-//   components: { Navbar },
-//   props: ['dbId'],
-//   computed: {
-//     user() {
-//       return this.$store.getters.usersById(this.dbId)
-//     },
-//     loading() {
-//       return this.$store.getters.loading
-//     }
-//   }
-// }
+import Navbar from '../components/Navbar.vue'
+export default {
+  components: { Navbar },
+  props: ['dbId'],
+  computed: {
+    user() {
+      return this.$store.getters.usersById(this.dbId)
+    },
+    loading() {
+      return this.$store.getters.loading
+    }
+  }
+}
 </script>
 
 <style scoped>

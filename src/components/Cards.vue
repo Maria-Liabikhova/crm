@@ -1,6 +1,6 @@
 <template>
   <div class="scroll">
-    <!-- <v-row>
+    <v-row>
       <v-col cols="4" v-for="user in filteredRole" :key="user.id">
         <v-card>
           <router-link class="no-decor" :to="'/user/' + user.dbId">
@@ -50,13 +50,13 @@
           </router-link>
         </v-card>
       </v-col>
-    </v-row> -->
+    </v-row>
   </div>
 </template>
 
 <script>
 export default {
-  // props: ['filteredRole']
+  props: ['filteredRole']
 }
 </script>
 

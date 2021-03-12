@@ -1,6 +1,6 @@
 <template>
   <div class="wrap">
-    <!-- <div class="card-wrapper">
+    <div class="card-wrapper">
       <v-card class="main">
         <v-container class="correct-fluid" fluid>
           <v-row class="correct-fluid">
@@ -58,56 +58,56 @@
           </v-row>
         </v-container>
       </v-card>
-    </div> -->
+    </div>
   </div>
 </template>
 
 <script>
-// import Navbar from '../components/Navbar.vue'
-// export default {
-//   components: { Navbar },
-//   data() {
-//     return {
-//       enterMessage: '',
-//       date: '',
-//       text: ''
-//     }
-//   },
-//   mounted() {
-//     let element = this.$refs.chatArea
-//     element.scrollTop = element.scrollHeight
-//   },
-//   computed: {
-//     items() {
-//       return this.$store.getters.items
-//     },
-//     currentUser() {
-//       return this.$store.getters.currentUser
-//     },
-//     currentDate() {
-//       var today = new Date()
-//       var dd = today.getDate()
+import Navbar from '../components/Navbar.vue'
+export default {
+  components: { Navbar },
+  data() {
+    return {
+      enterMessage: '',
+      date: '',
+      text: ''
+    }
+  },
+  mounted() {
+    let element = this.$refs.chatArea
+    element.scrollTop = element.scrollHeight
+  },
+  computed: {
+    items() {
+      return this.$store.getters.items
+    },
+    currentUser() {
+      return this.$store.getters.currentUser
+    },
+    currentDate() {
+      var today = new Date()
+      var dd = today.getDate()
 
-//       var mm = today.getMonth()
-//       var yyyy = today.getFullYear()
-//       let nowDate = { dd, mm, yyyy }
-//       let dataVal = Object.values(nowDate)
-//       return dataVal
-//     }
-//   },
-//   methods: {
-//     onChat() {
-//       const itemParam = {
-//         avatar: 'https://randomuser.me/api/portraits/men/85.jpg',
-//         nickname: this.currentUser.nickname,
-//         date: this.currentDate,
-//         text: this.enterMessage
-//       }
-//       console.log(itemParam)
-//       this.$store.dispatch('setChatItem', itemParam)
-//     }
-//   }
-// }
+      var mm = today.getMonth()
+      var yyyy = today.getFullYear()
+      let nowDate = { dd, mm, yyyy }
+      let dataVal = Object.values(nowDate)
+      return dataVal
+    }
+  },
+  methods: {
+    onChat() {
+      const itemParam = {
+        avatar: 'https://randomuser.me/api/portraits/men/85.jpg',
+        nickname: this.currentUser.nickname,
+        date: this.currentDate,
+        text: this.enterMessage
+      }
+      console.log(itemParam)
+      this.$store.dispatch('setChatItem', itemParam)
+    }
+  }
+}
 </script>
 
 <style scoped>
