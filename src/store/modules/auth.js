@@ -18,6 +18,9 @@ export default {
     },
     setUserEmail(state, payload) {
       state.userEmail = payload
+    },
+    setLogoutAuth(state, payload) {
+      state.userAuth = null
     }
   },
   actions: {

@@ -28,6 +28,9 @@ export default {
     loadUsers(state, payload) {
       state.users = payload
     },
+    setLogoutDb(state) {
+      state.user = null
+    },
     updatesForUser(
       state,
       { name, secondName, nickname, age, gender, role, dbId }
@@ -38,7 +41,6 @@ export default {
       updateUser.name = name
       updateUser.secondName = secondName
       updateUser.nickname = nickname
-      // updateUser.email = email
       updateUser.age = age
       updateUser.gender = gender
       updateUser.role = role
@@ -56,7 +58,6 @@ export default {
           payload.age,
           getters.userAuth.id,
           getters.userEmail,
-          // payload.email,
           payload.gender,
           payload.role
         )
@@ -119,16 +120,19 @@ export default {
         throw error
       }
     },
-    async deleteUserById({ commit }, { dbId }) {
+    async deleteUserById({ commit }, payload) {
       commit('setClearError')
+      console.log('store', payload)
       try {
         const userFromDatabase = await firebase
           .database()
-          .ref('users/' + dbId)
+          .ref('users/' + payload)
           .remove()
-
         const user = await firebase.auth().currentUser
-        user.delete()
+        user.delete().then(() => {
+          commit('setLogoutAuth')
+          commit('setLogoutDb')
+        })
       } catch (error) {
         throw error
       }
@@ -148,7 +152,6 @@ export default {
             name,
             secondName,
             nickname,
-            // email,
             age,
             gender,
             role
@@ -158,7 +161,6 @@ export default {
           name,
           secondName,
           nickname,
-          // email,
           age,
           gender,
           role,

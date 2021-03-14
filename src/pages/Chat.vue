@@ -85,14 +85,7 @@ export default {
       return this.$store.getters.currentUser
     },
     currentDate() {
-      var today = new Date()
-      var dd = today.getDate()
-
-      var mm = today.getMonth()
-      var yyyy = today.getFullYear()
-      let nowDate = { dd, mm, yyyy }
-      let dataVal = Object.values(nowDate)
-      return dataVal
+      return Date()
     }
   },
   methods: {

@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  props: ['deletUser'],
+  // props: ['deletUser'],
   data() {
     return {
       dialogConfirm: false,
@@ -37,6 +37,9 @@ export default {
   computed: {
     users() {
       return this.$store.getters.users
+    },
+    currentUser() {
+      return this.$store.getters.currentUser
     }
   },
   methods: {
@@ -44,9 +47,10 @@ export default {
       this.dialogConfirm = true
     },
     onDelete() {
-      const enteredDbId = this.deletId
-      this.$store.dispatch('deleteUserById', this.deletUser).then(() => {
-        this.$router.push(`/users`)
+      const deleted = this.currentUser.dbId
+      console.log(deleted)
+      this.$store.dispatch('deleteUserById', deleted).then(() => {
+        this.$router.push(`/`)
       })
     }
   }

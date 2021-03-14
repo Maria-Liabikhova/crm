@@ -11,7 +11,7 @@
                 ></v-col>
                 <v-col cols="6" class="correct-conteiner">
                   <div class="main_page-display display_bg-2">
-                    <div v-if="offSystem" class="right">
+                    <div v-if="!onSystem" class="right">
                       <v-spacer></v-spacer>
                       <v-btn color="green darken-1" text @click="onLogin">
                         Login
@@ -69,8 +69,8 @@ export default {
     }
   },
   computed: {
-    offSystem() {
-      return !this.$store.getters.userLoggedIn
+    onSystem() {
+      return this.$store.getters.userLoggedIn
     }
   }
 }

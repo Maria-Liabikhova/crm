@@ -112,9 +112,7 @@ export default {
           gender: this.gender,
           role: this.role
         }
-        this.$store.dispatch('createUser', user).then(() => {
-          // this.$router.push('/current_user')
-        })
+        this.$store.dispatch('createUser', user)
       }
     },
     addPhoto() {
