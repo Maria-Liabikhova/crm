@@ -8,7 +8,6 @@
             <v-col class="no-padding" cols="8" xs="8" sm="8" md="9">
               <v-card class="main_right-part" height="100%">
                 <section v-if="currentUser">
-                  <!-- <section v-if="!loading"> -->
                   <div class="user_wrap">
                     <v-card class="user-card">
                       <v-img

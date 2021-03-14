@@ -32,7 +32,6 @@ new Vue({
         } catch (error) {
           this.$store.dispatch('activeError', error.message)
           $mount('#app')
-
           throw error
         }
       }

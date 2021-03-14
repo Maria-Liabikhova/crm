@@ -19,7 +19,7 @@ export default {
     setUserEmail(state, payload) {
       state.userEmail = payload
     },
-    setLogoutAuth(state, payload) {
+    setLogoutAuth(state) {
       state.userAuth = null
     }
   },
@@ -61,6 +61,15 @@ export default {
     logoutUser({ commit }) {
       firebase.auth().signOut()
       commit('identifyUser', null)
+    },
+    async deletAuth({ commit }) {
+      try {
+        const user = await firebase.auth().currentUser
+        user.delete()
+        commit('setLogoutAuth')
+      } catch (error) {
+        throw error
+      }
     }
   },
   getters: {

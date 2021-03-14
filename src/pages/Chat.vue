@@ -96,7 +96,6 @@ export default {
         date: this.currentDate,
         text: this.enterMessage
       }
-      console.log(itemParam)
       this.$store.dispatch('setChatItem', itemParam)
     }
   }

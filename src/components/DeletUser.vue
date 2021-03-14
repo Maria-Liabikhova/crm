@@ -48,7 +48,6 @@ export default {
     },
     onDelete() {
       const deleted = this.currentUser.dbId
-      console.log(deleted)
       this.$store.dispatch('deleteUserById', deleted).then(() => {
         this.$router.push(`/`)
       })

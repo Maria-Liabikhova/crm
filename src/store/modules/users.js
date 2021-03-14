@@ -25,6 +25,9 @@ export default {
     setNewUser(state, payload) {
       state.users.push(payload)
     },
+    setCurrentUser(state, payload) {
+      state.currentUser = payload
+    },
     loadUsers(state, payload) {
       state.users = payload
     },
@@ -65,10 +68,9 @@ export default {
           .database()
           .ref('users')
           .push(newUser)
-        commit('setNewUser', {
-          ...newUser,
-          id: userDb.key
-        })
+        newUser.dbId = userDb.key
+        commit('setNewUser', newUser)
+        commit('setCurrentUser', newUser)
       } catch (error) {
         commit('setError', error.message)
         commit('errorColor')
@@ -122,17 +124,14 @@ export default {
     },
     async deleteUserById({ commit }, payload) {
       commit('setClearError')
-      console.log('store', payload)
+      console.log('payload in store', payload)
       try {
         const userFromDatabase = await firebase
           .database()
           .ref('users/' + payload)
           .remove()
-        const user = await firebase.auth().currentUser
-        user.delete().then(() => {
-          commit('setLogoutAuth')
-          commit('setLogoutDb')
-        })
+        commit('setLogoutDb')
+        store.dispatch('deletAuth')
       } catch (error) {
         throw error
       }
