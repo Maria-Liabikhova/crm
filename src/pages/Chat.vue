@@ -24,9 +24,9 @@
                           <v-divider></v-divider>
                         </v-col>
                         <v-col cols="11">
-                          <v-content class="message-content">
+                          <v-main class="message-content">
                             {{ item.text }}
-                          </v-content>
+                          </v-main>
                         </v-col>
                       </v-row>
                     </v-list-item>
@@ -75,28 +75,30 @@ export default {
   },
   mounted() {
     let element = this.$refs.chatArea
-    element.scrollTop = element.scrollHeight
+    this.$store
+      .dispatch('fetchChatDB')
+      .then(() => (element.scrollTop = element.scrollHeight))
   },
   computed: {
     items() {
-      return this.$store.getters.items
-    },
-    currentUser() {
-      return this.$store.getters.currentUser
-    },
-    currentDate() {
-      return Date()
+      return this.$store.getters.chatMessages
     }
   },
   methods: {
     onChat() {
       const itemParam = {
-        avatar: 'https://randomuser.me/api/portraits/men/85.jpg',
-        nickname: this.currentUser.nickname,
-        date: this.currentDate,
+        avatar:
+          'https://cloudstatic.eva.ru/eva/720000-730000/722554/wiki/1577182578357_4299168799076267.jpg?H',
+        nickname: this.$store.getters.currentUser.nickname,
+        date: Date(),
         text: this.enterMessage
       }
-      this.$store.dispatch('datasChatItem', itemParam)
+      this.enterMessage = ' '
+      this.$store.dispatch('setChat', itemParam)
+      let element = this.$refs.chatArea
+      this.$store
+        .dispatch('fetchChatDB')
+        .then(() => (element.scrollTop = element.scrollHeight))
     }
   }
 }

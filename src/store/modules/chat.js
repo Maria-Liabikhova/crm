@@ -1,6 +1,6 @@
 import firebase from 'firebase'
 
-class Item {
+class ChatMessages {
   constructor(avatar, nickname, date, text) {
     this.avatar = avatar
     this.nickname = nickname
@@ -11,18 +11,18 @@ class Item {
 
 export default {
   state: {
-    chatItems: []
+    chatContent: []
   },
   mutations: {
-    loadItems(state, payload) {
-      state.chatItems = payload
+    loadChat(state, payload) {
+      state.chatContent = payload
     }
   },
   actions: {
-    async datasChatItem({ commit }, payload) {
+    async setChat({ commit }, payload) {
       commit('setClearError')
       try {
-        const newItem = new Item(
+        const newChatMessage = new ChatMessages(
           payload.avatar,
           payload.nickname,
           payload.date,
@@ -31,7 +31,7 @@ export default {
         await firebase
           .database()
           .ref('mainChat')
-          .push(newItem)
+          .push(newChatMessage)
       } catch (error) {
         commit('setError', error.message)
         commit('errorColor')
@@ -40,24 +40,24 @@ export default {
     },
     async fetchChatDB({ commit }) {
       commit('setClearError')
-      const dbChatItems = []
+      const dbChatMessage = []
       try {
-        const itemsFromDB = await firebase
+        const dbChatContent = await firebase
           .database()
           .ref('mainChat')
           .once('value')
-        const itemsList = itemsFromDB.val()
-        Object.keys(itemsList).forEach(key => {
-          const theItem = new Item(
-            itemsList[key].avatar,
-            itemsList[key].nickname,
-            itemsList[key].date,
-            itemsList[key].text
+        const chatList = dbChatContent.val()
+        Object.keys(chatList).forEach(key => {
+          const theChat = new ChatMessages(
+            chatList[key].avatar,
+            chatList[key].nickname,
+            chatList[key].date,
+            chatList[key].text
           )
-          theItem.id = key
-          dbChatItems.push(theItem)
+          theChat.id = key
+          dbChatMessage.push(theChat)
         })
-        commit('loadItems', dbChatItems)
+        commit('loadChat', dbChatMessage)
       } catch (error) {
         commit('setError', error.message)
         commit('errorColor')
@@ -66,8 +66,8 @@ export default {
     }
   },
   getters: {
-    items(state) {
-      return state.chatItems
+    chatMessages(state) {
+      return state.chatContent
     }
   }
 }
