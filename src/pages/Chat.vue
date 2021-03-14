@@ -96,7 +96,7 @@ export default {
         date: this.currentDate,
         text: this.enterMessage
       }
-      this.$store.dispatch('setChatItem', itemParam)
+      this.$store.dispatch('datasChatItem', itemParam)
     }
   }
 }

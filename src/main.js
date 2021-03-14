@@ -37,5 +37,6 @@ new Vue({
       }
     }),
       this.$store.dispatch('fetchUsersDB')
+    this.$store.dispatch('fetchChatDB')
   }
 }).$mount('#app')

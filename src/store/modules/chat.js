@@ -14,12 +14,12 @@ export default {
     chatItems: []
   },
   mutations: {
-    setNewItem(state, payload) {
-      state.chatItems.push(payload)
+    loadItems(state, payload) {
+      state.chatItems = payload
     }
   },
   actions: {
-    async setChatItem({ commit }, payload) {
+    async datasChatItem({ commit }, payload) {
       commit('setClearError')
       try {
         const newItem = new Item(
@@ -28,14 +28,36 @@ export default {
           payload.date,
           payload.text
         )
-        const user = await firebase
+        await firebase
           .database()
           .ref('mainChat')
           .push(newItem)
-        commit('setNewItem', {
-          ...newItem,
-          payload
+      } catch (error) {
+        commit('setError', error.message)
+        commit('errorColor')
+        throw error
+      }
+    },
+    async fetchChatDB({ commit }) {
+      commit('setClearError')
+      const dbChatItems = []
+      try {
+        const itemsFromDB = await firebase
+          .database()
+          .ref('mainChat')
+          .once('value')
+        const itemsList = itemsFromDB.val()
+        Object.keys(itemsList).forEach(key => {
+          const theItem = new Item(
+            itemsList[key].avatar,
+            itemsList[key].nickname,
+            itemsList[key].date,
+            itemsList[key].text
+          )
+          theItem.id = key
+          dbChatItems.push(theItem)
         })
+        commit('loadItems', dbChatItems)
       } catch (error) {
         commit('setError', error.message)
         commit('errorColor')
