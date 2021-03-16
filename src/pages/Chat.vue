@@ -19,7 +19,7 @@
                             chat.nickname
                           }}</v-list-item>
                           <v-list-item class="user-info">{{
-                            chat.date
+                            formatDate(chat.date)
                           }}</v-list-item>
                           <v-divider></v-divider>
                         </v-col>
@@ -68,9 +68,7 @@ export default {
   components: { Navbar },
   data() {
     return {
-      enterMessage: null,
-      date: Date(),
-      text: null
+      enterMessage: null
     }
   },
   async mounted() {
@@ -85,36 +83,16 @@ export default {
   computed: {
     chats() {
       return this.$store.getters.chatMessages
-    },
-    chatDate() {
-      const theDate = this.chats.forEach(function(chat) {
-        const dbFormatDate = Date.parse(chat.date)
-        let convertFormatDate = new Date(dbFormatDate)
-        dbFormatDate =
-          convertFormatDate.getDate() +
-          '/' +
-          convertFormatDate.getMonth() +
-          '/' +
-          convertFormatDate.getFullYear() +
-          ' ' +
-          convertFormatDate.getHours() +
-          ':' +
-          convertFormatDate.getMinutes()
-        return dbFormatDate
-      })
-
-      return theDate
     }
   },
   methods: {
     async onChat() {
-      console.log('this.chatDate', this.chatDate)
       try {
         const itemParam = {
           avatar:
             'https://cloudstatic.eva.ru/eva/720000-730000/722554/wiki/1577182578357_4299168799076267.jpg?H',
           nickname: this.$store.getters.currentUser.nickname,
-          date: this.date,
+          date: Date(),
           text: this.enterMessage
         }
         this.enterMessage = null
@@ -125,6 +103,18 @@ export default {
       } catch (error) {
         throw error
       }
+    },
+    formatDate(timestamp) {
+      let dbFormatDate = Date.parse(timestamp)
+      return `${new Date(dbFormatDate).getDate()}.${new Date(
+        dbFormatDate
+      ).getMonth() + 1}.${new Date(dbFormatDate).getFullYear()} ${new Date(
+        dbFormatDate
+      ).getHours()}${
+        new Date(dbFormatDate).getMinutes() < 10
+          ? `:0${new Date(dbFormatDate).getMinutes()}`
+          : `:${new Date(dbFormatDate).getMinutes()}`
+      }`
     }
   }
 }
