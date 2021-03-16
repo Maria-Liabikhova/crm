@@ -11,7 +11,7 @@
                   <div ref="chatArea" class="chat">
                     <v-list-item v-for="chat in chats" :key="chat.id"
                       ><v-row>
-                        <v-col cols="1">
+                        <v-col cols="2">
                           <v-list-item-avatar>
                             <v-img :src="chat.avatar"></v-img>
                           </v-list-item-avatar>
@@ -23,7 +23,7 @@
                           }}</v-list-item>
                           <v-divider></v-divider>
                         </v-col>
-                        <v-col cols="11">
+                        <v-col cols="10">
                           <v-main class="message-content">
                             {{ chat.text }}
                           </v-main>
@@ -69,6 +69,7 @@ export default {
   data() {
     return {
       enterMessage: null
+      // date: null
     }
   },
   async mounted() {
@@ -106,15 +107,15 @@ export default {
     },
     formatDate(timestamp) {
       let dbFormatDate = Date.parse(timestamp)
-      return `${new Date(dbFormatDate).getDate()}.${new Date(
-        dbFormatDate
-      ).getMonth() + 1}.${new Date(dbFormatDate).getFullYear()} ${new Date(
-        dbFormatDate
-      ).getHours()}${
+      return `${new Date(dbFormatDate).getHours()}${
         new Date(dbFormatDate).getMinutes() < 10
           ? `:0${new Date(dbFormatDate).getMinutes()}`
           : `:${new Date(dbFormatDate).getMinutes()}`
-      }`
+      } ${new Date(dbFormatDate).getDate()}${
+        new Date(dbFormatDate).getMonth() < 9
+          ? `:0${new Date(dbFormatDate).getMonth() + 1}`
+          : `:${new Date(dbFormatDate).getMonth() + 1}`
+      }.${new Date(dbFormatDate).getFullYear()}`
     }
   }
 }
