@@ -9,23 +9,23 @@
               <v-card class="main_right-part" height="100%">
                 <div class="wrapp">
                   <div ref="chatArea" class="chat">
-                    <v-list-item v-for="item in items" :key="item.id"
+                    <v-list-item v-for="chat in chats" :key="chat.id"
                       ><v-row>
                         <v-col cols="1">
                           <v-list-item-avatar>
-                            <v-img :src="item.avatar"></v-img>
+                            <v-img :src="chat.avatar"></v-img>
                           </v-list-item-avatar>
                           <v-list-item class="user-info">{{
-                            item.nickname
+                            chat.nickname
                           }}</v-list-item>
                           <v-list-item class="user-info">{{
-                            item.date
+                            chat.date
                           }}</v-list-item>
                           <v-divider></v-divider>
                         </v-col>
                         <v-col cols="11">
                           <v-main class="message-content">
-                            {{ item.text }}
+                            {{ chat.text }}
                           </v-main>
                         </v-col>
                       </v-row>
@@ -68,37 +68,63 @@ export default {
   components: { Navbar },
   data() {
     return {
-      enterMessage: '',
-      date: '',
-      text: ''
+      enterMessage: null,
+      date: Date(),
+      text: null
     }
   },
-  mounted() {
-    let element = this.$refs.chatArea
-    this.$store
-      .dispatch('fetchChatDB')
-      .then(() => (element.scrollTop = element.scrollHeight))
+  async mounted() {
+    try {
+      let element = this.$refs.chatArea
+      await this.$store.dispatch('fetchChatDB')
+      element.scrollTop = element.scrollHeight
+    } catch (error) {
+      throw error
+    }
   },
   computed: {
-    items() {
+    chats() {
       return this.$store.getters.chatMessages
+    },
+    chatDate() {
+      const theDate = this.chats.forEach(function(chat) {
+        const dbFormatDate = Date.parse(chat.date)
+        let convertFormatDate = new Date(dbFormatDate)
+        dbFormatDate =
+          convertFormatDate.getDate() +
+          '/' +
+          convertFormatDate.getMonth() +
+          '/' +
+          convertFormatDate.getFullYear() +
+          ' ' +
+          convertFormatDate.getHours() +
+          ':' +
+          convertFormatDate.getMinutes()
+        return dbFormatDate
+      })
+
+      return theDate
     }
   },
   methods: {
-    onChat() {
-      const itemParam = {
-        avatar:
-          'https://cloudstatic.eva.ru/eva/720000-730000/722554/wiki/1577182578357_4299168799076267.jpg?H',
-        nickname: this.$store.getters.currentUser.nickname,
-        date: Date(),
-        text: this.enterMessage
+    async onChat() {
+      console.log('this.chatDate', this.chatDate)
+      try {
+        const itemParam = {
+          avatar:
+            'https://cloudstatic.eva.ru/eva/720000-730000/722554/wiki/1577182578357_4299168799076267.jpg?H',
+          nickname: this.$store.getters.currentUser.nickname,
+          date: this.date,
+          text: this.enterMessage
+        }
+        this.enterMessage = null
+        this.$store.dispatch('createChat', itemParam)
+        let element = this.$refs.chatArea
+        await this.$store.dispatch('fetchChatDB')
+        element.scrollTop = element.scrollHeight
+      } catch (error) {
+        throw error
       }
-      this.enterMessage = ' '
-      this.$store.dispatch('setChat', itemParam)
-      let element = this.$refs.chatArea
-      this.$store
-        .dispatch('fetchChatDB')
-        .then(() => (element.scrollTop = element.scrollHeight))
     }
   }
 }
