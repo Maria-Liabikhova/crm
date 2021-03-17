@@ -9,23 +9,23 @@
               <v-card class="main_right-part" height="100%">
                 <div class="wrapp">
                   <div ref="chatArea" class="chat">
-                    <v-list-item v-for="chat in chats" :key="chat.id"
+                    <v-list-item v-for="message in messages" :key="message.id"
                       ><v-row>
                         <v-col cols="2">
                           <v-list-item-avatar>
-                            <v-img :src="chat.avatar"></v-img>
+                            <v-img :src="message.avatar"></v-img>
                           </v-list-item-avatar>
                           <v-list-item class="user-info">{{
-                            chat.nickname
+                            message.nickname
                           }}</v-list-item>
                           <v-list-item class="user-info">{{
-                            formatDate(chat.date)
+                            formatDate(message.date)
                           }}</v-list-item>
                           <v-divider></v-divider>
                         </v-col>
                         <v-col cols="10">
                           <v-main class="message-content">
-                            {{ chat.text }}
+                            {{ message.text }}
                           </v-main>
                         </v-col>
                       </v-row>
@@ -37,7 +37,7 @@
                       dark
                       class="input"
                       background-color="black"
-                      v-model="enterMessage"
+                      v-model="messageField"
                     ></v-textarea>
                     <div class="button_wrap">
                       <v-spacer></v-spacer>
@@ -46,7 +46,7 @@
                         color="black"
                         class="front"
                         dark
-                        @click="onChat"
+                        @click="onSendMessage"
                       >
                         Send message
                       </v-btn>
@@ -68,8 +68,7 @@ export default {
   components: { Navbar },
   data() {
     return {
-      enterMessage: null
-      // date: null
+      messageField: null
     }
   },
   async mounted() {
@@ -82,22 +81,22 @@ export default {
     }
   },
   computed: {
-    chats() {
+    messages() {
       return this.$store.getters.chatMessages
     }
   },
   methods: {
-    async onChat() {
+    async onSendMessage() {
       try {
-        const itemParam = {
+        const newMessage = {
           avatar:
             'https://cloudstatic.eva.ru/eva/720000-730000/722554/wiki/1577182578357_4299168799076267.jpg?H',
           nickname: this.$store.getters.currentUser.nickname,
           date: Date(),
-          text: this.enterMessage
+          text: this.messageField
         }
-        this.enterMessage = null
-        this.$store.dispatch('createChat', itemParam)
+        this.messageField = null
+        this.$store.dispatch('addMesage', newMessage)
         let element = this.$refs.chatArea
         await this.$store.dispatch('fetchChatDB')
         element.scrollTop = element.scrollHeight

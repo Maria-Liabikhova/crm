@@ -19,7 +19,7 @@ export default {
     }
   },
   actions: {
-    async createChat({ commit }, payload) {
+    async addMesage({ commit }, payload) {
       commit('setClearError')
       try {
         const newChatMessage = new ChatMessages(
