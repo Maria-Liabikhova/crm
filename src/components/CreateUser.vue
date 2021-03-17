@@ -58,24 +58,38 @@
                 ></v-autocomplete>
               </v-col>
             </v-row>
+            <v-row>
+              <v-col cols="12">
+                <small>*indicates required field</small>
+                <!-- Add picture button -->
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12">
+                <img :src="imgSrc" class="img-upload" v-if="imgSrc" />
+              </v-col>
+            </v-row>
           </v-container>
-          <small>*indicates required field</small>
-          <v-spacer></v-spacer>
-          <!-- Add picture button -->
           <v-btn color="blue-grey" class="ma-2 white--text" @click="addPhoto">
             upload profile photo
             <v-icon right dark>
               mdi-cloud-upload
             </v-icon>
           </v-btn>
-          <input ref="add" type="file" accept="image/*" style="display: none" />
+          <input
+            ref="add"
+            type="file"
+            accept="image/*"
+            style="display: none"
+            @change="onFileChange"
+          />
           <!-- End add picture button -->
         </v-card-text>
 
         <v-btn
           color="blue darken-1"
           text
-          :disabled="!valid"
+          :disabled="!valid || !img"
           @click="createUser"
         >
           Save
@@ -92,7 +106,8 @@ export default {
       valid: false,
       rule: [el => !!el || 'Title is required'],
       number: Number,
-      img: '',
+      img: null,
+      imgSrc: '',
       name: '',
       secondName: '',
       nickname: '',
@@ -103,21 +118,36 @@ export default {
   },
   methods: {
     createUser() {
-      if (this.$refs.forma.validate()) {
+      if (this.$refs.forma.validate() && this.img) {
         const user = {
           name: this.name,
           secondName: this.secondName,
           nickname: this.nickname,
           age: this.age,
           gender: this.gender,
-          role: this.role
+          role: this.role,
+          img: this.img
         }
         this.$store.dispatch('createUser', user)
       }
     },
     addPhoto() {
       this.$refs.add.click()
+    },
+    onFileChange(event) {
+      const file = event.target.files[0]
+      const reader = new FileReader()
+      reader.onload = e => {
+        this.imgSrc = reader.result
+      }
+      reader.readAsDataURL(file)
+      this.img = file
     }
   }
 }
 </script>
+<style scoped>
+.img-upload {
+  height: 100px;
+}
+</style>

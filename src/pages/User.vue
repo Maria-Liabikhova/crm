@@ -20,7 +20,11 @@
                           </h1>
                           <v-spacer></v-spacer>
                           <v-avatar size="150">
-                            <!-- <img class="img_avatar" alt="user" :src="user.imgSrc" /> -->
+                            <img
+                              class="img_avatar"
+                              alt="user"
+                              :src="user.imgSrc"
+                            />
                           </v-avatar>
                         </v-card-title>
                       </v-img>
@@ -126,6 +130,8 @@ h1 {
 }
 .img_avatar {
   object-fit: cover;
+  height: 50px;
+  width: 50px;
 }
 .card__subtitle {
   font-weight: bold;

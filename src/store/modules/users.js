@@ -1,7 +1,17 @@
 import firebase from 'firebase'
 import store from '@/store'
 class User {
-  constructor(name, secondName, nickname, age, aid, email, gender, role) {
+  constructor(
+    name,
+    secondName,
+    nickname,
+    age,
+    aid,
+    email,
+    gender,
+    role,
+    imgSrc = ''
+  ) {
     this.name = name
     this.secondName = secondName
     this.nickname = nickname
@@ -10,6 +20,7 @@ class User {
     this.email = email
     this.gender = gender
     this.role = role
+    this.imgSrc = imgSrc
   }
 }
 export default {
@@ -53,6 +64,7 @@ export default {
   actions: {
     async createUser({ commit, getters }, payload) {
       commit('setClearError')
+      const img = payload.img
       try {
         const newUser = new User(
           payload.name,
@@ -62,13 +74,30 @@ export default {
           getters.userAuth.id,
           getters.userEmail,
           payload.gender,
-          payload.role
+          payload.role,
+          ''
         )
         const userDb = await firebase
           .database()
           .ref('users')
           .push(newUser)
         newUser.dbId = userDb.key
+        newUser.imgSrc = userDb.imgSrc
+        const imgExt = img.name.slice(img.name.lastIndexOf('.'))
+        const fileData = await firebase
+          .storage()
+          .ref(`avatars/${userDb.key}${imgExt}`)
+          .put(img)
+        const imgSrc = await firebase
+          .storage()
+          .ref()
+          .child(fileData.ref.fullPath)
+          .getDownloadURL()
+        await firebase
+          .database()
+          .ref('users')
+          .child(userDb.key)
+          .update({ imgSrc })
         commit('setNewUser', newUser)
         commit('setCurrentUser', newUser)
       } catch (error) {
@@ -96,7 +125,8 @@ export default {
             usersList[key].email,
             usersList[key].gender,
             usersList[key].role,
-            usersList[key].dbId
+            usersList[key].dbId,
+            usersList[key].imgSrc
           )
           theUser.dbId = key
           databaseUsers.push(theUser)

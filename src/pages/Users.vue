@@ -35,7 +35,6 @@
                             </v-list-item>
                           </v-list>
                         </v-menu>
-                        -->
                         <!-- Second button Select by role -->
                         <v-menu>
                           <template v-slot:activator="{ on, attrs }">
