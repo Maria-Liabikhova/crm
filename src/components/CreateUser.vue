@@ -58,18 +58,14 @@
                 ></v-autocomplete>
               </v-col>
             </v-row>
-            <v-row>
-              <v-col cols="12">
-                <small>*indicates required field</small>
-                <!-- Add picture button -->
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="12">
-                <img :src="imgSrc" class="img-upload" v-if="imgSrc" />
-              </v-col>
-            </v-row>
+            <v-col cols="12">
+              <small>*indicates required field</small>
+            </v-col>
+            <v-col cols="12">
+              <img :src="imgSrc" class="img_profile" v-if="imgSrc" />
+            </v-col>
           </v-container>
+          <!-- Add picture button -->
           <v-btn color="blue-grey" class="ma-2 white--text" @click="addPhoto">
             upload profile photo
             <v-icon right dark>
@@ -87,6 +83,7 @@
         </v-card-text>
 
         <v-btn
+          ref="createBtn"
           color="blue darken-1"
           text
           :disabled="!valid || !img"
@@ -147,7 +144,7 @@ export default {
 }
 </script>
 <style scoped>
-.img-upload {
+.img_profile {
   height: 100px;
 }
 </style>

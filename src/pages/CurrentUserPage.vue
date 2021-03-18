@@ -20,7 +20,12 @@
                             {{ currentUser.secondName }}
                           </h1>
                           <v-spacer></v-spacer>
-                          <v-avatar size="150"> </v-avatar>
+                          <v-avatar size="150"
+                            ><img
+                              class="img_avatar"
+                              alt="user"
+                              :src="currentUser.imgSrc"
+                          /></v-avatar>
                         </v-card-title>
                       </v-img>
 
@@ -139,6 +144,11 @@ h1 {
   color: white;
   font-size: 16px;
   font-weight: normal;
+}
+.img_avatar {
+  object-fit: cover;
+  height: 50px;
+  width: 50px;
 }
 .card_background {
   background-image: url('https://doseng.org/uploads/posts/2013-02/1359716103_doseng.org_04.jpg');

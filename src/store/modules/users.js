@@ -10,7 +10,7 @@ class User {
     email,
     gender,
     role,
-    imgSrc = ''
+    imgSrc
   ) {
     this.name = name
     this.secondName = secondName
@@ -81,8 +81,6 @@ export default {
           .database()
           .ref('users')
           .push(newUser)
-        newUser.dbId = userDb.key
-        newUser.imgSrc = userDb.imgSrc
         const imgExt = img.name.slice(img.name.lastIndexOf('.'))
         const fileData = await firebase
           .storage()
@@ -98,8 +96,10 @@ export default {
           .ref('users')
           .child(userDb.key)
           .update({ imgSrc })
-        commit('setNewUser', newUser)
-        commit('setCurrentUser', newUser)
+        newUser.dbId = userDb.key
+        newUser.imgSrc = userDb.imgSrc
+        commit('setNewUser', { ...newUser, imgSrc: imgSrc })
+        commit('setCurrentUser', { ...newUser, imgSrc: imgSrc })
       } catch (error) {
         commit('setError', error.message)
         commit('errorColor')
