@@ -62,11 +62,15 @@ export default {
     }
   },
   methods: {
+    // onFind() {
+    //   const id = this.enteredDbId
+    //   this.$store.dispatch('getUserById', id).then(() => {
+    //     this.$router.push(`/user/${id}`)
+    //   })
+    // },
     onFind() {
       const id = this.enteredDbId
-      this.$store.dispatch('getUserById', id).then(() => {
-        this.$router.push(`/user/${id}`)
-      })
+      this.$router.push(`/user/${id}`)
     },
     onDelete() {
       const enteredDbId = this.enteredDbId

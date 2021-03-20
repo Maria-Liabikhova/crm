@@ -25,46 +25,23 @@ class User {
 }
 export default {
   state: {
-    user: null,
-    users: [],
-    currentUser: {}
+    users: []
   },
   mutations: {
-    addUser(state, payload) {
-      state.users.push(payload)
-    },
-    setNewUser(state, payload) {
-      state.users.push(payload)
-    },
-    setCurrentUser(state, payload) {
-      state.currentUser = payload
-    },
-    loadUsers(state, payload) {
-      state.users = payload
+    setUsers(state, payload) {
+      console.log('setUsers: ', payload)
+      state.users = [...payload]
     },
     setLogoutDb(state) {
       state.user = null
-    },
-    updatesForUser(
-      state,
-      { name, secondName, nickname, age, gender, role, dbId }
-    ) {
-      const updateUser = state.users.find(el => {
-        return el.dbId == dbId
-      })
-      updateUser.name = name
-      updateUser.secondName = secondName
-      updateUser.nickname = nickname
-      updateUser.age = age
-      updateUser.gender = gender
-      updateUser.role = role
     }
   },
 
   actions: {
-    async createUser({ commit, getters }, payload) {
+    async createUser({ commit, dispatch, getters }, payload) {
       commit('setClearError')
       const img = payload.img
+      console.log('payload: ', payload)
       try {
         const newUser = new User(
           payload.name,
@@ -75,7 +52,7 @@ export default {
           getters.userEmail,
           payload.gender,
           payload.role,
-          ''
+          null
         )
         const userDb = await firebase
           .database()
@@ -91,15 +68,9 @@ export default {
           .ref()
           .child(fileData.ref.fullPath)
           .getDownloadURL()
-        await firebase
-          .database()
-          .ref('users')
-          .child(userDb.key)
-          .update({ imgSrc })
+        newUser.imgSrc = imgSrc
         newUser.dbId = userDb.key
-        newUser.imgSrc = userDb.imgSrc
-        commit('setNewUser', { ...newUser, imgSrc: imgSrc })
-        commit('setCurrentUser', { ...newUser, imgSrc: imgSrc })
+        dispatch('updateUser', newUser)
       } catch (error) {
         commit('setError', error.message)
         commit('errorColor')
@@ -125,27 +96,12 @@ export default {
             usersList[key].email,
             usersList[key].gender,
             usersList[key].role,
-            usersList[key].dbId,
             usersList[key].imgSrc
           )
           theUser.dbId = key
           databaseUsers.push(theUser)
-          // console.log('theUser:', theUser)
         })
-        commit('loadUsers', databaseUsers)
-      } catch (error) {
-        commit('setError', error.message)
-        commit('errorColor')
-        throw error
-      }
-    },
-    async getUserById({ commit }, payload) {
-      commit('setClearError')
-      try {
-        const userFromDatabase = await firebase
-          .database()
-          .ref('users/' + payload)
-          .once('value')
+        commit('setUsers', databaseUsers)
       } catch (error) {
         commit('setError', error.message)
         commit('errorColor')
@@ -166,35 +122,15 @@ export default {
         throw error
       }
     },
-    async updateUser(
-      { commit },
-      { name, secondName, nickname, age, gender, role, dbId }
-    ) {
+    async updateUser({ commit }, payload) {
       commit('setClearError')
       commit('setLoading', true)
       try {
         await firebase
           .database()
           .ref('users')
-          .child(dbId)
-          .update({
-            name,
-            secondName,
-            nickname,
-            age,
-            gender,
-            role
-          })
-
-        commit('updatesForUser', {
-          name,
-          secondName,
-          nickname,
-          age,
-          gender,
-          role,
-          dbId
-        })
+          .child(payload.dbId)
+          .update(payload)
         commit('setLoading', false)
       } catch (error) {
         commit('setLoading', false)
