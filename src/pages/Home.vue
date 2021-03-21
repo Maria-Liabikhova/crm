@@ -62,7 +62,9 @@ export default {
       this.$router.push(`/registration`)
     },
     onUserPage() {
-      this.$router.push(`/current_user`)
+      this.$store.dispatch('fetchUsersDB').then(() => {
+        this.$router.push(`/current_user`)
+      })
     },
     onLogout() {
       this.$store.dispatch('logoutUser')

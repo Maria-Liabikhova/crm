@@ -147,8 +147,8 @@ h1 {
 }
 .img_avatar {
   object-fit: cover;
-  height: 50px;
-  width: 50px;
+  height: 150px;
+  width: 150px;
 }
 .card_background {
   background-image: url('https://doseng.org/uploads/posts/2013-02/1359716103_doseng.org_04.jpg');
