@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card v-if="!loading">
     <v-card-title>
       <span class="headline">Please, enter your data</span>
       <v-form ref="forma" v-model="valid">
@@ -94,6 +94,20 @@
       </v-form>
     </v-card-title>
   </v-card>
+  <section v-else>
+    <v-container>
+      <v-row>
+        <v-col xs="12" class="text-center ">
+          <v-progress-circular
+            :size="100"
+            :width="4"
+            indeterminate
+            color="black"
+          ></v-progress-circular>
+        </v-col>
+      </v-row>
+    </v-container>
+  </section>
 </template>
 
 <script>
@@ -113,19 +127,30 @@ export default {
       role: ''
     }
   },
+  computed: {
+    loading() {
+      return this.$store.getters.loading
+    }
+  },
   methods: {
-    createUser() {
-      if (this.$refs.forma.validate() && this.img) {
-        const user = {
-          name: this.name,
-          secondName: this.secondName,
-          nickname: this.nickname,
-          age: this.age,
-          gender: this.gender,
-          role: this.role,
-          img: this.img
+    async createUser() {
+      try {
+        if (this.$refs.forma.validate() && this.img) {
+          const user = {
+            name: this.name,
+            secondName: this.secondName,
+            nickname: this.nickname,
+            age: this.age,
+            gender: this.gender,
+            role: this.role,
+            img: this.img
+          }
+          this.$store.dispatch('setLoading', true)
+          await this.$store.dispatch('createUser', user)
+          this.$store.dispatch('setLoading', false)
         }
-        this.$store.dispatch('createUser', user)
+      } catch (error) {
+        throw error
       }
     },
     addPhoto() {

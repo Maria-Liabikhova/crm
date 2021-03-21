@@ -29,7 +29,7 @@ export default {
   },
   mutations: {
     setUsers(state, payload) {
-      console.log('setUsers: ', payload)
+      // console.log('setUsers: ', payload)
       state.users = [...payload]
     },
     setLogoutDb(state) {
@@ -41,7 +41,7 @@ export default {
     async createUser({ commit, dispatch, getters }, payload) {
       commit('setClearError')
       const img = payload.img
-      console.log('payload: ', payload)
+      // console.log('payload: ', payload)
       try {
         const newUser = new User(
           payload.name,
@@ -110,7 +110,7 @@ export default {
     },
     async deleteUserById({ commit }, payload) {
       commit('setClearError')
-      console.log('payload in store', payload)
+      // console.log('payload in store', payload)
       try {
         const userFromDatabase = await firebase
           .database()
