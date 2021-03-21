@@ -34,8 +34,8 @@ new Vue({
           $mount('#app')
           throw error
         }
+        this.$store.dispatch('fetchUsersDB')
       }
-    }),
-      this.$store.dispatch('fetchUsersDB')
+    })
   }
 }).$mount('#app')

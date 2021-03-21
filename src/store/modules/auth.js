@@ -18,9 +18,6 @@ export default {
     },
     setUserEmail(state, payload) {
       state.userEmail = payload
-    },
-    setLogoutAuth(state) {
-      state.userAuth = null
     }
   },
   actions: {
@@ -66,7 +63,6 @@ export default {
       try {
         const user = await firebase.auth().currentUser
         user.delete()
-        commit('setLogoutAuth')
       } catch (error) {
         throw error
       }

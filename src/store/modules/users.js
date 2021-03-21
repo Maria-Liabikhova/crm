@@ -30,9 +30,6 @@ export default {
   mutations: {
     setUsers(state, payload) {
       state.users = [...payload]
-    },
-    setLogoutDb(state) {
-      state.user = null
     }
   },
 
@@ -119,7 +116,6 @@ export default {
           .ref('avatars/')
           .child(`${payload}.jpg`)
         const avatarsFromStorage = desertRef.delete()
-        commit('setLogoutDb')
         store.dispatch('deletAuth')
       } catch (error) {
         throw error
