@@ -103,7 +103,6 @@ export default {
   components: { EditUser, DeletUser, CreateUser, Navbar },
   computed: {
     currentUser() {
-      console.log('currentUser', this.$store.getters.currentUser)
       return this.$store.getters.currentUser
     },
     loading() {

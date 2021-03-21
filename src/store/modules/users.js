@@ -29,7 +29,6 @@ export default {
   },
   mutations: {
     setUsers(state, payload) {
-      // console.log('setUsers: ', payload)
       state.users = [...payload]
     },
     setLogoutDb(state) {
@@ -41,7 +40,6 @@ export default {
     async createUser({ commit, dispatch, getters }, payload) {
       commit('setClearError')
       const img = payload.img
-      // console.log('payload: ', payload)
       try {
         const newUser = new User(
           payload.name,
@@ -111,12 +109,16 @@ export default {
     },
     async deleteUserById({ commit }, payload) {
       commit('setClearError')
-      // console.log('payload in store', payload)
       try {
         const userFromDatabase = await firebase
           .database()
           .ref('users/' + payload)
           .remove()
+        var desertRef = firebase
+          .storage()
+          .ref('avatars/')
+          .child(`${payload}.jpg`)
+        const avatarsFromStorage = desertRef.delete()
         commit('setLogoutDb')
         store.dispatch('deletAuth')
       } catch (error) {
@@ -132,7 +134,6 @@ export default {
           .ref('users')
           .child(payload.dbId)
           .update(payload)
-        // console.log('payload.dbId', payload.dbId) видит
         commit('setLoading', false)
       } catch (error) {
         commit('setLoading', false)
