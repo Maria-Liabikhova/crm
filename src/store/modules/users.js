@@ -71,6 +71,7 @@ export default {
         newUser.imgSrc = imgSrc
         newUser.dbId = userDb.key
         dispatch('updateUser', newUser)
+        dispatch('fetchUsersDB')
       } catch (error) {
         commit('setError', error.message)
         commit('errorColor')
@@ -131,6 +132,7 @@ export default {
           .ref('users')
           .child(payload.dbId)
           .update(payload)
+        // console.log('payload.dbId', payload.dbId) видит
         commit('setLoading', false)
       } catch (error) {
         commit('setLoading', false)
