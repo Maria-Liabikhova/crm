@@ -123,16 +123,13 @@ export default {
     },
     async updateUser({ commit }, payload) {
       commit('setClearError')
-      commit('setLoading', true)
       try {
         await firebase
           .database()
           .ref('users')
           .child(payload.dbId)
           .update(payload)
-        commit('setLoading', false)
       } catch (error) {
-        commit('setLoading', false)
         throw error
       }
     }
